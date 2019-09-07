@@ -30,7 +30,10 @@ class Login extends Component {
                 window.alert("For Fox 🦊sake enter a valid username or password!")
                 document.querySelector("#username").value = ""
                 document.querySelector("#password").value = ""
-            } else {
+            } else if (this.state.username.length === 0 || this.state.password.length === 0) {
+                window.alert("Please Bear 🐻with us and fill out all fields!")
+            }
+             else {
                 this.setState({ id: user[0].id, firstName: user[0].firstName, lastName: user[0].lastName })
                 sessionStorage.setItem(
                     "credentials",

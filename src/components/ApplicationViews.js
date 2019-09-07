@@ -2,7 +2,7 @@ import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import Login from "./auth/Login"
 import Register from "./auth/Register"
-import CurrentEventList from "./events/currentEvents/CurrentEventList"
+import Dashboard from "./Dashboard"
 import Welcome from "./Welcome"
 
 
@@ -33,7 +33,7 @@ class ApplicationViews extends Component {
                 <Route path="/" render={props => {
                     if (this.isAuthenticated()) {
                         return (
-                            <CurrentEventList {...props} />
+                            <Dashboard {...props} />
                         )
                     }
                     return <Redirect to="/welcome" />

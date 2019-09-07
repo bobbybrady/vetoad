@@ -1,40 +1,46 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "username": "bbrady91",
-            "password": "b",
-            "firstName": "Bobby",
-            "lastName": "Brady"
-        }
-    ],
-    "events": [
-        {
-            "id": 1,
-            "userId": 1,
-            "name": "Event 1",
-            "date": "2019-09-04",
-            "isOver": false
-        }
-    ],
-    "userEvents": [
-        {
-            "id": 1,
-            "userId": 1,
-            "eventId": 1,
-            "poodleSuggestionId": null,
-            "parrotSuggestionId": null,
-            "vetoadSuggestionId": null,
-            "vetoad": false,
-            "canSuggestEvent": false
-        }
-    ],
-    "suggestions": [
-        {
-            "id": 1,
-            "eventId": 1,
-            "name": "Chipotle"
-        }
-    ]
-    
+  "users": [
+    {
+      "id": 1,
+      "username": "bbrady91",
+      "password": "b",
+      "firstName": "Bobby",
+      "lastName": "Brady"
+    },
+    {
+      "username": "slsullivan49",
+      "password": "s",
+      "id": 2,
+      "firstName": "Stephanie",
+      "lastName": "Sullivan"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Event 1",
+      "date": "2019-09-04",
+      "isOver": false
+    }
+  ],
+  "userEvents": [
+    {
+      "id": 1,
+      "userId": 1,
+      "eventId": 1,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": false,
+      "canSuggestEvent": false
+    }
+  ],
+  "suggestions": [
+    {
+      "id": 1,
+      "eventId": 1,
+      "name": "Chipotle"
+    }
+  ]
 }

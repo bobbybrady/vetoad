@@ -1,16 +1,43 @@
 import React, { Component } from "react"
 import NavBar from "./nav/NavBar"
 import FeatureViews from "./FeatureViews"
-import {
-  Menu, Icon, Segment,
-  Sidebar, Button
-} from 'semantic-ui-react'
-import { Link, Redirect } from "react-router-dom"
+import { Menu, Icon, Sidebar, Confirm } from 'semantic-ui-react'
+import { Link } from "react-router-dom"
+import EventsManager from '../modules/EventsManager'
 
 
 class Dashboard extends Component {
-  state = { visible: false }
-  handleClick = (event) => {
+  state = {
+    visible: false,
+    open: false,
+    events: []
+  }
+
+  getAllEvents = () => {
+    EventsManager.getAll().then(events =>
+      this.setState({events: events})
+    )
+  }
+
+  show = () => {
+    if (this.state.open === false) {
+      this.setState({
+        open: true
+      })
+    } else {
+      this.setState({
+        open: false
+      })
+    }
+  }
+  handleConfirm = () => {
+    this.setState({
+      open: false
+    })
+  }
+
+
+  handleClick = () => {
     if (this.state.visible === false) {
       this.setState({ visible: true })
     } else {
@@ -18,9 +45,15 @@ class Dashboard extends Component {
     }
   }
 
+
   logout = () => {
     sessionStorage.clear()
     this.props.history.push("/")
+    this.handleConfirm()
+  }
+
+  componentDidMount() {
+    this.getAllEvents()
   }
   render() {
     const { visible } = this.state
@@ -43,10 +76,10 @@ class Dashboard extends Component {
             width='thin'
           >
             <Menu.Item onClick={this.handleClick}
-            name='close'>
-                        <Icon name="close"
-                        size='tiny'/>
-                    </Menu.Item>
+              name='close'>
+              <Icon name="close"
+                size='tiny' />
+            </Menu.Item>
             <Menu.Item as={Link} to='/'
               onClick={this.handleClick} className="sidebarButton"
             >Current Events
@@ -61,14 +94,23 @@ class Dashboard extends Component {
               onClick={this.handleClick}>
               Profile
             </Menu.Item>
-            <Menu.Item as='a'
-              onClick={this.logout}
+            <Menu.Item onClick={this.show}
               className="sidebarButton">
               Logout
+              <Confirm
+                open={this.state.open}
+                cancelButton='Cancel'
+                confirmButton="Logout"
+                onCancel={this.show}
+                onConfirm={this.logout}
+                content='Are you sure you want to Logout?'
+              />
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher dimmed={visible}>
-            <FeatureViews />
+            <FeatureViews
+            events={this.state.events}
+            {...this.props} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </>

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import CurrentEventList from "./events/currentEvents/CurrentEventList";
 import PastEventList from "./events/pastEvents/PastEventList";
 import Profile from './profile/Profile'
+import Event from './events/event/Event'
 
 
 export default class FeatureViews extends Component {
@@ -26,6 +27,9 @@ export default class FeatureViews extends Component {
             return <Profile {...this.props}/>
           }}
         />
+        <Route exact path="/events/:eventId(\d+)" render={(props) => {
+          return <Event eventId={parseInt(props.match.params.eventId)} {...props} />
+        }} />
 
       </React.Fragment>
     );

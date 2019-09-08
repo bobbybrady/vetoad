@@ -34,6 +34,16 @@
       "vetoadSuggestionId": null,
       "vetoad": false,
       "canSuggestEvent": false
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "eventId": 1,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": true,
+      "canSuggestEvent": true
     }
   ],
   "suggestions": [

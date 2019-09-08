@@ -22,6 +22,13 @@
       "name": "Event 1",
       "date": "2019-09-04",
       "isOver": false
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "name": "Event 2",
+      "date": "2019-09-06",
+      "isOver": true
     }
   ],
   "userEvents": [
@@ -51,6 +58,16 @@
       "id": 1,
       "eventId": 1,
       "name": "Chipotle"
+    },
+    {
+      "id": 2,
+      "eventId": 1,
+      "name": "Waffle House"
+    },
+    {
+      "id": 3,
+      "eventId": 2,
+      "name": "Wild Ginger"
     }
   ]
 }

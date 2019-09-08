@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-class ProfileEventList extends Component {
+class Profile extends Component {
 
     render() {
             return (
@@ -11,4 +11,4 @@ class ProfileEventList extends Component {
         }
 }
 
-export default ProfileEventList;
+export default Profile;

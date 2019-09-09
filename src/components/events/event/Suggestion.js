@@ -1,10 +1,9 @@
 import React, { Component } from "react"
 import { Card, Button } from 'semantic-ui-react'
 
-class SuggestionEventList extends Component {
+class Suggestion extends Component {
 
     render() {
-        console.log('ksjdf')
             return (
                    <Card>
                        <Card.Content>
@@ -17,4 +16,4 @@ class SuggestionEventList extends Component {
         }
 }
 
-export default SuggestionEventList;
+export default Suggestion;

@@ -29,6 +29,13 @@
       "name": "Event 2",
       "date": "2019-09-06",
       "isOver": true
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "name": "Event 3",
+      "date": "2019-09-06",
+      "isOver": false
     }
   ],
   "userEvents": [
@@ -51,6 +58,16 @@
       "vetoadSuggestionId": null,
       "vetoad": true,
       "canSuggestEvent": true
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "eventId": 3,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": false,
+      "canSuggestEvent": false
     }
   ],
   "suggestions": [

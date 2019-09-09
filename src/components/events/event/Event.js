@@ -1,8 +1,10 @@
 import React, { Component } from "react"
 import EventManager from '../../../modules/EventsManager'
 import SuggestionsManager from '../../../modules/SuggestionsManager'
+import UserEventsManager from '../../../modules/UserEventsManager'
 import { Button, Modal, Image } from 'semantic-ui-react'
 import Suggestion from './Suggestion'
+import UserEvent from './UserEvent'
 
 class PastEventList extends Component {
 
@@ -10,7 +12,8 @@ class PastEventList extends Component {
         name: '',
         date: '',
         userId: 0,
-        suggestions: []
+        suggestions: [],
+        userEvents: []
     }
 
     getEvent = () => {
@@ -19,6 +22,15 @@ class PastEventList extends Component {
                 name: event.name,
                 date: event.date,
                 userId: event.userId
+            })
+        })
+    }
+
+    getUserEvents = () => {
+        UserEventsManager.getAll().then(userEvents => {
+            const filteredUserEvents = userEvents.filter(userEvent => userEvent.eventId === this.props.eventId)
+            this.setState({
+                userEvents: filteredUserEvents
             })
         })
     }
@@ -33,6 +45,7 @@ class PastEventList extends Component {
     componentDidMount() {
         this.getEvent()
         this.getSuggestions()
+        this.getUserEvents()
     }
 
     render() {
@@ -62,6 +75,17 @@ class PastEventList extends Component {
                             key={suggestion.id}
                             suggestion={suggestion} />
                     )}
+                </div>
+                <div className='userEvents'>
+                    <h2>List of Participants</h2>
+                    <ol>
+                    {this.state.userEvents.map(userEvent =>
+                       <UserEvent
+                            key={userEvent.id}
+                            userEvent={userEvent}
+                            {...this.props} />
+                    )}
+                    </ol>
                 </div>
             </div>
         )

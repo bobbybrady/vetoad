@@ -4,13 +4,15 @@ import FeatureViews from "./FeatureViews"
 import { Menu, Icon, Sidebar, Confirm } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import EventsManager from '../modules/EventsManager'
+import UserEventsManager from '../modules/UserEventsManager'
 
 
 class Dashboard extends Component {
   state = {
     visible: false,
     open: false,
-    events: []
+    events: [],
+    userEvents: []
   }
 
   getAllEvents = () => {
@@ -18,7 +20,14 @@ class Dashboard extends Component {
       this.setState({events: events})
     )
   }
-
+  
+  getUserEvents = () => {
+    UserEventsManager.getAll().then(userEvents => {
+        this.setState({
+            userEvents: userEvents
+        })
+    })
+}
   show = () => {
     if (this.state.open === false) {
       this.setState({
@@ -54,6 +63,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.getAllEvents()
+    this.getUserEvents()
   }
   render() {
     const { visible } = this.state
@@ -110,6 +120,7 @@ class Dashboard extends Component {
           <Sidebar.Pusher dimmed={visible}>
             <FeatureViews
             events={this.state.events}
+            userEvents={this.state.userEvents}
             {...this.props} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>

@@ -13,6 +13,13 @@
       "id": 2,
       "firstName": "Stephanie",
       "lastName": "Sullivan"
+    },
+    {
+      "username": "test",
+      "password": "t",
+      "id": 3,
+      "firstName": "Ted",
+      "lastName": "Teddy"
     }
   ],
   "events": [
@@ -54,8 +61,8 @@
       "userId": 2,
       "eventId": 1,
       "poodleSuggestionId": 1,
-      "parrotSuggestionId": 1,
-      "vetoadSuggestionId": null,
+      "parrotSuggestionId": 2,
+      "vetoadSuggestionId": 1,
       "vetoad": true,
       "canSuggestEvent": true
     },
@@ -73,6 +80,16 @@
       "id": 4,
       "userId": 1,
       "eventId": 3,
+      "poodleSuggestionId": 4,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": false,
+      "canSuggestEvent": false
+    },
+    {
+      "id": 5,
+      "userId": 3,
+      "eventId": 1,
       "poodleSuggestionId": null,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
@@ -100,6 +117,11 @@
       "id": 4,
       "eventId": 3,
       "name": "ML Rose"
+    },
+    {
+      "id": 5,
+      "eventId": 1,
+      "name": "Chic-Fil-a"
     }
   ]
 }

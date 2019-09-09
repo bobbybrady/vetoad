@@ -1,6 +1,7 @@
 .eventsContainer {
     height: 95vh;
     border: none;
+    overflow: scroll;
 }
 
 .getRidOfSpace {

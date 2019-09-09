@@ -72,7 +72,7 @@ class Dashboard extends Component {
         <NavBar {...this.props}
           handleClick={this.handleClick}
           className="getRidOfSpace" />
-        <Sidebar.Pushable >
+              <Sidebar.Pushable >
           <Sidebar
             className="dimmed"
             as={Menu}

@@ -14,7 +14,7 @@ class CurrentEventCard extends Component {
                     <div className="eventCard">
                         <Card>
                             <Card.Content>
-                                <Icon name="star outline" />
+                                <Icon name="star outline"  />
                                 <Card.Header>{this.props.event.name}</Card.Header>
                                 <Card.Meta>{this.props.event.date}</Card.Meta>
                                 <Button onClick={() => { this.props.history.push(`/events/${this.props.event.id}`) }}>Details</Button>

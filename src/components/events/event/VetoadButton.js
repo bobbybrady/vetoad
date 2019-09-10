@@ -14,12 +14,12 @@ class VetoadButton extends Component {
             if (vetoadCheck === undefined) {
                 if (filteredVetoads[0].vetoadSuggestionId === null) {
                     return (
-                        <Button>🐸</Button>
+                        <Button onClick={this.props.updateExistingUserEventVetoad}>🐸</Button>
                     )
                 } else {
                     if (filteredVetoads[0].vetoadSuggestionId === this.props.suggestion.id) {
                         return (
-                            <Button disabled color='green'>🐸</Button>
+                            <Button disabled color='blue'>🐸</Button>
                         )
                     } else {
                         return (
@@ -31,7 +31,7 @@ class VetoadButton extends Component {
             } else {
                 if (filteredVetoads[0].vetoadSuggestionId === this.props.suggestion.id) {
                     return (
-                        <Button disabled color='green'>🐸</Button>
+                        <Button disabled color='blue'>🐸</Button>
                     )
                 } else {
                     return (

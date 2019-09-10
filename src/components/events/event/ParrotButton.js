@@ -14,7 +14,7 @@ class ParrotButton extends Component {
             if (vetoadCheck === undefined) {
                 if (filteredParrots[0].parrotSuggestionId === null) {
                     return (
-                        <Button>🦜</Button>
+                        <Button onClick={this.props.updateExistingUserEventParrot}>🦜</Button>
                     )
                 } else {
                     if (filteredParrots[0].parrotSuggestionId === this.props.suggestion.id) {

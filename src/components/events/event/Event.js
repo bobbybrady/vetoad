@@ -83,7 +83,9 @@ class PastEventList extends Component {
                                     key={suggestion.id}
                                     suggestion={suggestion}
                                     userId={this.state.userId}
-                                    userEvents={this.state.userEvents} />
+                                    userEvents={this.state.userEvents}
+                                    getSuggestions={this.getSuggestions}
+                                    getUserEvents={this.getUserEvents} />
                             )}
                         </div>
                         <div className='userEvents'>
@@ -130,7 +132,9 @@ class PastEventList extends Component {
                                     key={suggestion.id}
                                     suggestion={suggestion}
                                     userId={this.state.userId}
-                                    userEvents={this.state.userEvents} />
+                                    userEvents={this.state.userEvents}
+                                    getSuggestions={this.getSuggestions}
+                                    getUserEvents={this.getUserEvents} />
                             )}
                         </div>
                         <div className='userEvents'>
@@ -174,7 +178,9 @@ class PastEventList extends Component {
                                     key={suggestion.id}
                                     suggestion={suggestion}
                                     userId={this.state.userId}
-                                    userEvents={this.state.userEvents} />
+                                    userEvents={this.state.userEvents}
+                                    getSuggestions={this.getSuggestions}
+                                    getUserEvents={this.getUserEvents} />
                             )}
                         </div>
                         <div className='userEvents'>

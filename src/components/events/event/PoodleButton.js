@@ -14,7 +14,7 @@ class PoodleButton extends Component {
             if (vetoadCheck === undefined) {
                 if (filteredPoodles[0].poodleSuggestionId === null) {
                     return (
-                        <Button>🐩</Button>
+                        <Button onClick={this.props.updateExistingUserEventPoodle}>🐩</Button>
                     )
                 } else {
                     if (filteredPoodles[0].poodleSuggestionId === this.props.suggestion.id) {

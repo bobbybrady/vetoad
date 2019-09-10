@@ -47,24 +47,24 @@
   ],
   "userEvents": [
     {
-      "id": 1,
-      "userId": 1,
       "eventId": 1,
       "poodleSuggestionId": 1,
-      "parrotSuggestionId": null,
+      "parrotSuggestionId": 5,
       "vetoadSuggestionId": null,
       "vetoad": false,
-      "canSuggestEvent": false
+      "canSuggestEvent": false,
+      "userId": 1,
+      "id": 1
     },
     {
-      "id": 2,
-      "userId": 2,
       "eventId": 1,
       "poodleSuggestionId": 1,
       "parrotSuggestionId": 2,
-      "vetoadSuggestionId": 1,
+      "vetoadSuggestionId": 5,
       "vetoad": true,
-      "canSuggestEvent": true
+      "canSuggestEvent": true,
+      "userId": 2,
+      "id": 2
     },
     {
       "id": 3,
@@ -87,14 +87,14 @@
       "canSuggestEvent": false
     },
     {
-      "id": 5,
-      "userId": 3,
       "eventId": 1,
       "poodleSuggestionId": null,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
       "vetoad": false,
-      "canSuggestEvent": false
+      "canSuggestEvent": false,
+      "userId": 3,
+      "id": 5
     }
   ],
   "suggestions": [

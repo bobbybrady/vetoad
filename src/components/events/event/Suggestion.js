@@ -3,9 +3,60 @@ import { Card, Button } from 'semantic-ui-react'
 import PoodleButton from './PoodleButton'
 import ParrotButton from './ParrotButton'
 import VetoadButton from './VetoadButton'
+import UserEventManager from '../../../modules/UserEventsManager'
 
 class Suggestion extends Component {
 
+
+    updateExistingUserEventPoodle = () => {
+        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
+        const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.userId === currentUser.id && this.props.suggestion.eventId === userEvent.eventId)
+        const editedUserEvent = {
+            eventId: vetoadCheck.eventId,
+            poodleSuggestionId: this.props.suggestion.id,
+            parrotSuggestionId: vetoadCheck.parrotSuggestionId,
+            vetoadSuggestionId: vetoadCheck.vetoadSuggestionId,
+            vetoad: vetoadCheck.vetoad,
+            canSuggestEvent: vetoadCheck.canSuggestEvent,
+            userId:vetoadCheck.userId,
+            id: vetoadCheck.id
+        };
+
+        UserEventManager.update(editedUserEvent).then(this.props.getSuggestions).then(this.props.getUserEvents)
+    }
+    updateExistingUserEventParrot = () => {
+        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
+        const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.userId === currentUser.id && this.props.suggestion.eventId === userEvent.eventId)
+        const editedUserEvent = {
+            eventId: vetoadCheck.eventId,
+            poodleSuggestionId: vetoadCheck.poodleSuggestionId,
+            parrotSuggestionId: this.props.suggestion.id,
+            vetoadSuggestionId: vetoadCheck.vetoadSuggestionId,
+            vetoad: vetoadCheck.vetoad,
+            canSuggestEvent: vetoadCheck.canSuggestEvent,
+            userId:vetoadCheck.userId,
+            id: vetoadCheck.id
+        };
+    
+        UserEventManager.update(editedUserEvent).then(this.props.getSuggestions).then(this.props.getUserEvents)
+    }
+
+    updateExistingUserEventVetoad = () => {
+        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
+        const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.userId === currentUser.id && this.props.suggestion.eventId === userEvent.eventId)
+        const editedUserEvent = {
+            eventId: vetoadCheck.eventId,
+            poodleSuggestionId: vetoadCheck.poodleSuggestionId,
+            parrotSuggestionId: vetoadCheck.parrotSuggestionId,
+            vetoadSuggestionId: this.props.suggestion.id,
+            vetoad: vetoadCheck.vetoad,
+            canSuggestEvent: vetoadCheck.canSuggestEvent,
+            userId:vetoadCheck.userId,
+            id: vetoadCheck.id
+        };
+    
+        UserEventManager.update(editedUserEvent).then(this.props.getSuggestions).then(this.props.getUserEvents)
+    }
 
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
@@ -31,7 +82,6 @@ class Suggestion extends Component {
             const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === this.props.suggestion.id)
             const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === this.props.suggestion.id)
             const filteredVetoads = this.props.userEvents.filter(userEvent => userEvent.vetoadSuggestionId === this.props.suggestion.id)
-            // const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.userId === currentUser.id && this.props.suggestion.eventId === userEvent.eventId)
             const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === this.props.suggestion.id)
             if (vetoadCheck === undefined) {
                 if (this.props.userId === currentUser.id) {
@@ -39,11 +89,14 @@ class Suggestion extends Component {
                         <Card>
                             <Card.Content>
                                 <Card.Header>{this.props.suggestion.name}</Card.Header>
-                                <PoodleButton {...this.props} />
+                                <PoodleButton {...this.props}
+                                updateExistingUserEventPoodle={this.updateExistingUserEventPoodle} />
                                 <Card.Meta style={green}>{filteredPoodles.length}</Card.Meta>
-                                <ParrotButton {...this.props} />
+                                <ParrotButton {...this.props}
+                                 updateExistingUserEventParrot={this.updateExistingUserEventParrot} />
                                 <Card.Meta style={red}>{filteredParrots.length}</Card.Meta>
-                                <VetoadButton {...this.props} />
+                                <VetoadButton {...this.props}
+                                updateExistingUserEventVetoad={this.updateExistingUserEventVetoad} />
                                 <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
                                 <Button>Delete</Button>
                             </Card.Content>
@@ -56,9 +109,12 @@ class Suggestion extends Component {
                             <Card>
                                 <Card.Content>
                                     <Card.Header>{this.props.suggestion.name}</Card.Header>
-                                    <PoodleButton {...this.props} />
-                                    <ParrotButton {...this.props} />
-                                    <VetoadButton {...this.props} />
+                                    <PoodleButton {...this.props}
+                                    updateExistingUserEventPoodle={this.updateExistingUserEventPoodle} />
+                                    <ParrotButton {...this.props}
+                                    updateExistingUserEventParrot={this.updateExistingUserEventParrot} />
+                                    <VetoadButton {...this.props}
+                                    updateExistingUserEventVetoad={this.updateExistingUserEventVetoad} />
                                 </Card.Content>
                             </Card>
                         )
@@ -67,8 +123,10 @@ class Suggestion extends Component {
                             <Card>
                                 <Card.Content>
                                     <Card.Header>{this.props.suggestion.name}</Card.Header>
-                                    <PoodleButton {...this.props} />
-                                    <ParrotButton {...this.props} />
+                                    <PoodleButton {...this.props}
+                                    updateExistingUserEventPoodle={this.updateExistingUserEventPoodle} />
+                                    <ParrotButton {...this.props}
+                                    updateExistingUserEventParrot={this.updateExistingUserEventParrot} />
                                 </Card.Content>
                             </Card>
                         )
@@ -80,11 +138,14 @@ class Suggestion extends Component {
                         <Card style={vetoadColor}>
                             <Card.Content>
                                 <Card.Header><strike>{this.props.suggestion.name}</strike> 🐸</Card.Header>
-                                <PoodleButton {...this.props} />
+                                <PoodleButton {...this.props}
+                                updateExistingUserEventPoodle={this.updateExistingUserEventPoodle}  />
                                 <Card.Meta style={green}>{filteredPoodles.length}</Card.Meta>
-                                <ParrotButton {...this.props} />
+                                <ParrotButton {...this.props}
+                                updateExistingUserEventParrot={this.updateExistingUserEventParrot} />
                                 <Card.Meta style={red}>{filteredParrots.length}</Card.Meta>
-                                <VetoadButton {...this.props} />
+                                <VetoadButton {...this.props} 
+                                updateExistingUserEventVetoad={this.updateExistingUserEventVetoad}/>
                                 <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
                                 <Button>Delete</Button>
                             </Card.Content>
@@ -97,9 +158,12 @@ class Suggestion extends Component {
                             <Card style={vetoadColor}>
                                 <Card.Content>
                                     <Card.Header><strike>{this.props.suggestion.name}</strike> 🐸</Card.Header>
-                                    <PoodleButton {...this.props} />
-                                    <ParrotButton {...this.props} />
-                                    <VetoadButton {...this.props} />
+                                    <PoodleButton {...this.props}
+                                    updateExistingUserEventPoodle={this.updateExistingUserEventPoodle} />
+                                    <ParrotButton {...this.props}
+                                    updateExistingUserEventParrot={this.updateExistingUserEventParrot} />
+                                    <VetoadButton {...this.props} 
+                                    updateExistingUserEventVetoad={this.updateExistingUserEventVetoad}/>
                                 </Card.Content>
                             </Card>
                         )
@@ -108,8 +172,10 @@ class Suggestion extends Component {
                             <Card style={vetoadColor}>
                                 <Card.Content>
                                     <Card.Header><strike>{this.props.suggestion.name}</strike> 🐸</Card.Header>
-                                    <PoodleButton {...this.props} />
-                                    <ParrotButton {...this.props} />
+                                    <PoodleButton {...this.props}
+                                    updateExistingUserEventPoodle={this.updateExistingUserEventPoodle} />
+                                    <ParrotButton {...this.props}
+                                    updateExistingUserEventParrot={this.updateExistingUserEventParrot} />
                                 </Card.Content>
                             </Card>
                         )

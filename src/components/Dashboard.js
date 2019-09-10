@@ -5,6 +5,7 @@ import { Menu, Icon, Sidebar, Confirm } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import EventsManager from '../modules/EventsManager'
 import UserEventsManager from '../modules/UserEventsManager'
+import UserManager from '../modules/UserManager'
 
 
 class Dashboard extends Component {
@@ -12,13 +13,22 @@ class Dashboard extends Component {
     visible: false,
     open: false,
     events: [],
-    userEvents: []
+    userEvents: [],
+    users:[]
   }
 
   getAllEvents = () => {
     EventsManager.getAll().then(events =>
       this.setState({events: events})
     )
+  }
+
+  getAllUsers = () => {
+    UserManager.getAll().then(users => {
+      this.setState({
+          users: users
+      })
+  })
   }
   
   getUserEvents = () => {
@@ -64,6 +74,7 @@ class Dashboard extends Component {
   componentDidMount() {
     this.getAllEvents()
     this.getUserEvents()
+    this.getAllUsers()
   }
   render() {
     const { visible } = this.state
@@ -121,6 +132,9 @@ class Dashboard extends Component {
             <FeatureViews
             events={this.state.events}
             userEvents={this.state.userEvents}
+            getAllEvents={this.getAllEvents}
+            getAllUserEvents={this.getAllUserEvents}
+            allUsers={this.state.users}
             {...this.props} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>

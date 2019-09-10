@@ -4,6 +4,7 @@ import CurrentEventList from "./events/currentEvents/CurrentEventList";
 import PastEventList from "./events/pastEvents/PastEventList";
 import Profile from './profile/Profile'
 import Event from './events/event/Event'
+import AddEvent from "./events/addEvents/AddEvent";
 
 
 export default class FeatureViews extends Component {
@@ -25,6 +26,11 @@ export default class FeatureViews extends Component {
          <Route
           exact path="/profile" render={props => {
             return <Profile {...this.props}/>
+          }}
+        />
+        <Route
+          exact path="/addevent" render={props => {
+            return <AddEvent {...this.props}/>
           }}
         />
         <Route exact path="/events/:eventId(\d+)" render={(props) => {

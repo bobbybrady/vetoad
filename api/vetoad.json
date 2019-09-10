@@ -18,8 +18,8 @@
       "username": "test",
       "password": "t",
       "id": 3,
-      "firstName": "Ted",
-      "lastName": "Teddy"
+      "firstName": "Teddy",
+      "lastName": "Roosevelt"
     }
   ],
   "events": [
@@ -51,7 +51,7 @@
       "poodleSuggestionId": 1,
       "parrotSuggestionId": 5,
       "vetoadSuggestionId": null,
-      "vetoad": false,
+      "vetoad": true,
       "canSuggestEvent": false,
       "userId": 1,
       "id": 1
@@ -73,7 +73,7 @@
       "poodleSuggestionId": null,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
-      "vetoad": false,
+      "vetoad": true,
       "canSuggestEvent": false
     },
     {
@@ -88,8 +88,8 @@
     },
     {
       "eventId": 1,
-      "poodleSuggestionId": null,
-      "parrotSuggestionId": null,
+      "poodleSuggestionId": 1,
+      "parrotSuggestionId": 2,
       "vetoadSuggestionId": null,
       "vetoad": false,
       "canSuggestEvent": false,

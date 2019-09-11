@@ -1,10 +1,13 @@
 import React, { Component } from "react"
 import EventManager from '../../../modules/EventsManager'
 import SuggestionsManager from '../../../modules/SuggestionsManager'
+import UserManager from '../../../modules/UserManager'
 import UserEventsManager from '../../../modules/UserEventsManager'
 import { Button, Modal, Image, Icon } from 'semantic-ui-react'
 import Suggestion from './Suggestion'
 import UserEvent from './UserEvent'
+import AddUserModal from '../../modals/AddUserModal'
+import UserListModal from './UserListModal'
 
 class PastEventList extends Component {
 
@@ -13,7 +16,11 @@ class PastEventList extends Component {
         date: '',
         userId: 0,
         suggestions: [],
-        userEvents: []
+        userEvents: [],
+        suggestionsNew: [],
+        suggestion: '',
+        open: false,
+        users: []
     }
 
     getEvent = () => {
@@ -21,7 +28,16 @@ class PastEventList extends Component {
             this.setState({
                 name: event.name,
                 date: event.date,
-                userId: event.userId
+                userId: event.userId,
+                category: event.category
+            })
+        })
+    }
+
+    getAllUsers = () => {
+        return UserManager.getAll().then((users) => {
+            this.setState({
+                users: users
             })
         })
     }
@@ -35,6 +51,24 @@ class PastEventList extends Component {
         })
     }
 
+    handleSuggestionAdd = () => {
+        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
+        const suggestionNewObject = {
+            userId: currentUser.id,
+            name: this.state.suggestion,
+            eventId: this.props.eventId
+        };
+        SuggestionsManager.post(suggestionNewObject).then(() => {
+            this.getSuggestions()
+        })
+    }
+
+    handleFieldChange = event => {
+        const stateToChange = {}
+        stateToChange[event.target.id] = event.target.value
+        this.setState(stateToChange)
+    }
+
     getSuggestions = () => {
         return SuggestionsManager.getSuggestionEvent(this.props.eventId).then(suggestions => {
             this.setState({
@@ -45,6 +79,9 @@ class PastEventList extends Component {
     componentDidMount() {
         this.getEvent().then(this.getSuggestions).then(this.getUserEvents)
     }
+
+    open = () => this.setState({ open: true })
+    close = () => this.setState({ open: false })
 
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
@@ -62,7 +99,7 @@ class PastEventList extends Component {
                             <Button>Edit</Button>
                         </header>
 
-                        <Modal trigger={<Button>How it works</Button>}>
+                        <Modal trigger={<Button>How it works</Button>} closeIcon>
                             <Modal.Header>How It Works</Modal.Header>
                             <Modal.Content>
                                 <Image src='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/198/parrot_1f99c.png' />
@@ -75,9 +112,23 @@ class PastEventList extends Component {
                             <Button>Next</Button>
                         </Modal>
                         <div className='suggestions'>
-                            <h2>Vote Here!</h2>
+                            <h2>{this.state.category}</h2>
                             <Button>Edit</Button>
-                            <Icon name="add" />
+                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                <Modal.Header>Add {this.state.category}</Modal.Header>
+                                <Modal.Content>
+                                    <label>Add {this.state.category}</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="suggestion"
+                                        value={this.state.suggestion}
+                                    />
+                                    <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                </Modal.Content>
+                            </Modal>
                             {this.state.suggestions.map(suggestion =>
                                 <Suggestion
                                     key={suggestion.id}
@@ -90,7 +141,25 @@ class PastEventList extends Component {
                         </div>
                         <div className='userEvents'>
                             <h2>List of Participants</h2>
-                            <Icon name="add" />
+
+                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                <Modal.Header>Add Participants</Modal.Header>
+                                <Modal.Content >
+                                    <div className='overflow'>
+                                        <ol>
+                                            {this.state.users.map(user =>
+                                                <UserListModal />
+                                            )}
+                                        </ol>
+                                    </div>
+                                </Modal.Content>
+                                <Modal.Actions custom='secondary'>
+                                    <AddUserModal
+                                        open={this.state.open}
+                                        onOpen={this.open}
+                                        onClose={this.close} />
+                                </Modal.Actions>
+                            </Modal>
                             <ol>
                                 {this.state.userEvents.map(userEvent =>
                                     <UserEvent
@@ -125,8 +194,22 @@ class PastEventList extends Component {
                             <Button>Next</Button>
                         </Modal>
                         <div className='suggestions'>
-                            <h2>Vote Here!</h2>
-                            <Icon name="add" />
+                            <h2>{this.state.category}</h2>
+                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                <Modal.Header>Add {this.state.category}</Modal.Header>
+                                <Modal.Content>
+                                    <label>Add {this.state.category}</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="suggestion"
+                                        value={this.state.suggestion}
+                                    />
+                                    <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                </Modal.Content>
+                            </Modal>
                             {this.state.suggestions.map(suggestion =>
                                 <Suggestion
                                     key={suggestion.id}
@@ -172,7 +255,7 @@ class PastEventList extends Component {
                             <Button>Next</Button>
                         </Modal>
                         <div className='suggestions'>
-                            <h2>Vote Here!</h2>
+                            <h2>{this.state.category}</h2>
                             {this.state.suggestions.map(suggestion =>
                                 <Suggestion
                                     key={suggestion.id}

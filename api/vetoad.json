@@ -28,21 +28,24 @@
       "userId": 1,
       "name": "Event 1",
       "date": "2019-09-04",
-      "isOver": false
+      "isOver": false,
+      "category": "Restaurants"
     },
     {
       "id": 2,
       "userId": 2,
       "name": "Event 2",
       "date": "2019-09-06",
-      "isOver": true
+      "isOver": true,
+      "category": "Restaurants"
     },
     {
       "id": 3,
       "userId": 2,
       "name": "Event 3",
       "date": "2019-09-06",
-      "isOver": false
+      "isOver": false,
+      "category": "Restaurants"
     }
   ],
   "userEvents": [

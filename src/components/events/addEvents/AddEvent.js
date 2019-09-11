@@ -49,8 +49,8 @@ class AddEvent extends Component {
         const userObject = this.state.users.concat({
             userId: currentUser.id,
             name: wholeName,
-            vetoad: false,
-            canSuggestEvent: false
+            vetoad: true,
+            canSuggestEvent: true
         });
         this.setState({ users: userObject })
     }
@@ -168,7 +168,7 @@ class AddEvent extends Component {
                                 <div className="overflow">
                                     {this.searchForParticipant(this.state.search).map(user =>
                                         <AddEventParticipant
-                                            key={user.userId}
+                                            key={user.id}
                                             user={user}
                                             addUserId={this.addUserId}
                                             addParticipant={this.state.users} />

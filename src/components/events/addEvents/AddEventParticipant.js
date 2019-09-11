@@ -6,9 +6,9 @@ class AddEventParticipant extends Component {
 
 
     render() {
-        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         const foundUser = this.props.addParticipant.filter(participant => parseInt(participant.userId) === parseInt(this.props.user.id))
         const fullName= `${this.props.user.firstName} ${this.props.user.lastName}`
+        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (parseInt(this.props.user.id) === currentUser.id) {
             return <></>
         } else {

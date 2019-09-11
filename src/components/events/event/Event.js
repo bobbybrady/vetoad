@@ -7,8 +7,9 @@ import { Button, Modal, Image, Icon } from 'semantic-ui-react'
 import Suggestion from './Suggestion'
 import UserEvent from './UserEvent'
 import UserListModal from './UserListModal'
+import EditEventModal from '../../modals/EditEventModal'
 
-class PastEventList extends Component {
+class Event extends Component {
 
     state = {
         name: '',
@@ -127,6 +128,20 @@ class PastEventList extends Component {
         })
     }
 
+    editEvent = () => {
+        const editedObject = {
+            name: this.state.name,
+            userId: this.state.userId,
+            category: this.state.category,
+            date: this.state.date,
+            isOver: false,
+            id: this.props.eventId
+        }
+        EventManager.update(editedObject).then(() => {
+            this.getEvent().then(this.getSuggestions).then(this.getUserEvents).then(this.getAllUsers)
+        })
+    }
+
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.state.userEvents.length === 0) {
@@ -138,7 +153,10 @@ class PastEventList extends Component {
                     <div className="eventsContainer">
                         <header>
                             <h1>{this.state.name}</h1>
-                            <Button>Edit</Button>
+                            <EditEventModal 
+                            name={this.state.name}
+                            handleFieldChange={this.handleFieldChange}
+                            editEvent={this.editEvent}/>
                             <h3>{this.state.date}</h3>
                             <Button>Edit</Button>
                         </header>
@@ -335,4 +353,4 @@ class PastEventList extends Component {
     }
 }
 
-export default PastEventList;
+export default Event;

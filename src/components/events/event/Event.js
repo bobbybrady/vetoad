@@ -6,7 +6,6 @@ import UserEventsManager from '../../../modules/UserEventsManager'
 import { Button, Modal, Image, Icon } from 'semantic-ui-react'
 import Suggestion from './Suggestion'
 import UserEvent from './UserEvent'
-import AddUserModal from '../../modals/AddUserModal'
 import UserListModal from './UserListModal'
 
 class PastEventList extends Component {
@@ -85,9 +84,8 @@ class PastEventList extends Component {
     close = () => this.setState({ open: false })
 
     addUserId = (event) => {
-        const userObject = this.state.users.concat({
+        const userObject = this.state.newUser.concat({
             userId: event.target.id,
-            name: event.target.value,
             vetoad: false,
             canSuggestEvent: false
         });
@@ -96,8 +94,8 @@ class PastEventList extends Component {
 
     updateVetoad = (userId) => {
         this.setState({
-            newUser: this.state.users.map(user => {
-                return user.userId === userId
+            newUser: this.state.newUser.map(user => {
+                return parseInt(user.userId) === userId
                     ? (user.vetoad = !user.vetoad, user)
                     : user
             })
@@ -105,11 +103,27 @@ class PastEventList extends Component {
     }
     updateCanSuggestEvent = (userId) => {
         this.setState({
-            users: this.state.users.map(user => {
-                return user.userId === userId
+            newUser: this.state.newUser.map(user => {
+                return parseInt(user.userId) === userId
                     ? (user.canSuggestEvent = !user.canSuggestEvent, user)
                     : user
             })
+        })
+    }
+
+    addParticipantToEvent = () => {
+        const participantObject = {
+            eventId: this.props.eventId,
+            poodleSuggestionId: null,
+            parrotSuggestionId: null,
+            vetoadSuggestionId: null,
+            userId: parseInt(this.state.newUser[0].userId),
+            vetoad: this.state.newUser[0].vetoad,
+            canSuggestEvent: this.state.newUser[0].canSuggestEvent
+        }
+        UserEventsManager.post(participantObject).then(() => {
+            this.getUserEvents()
+            this.close()
         })
     }
 
@@ -178,18 +192,19 @@ class PastEventList extends Component {
                                     <div className='overflow'>
                                         <ol>
                                             {this.state.users.map(user =>
-                                                <UserListModal 
-                                                open={this.state.open}
-                                                onOpen={this.open}
-                                                onClose={this.close}
-                                                key={user.id}
-                                                user={user}
-                                                userEvents={this.state.userEvents}
-                                                addUserId={this.addUserId}
-                                                updateCanSuggestEvent={this.updateCanSuggestEvent}
-                                                updateVetoad={this.updateVetoad}
-                                                newUser={this.state.newUser}/>
-                                                )}
+                                                <UserListModal
+                                                    open={this.state.open}
+                                                    onOpen={this.open}
+                                                    onClose={this.close}
+                                                    key={user.id}
+                                                    user={user}
+                                                    userEvents={this.state.userEvents}
+                                                    addUserId={this.addUserId}
+                                                    updateCanSuggestEvent={this.updateCanSuggestEvent}
+                                                    updateVetoad={this.updateVetoad}
+                                                    newUser={this.state.newUser}
+                                                    addParticipantToEvent={this.addParticipantToEvent} />
+                                            )}
                                         </ol>
                                     </div>
                                 </Modal.Content>
@@ -197,11 +212,11 @@ class PastEventList extends Component {
                             <ol>
                                 {this.state.userEvents.map(userEvent =>
                                     <UserEvent
-                                    key={userEvent.id}
-                                    userEvent={userEvent}
-                                    {...this.props}
-                                    userId={this.state.userId}
-                                     />
+                                        key={userEvent.id}
+                                        userEvent={userEvent}
+                                        {...this.props}
+                                        userId={this.state.userId}
+                                    />
                                 )}
                             </ol>
                         </div>

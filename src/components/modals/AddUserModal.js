@@ -13,7 +13,7 @@ class AddUserModal extends Component {
                 onClose={this.props.onClose}
                 size='small'
                 trigger={
-                    <Button onClick={this.props.addUserId}>
+                    <Button id={this.props.user.id} onClick={this.props.addUserId}>
                        Add
                     </Button>
                 }
@@ -24,7 +24,7 @@ class AddUserModal extends Component {
                     {...this.props}/>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button content='Add' onClick={this.props.onClose} />
+                    <Button content='Add' onClick={this.props.addParticipantToEvent} />
                 </Modal.Actions>
             </Modal>
         )

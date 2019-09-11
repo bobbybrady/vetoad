@@ -9,7 +9,7 @@ class ParticipantCardModal extends Component {
         if (parseInt(this.props.user.id) === currentUser.id) {
             return <></>
         } else {
-            if (this.props.user.vetoad === true && this.props.user.canSuggestEvent === false) {
+            if (this.props.newUser[0].vetoad === true && this.props.newUser[0].canSuggestEvent === false) {
                 return (
                     <Card>
                         <Card.Content>
@@ -17,7 +17,7 @@ class ParticipantCardModal extends Component {
                         </Card.Content>
                     </Card>
                 )
-            } else if (this.props.user.canSuggestEvent === true && this.props.user.vetoad === false) {
+            } else if (this.props.newUser[0].canSuggestEvent === true && this.props.newUser[0].vetoad === false) {
                 return (
                     <Card>
                         <Card.Content>
@@ -25,7 +25,7 @@ class ParticipantCardModal extends Component {
                         </Card.Content>
                     </Card>
                 )
-            } else if (this.props.user.canSuggestEvent === true && this.props.user.vetoad === true) {
+            } else if (this.props.newUser[0].canSuggestEvent === true && this.props.newUser[0].vetoad === true) {
                 return (
                     <Card>
                         <Card.Content>

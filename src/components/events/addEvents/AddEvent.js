@@ -3,6 +3,9 @@ import { Button, Form, Icon, Modal } from 'semantic-ui-react'
 import AddEventParticipant from './AddEventParticipant'
 import Participant from "./Participant"
 import AddSuggestion from "./AddSuggestion"
+import EventsManager from '../../../modules/EventsManager'
+import UserEventsManager from '../../../modules/UserEventsManager'
+import SuggestionsManager from '../../../modules/SuggestionsManager'
 
 class AddEvent extends Component {
 
@@ -40,15 +43,26 @@ class AddEvent extends Component {
             })
         })
     }
+    componentDidMount() {
+        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
+        const wholeName = `${currentUser.firstName} ${currentUser.lastName}`
+        const userObject = this.state.users.concat({
+            userId: currentUser.id,
+            name: wholeName,
+            vetoad: false,
+            canSuggestEvent: false
+        });
+        this.setState({ users: userObject })
+    }
 
     addUserId = (event) => {
-        const eventObject = this.state.users.concat({
+        const userObject = this.state.users.concat({
             userId: event.target.id,
             name: event.target.value,
             vetoad: false,
             canSuggestEvent: false
         });
-        this.setState({ users: eventObject })
+        this.setState({ users: userObject })
     }
 
     handleSuggestionAdd = () => {
@@ -69,12 +83,45 @@ class AddEvent extends Component {
     }
 
     submitForm = () => {
+        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.state.name === '') {
             window.alert('Please Enter an valid event name')
         } else if (this.state.date === '') {
             window.alert('Please Enter a valid date')
         } else if (this.state.category === '') {
             window.alert('Please Enter a valid category')
+        } else {
+            const eventObject = {
+                name: this.state.name,
+                date: this.state.date,
+                userId: currentUser.id,
+                isOver: false,
+                category: this.state.category
+            }
+            EventsManager.post(eventObject).then((returnedEventObject) => {
+                this.state.users.map(user => {
+                    const userEventObject = {
+                        eventId: returnedEventObject.id,
+                        poodleSuggestionId: null,
+                        parrotSuggestionId: null,
+                        vetoadSuggestionId: null,
+                        userId: parseInt(user.userId),
+                        vetoad: user.vetoad,
+                        canSuggestEvent: user.canSuggestEvent
+                    }
+                    UserEventsManager.post(userEventObject).then(() => {
+                    })
+                })
+                this.state.suggestions.map(suggestion => {
+                    const suggestionObject = {
+                        name: suggestion.name,
+                        eventId: returnedEventObject.id
+                    }
+                    SuggestionsManager.post(suggestionObject).then(() => {
+                        this.props.history.push(`/events/${returnedEventObject.id}`)
+                    })
+                })
+            })
         }
     }
 

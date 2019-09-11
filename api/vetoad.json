@@ -58,9 +58,9 @@
     },
     {
       "eventId": 1,
-      "poodleSuggestionId": 1,
-      "parrotSuggestionId": 2,
-      "vetoadSuggestionId": 5,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": 2,
       "vetoad": true,
       "canSuggestEvent": true,
       "userId": 2,
@@ -88,8 +88,8 @@
     },
     {
       "eventId": 1,
-      "poodleSuggestionId": 1,
-      "parrotSuggestionId": 2,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
       "vetoad": false,
       "canSuggestEvent": false,

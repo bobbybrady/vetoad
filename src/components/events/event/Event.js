@@ -20,7 +20,8 @@ class PastEventList extends Component {
         suggestionsNew: [],
         suggestion: '',
         open: false,
-        users: []
+        users: [],
+        newUser: []
     }
 
     getEvent = () => {
@@ -77,11 +78,40 @@ class PastEventList extends Component {
         })
     }
     componentDidMount() {
-        this.getEvent().then(this.getSuggestions).then(this.getUserEvents)
+        this.getEvent().then(this.getSuggestions).then(this.getUserEvents).then(this.getAllUsers)
     }
 
     open = () => this.setState({ open: true })
     close = () => this.setState({ open: false })
+
+    addUserId = (event) => {
+        const userObject = this.state.users.concat({
+            userId: event.target.id,
+            name: event.target.value,
+            vetoad: false,
+            canSuggestEvent: false
+        });
+        this.setState({ newUser: userObject })
+    }
+
+    updateVetoad = (userId) => {
+        this.setState({
+            newUser: this.state.users.map(user => {
+                return user.userId === userId
+                    ? (user.vetoad = !user.vetoad, user)
+                    : user
+            })
+        })
+    }
+    updateCanSuggestEvent = (userId) => {
+        this.setState({
+            users: this.state.users.map(user => {
+                return user.userId === userId
+                    ? (user.canSuggestEvent = !user.canSuggestEvent, user)
+                    : user
+            })
+        })
+    }
 
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
@@ -148,25 +178,30 @@ class PastEventList extends Component {
                                     <div className='overflow'>
                                         <ol>
                                             {this.state.users.map(user =>
-                                                <UserListModal />
-                                            )}
+                                                <UserListModal 
+                                                open={this.state.open}
+                                                onOpen={this.open}
+                                                onClose={this.close}
+                                                key={user.id}
+                                                user={user}
+                                                userEvents={this.state.userEvents}
+                                                addUserId={this.addUserId}
+                                                updateCanSuggestEvent={this.updateCanSuggestEvent}
+                                                updateVetoad={this.updateVetoad}
+                                                newUser={this.state.newUser}/>
+                                                )}
                                         </ol>
                                     </div>
                                 </Modal.Content>
-                                <Modal.Actions custom='secondary'>
-                                    <AddUserModal
-                                        open={this.state.open}
-                                        onOpen={this.open}
-                                        onClose={this.close} />
-                                </Modal.Actions>
                             </Modal>
                             <ol>
                                 {this.state.userEvents.map(userEvent =>
                                     <UserEvent
-                                        key={userEvent.id}
-                                        userEvent={userEvent}
-                                        {...this.props}
-                                        userId={this.state.userId} />
+                                    key={userEvent.id}
+                                    userEvent={userEvent}
+                                    {...this.props}
+                                    userId={this.state.userId}
+                                     />
                                 )}
                             </ol>
                         </div>

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Button, Modal, Icon } from "semantic-ui-react"
+import { Button, Modal } from "semantic-ui-react"
+import ParticipantCardModal from "../events/event/ParticipantCardModal"
 
 class AddUserModal extends Component {
 
@@ -12,17 +13,18 @@ class AddUserModal extends Component {
                 onClose={this.props.onClose}
                 size='small'
                 trigger={
-                    <Button primary icon>
-                        Proceed <Icon name='right chevron' />
+                    <Button onClick={this.props.addUserId}>
+                       Add
                     </Button>
                 }
-            >
-                <Modal.Header>Modal #2</Modal.Header>
+            closeIcon>
+                <Modal.Header>Add {this.props.user.firstName}</Modal.Header>
                 <Modal.Content>
-                    <p>That's everything!</p>
+                    <ParticipantCardModal 
+                    {...this.props}/>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button icon='check' content='All Done' onClick={this.props.onClose} />
+                    <Button content='Add' onClick={this.props.onClose} />
                 </Modal.Actions>
             </Modal>
         )

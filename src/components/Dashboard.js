@@ -38,16 +38,20 @@ class Dashboard extends Component {
         })
     })
 }
-  show = () => {
-    if (this.state.open === false) {
-      this.setState({
-        open: true
-      })
-    } else {
-      this.setState({
-        open: false
-      })
-    }
+  // show = () => {
+  //   if (this.state.open === false) {
+  //     this.setState({
+  //       open: true
+  //     })
+  //   } else {
+  //     this.setState({
+  //       open: false
+  //     })
+  //   }
+  // }
+
+  toggle = () => {
+    this.setState({open: !this.state.open})
   }
   handleConfirm = () => {
     this.setState({
@@ -115,14 +119,14 @@ class Dashboard extends Component {
               onClick={this.handleClick}>
               Profile
             </Menu.Item>
-            <Menu.Item onClick={this.show}
+            <Menu.Item onClick={this.toggle}
               className="sidebarButton">
               Logout
               <Confirm
                 open={this.state.open}
-                cancelButton='Cancel'
+                cancelButton='Fuck you'
                 confirmButton="Logout"
-                onCancel={this.show}
+                onCancel={this.toggle}
                 onConfirm={this.logout}
                 content='Are you sure you want to Logout?'
               />

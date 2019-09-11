@@ -20,6 +20,13 @@
       "id": 3,
       "firstName": "Teddy",
       "lastName": "Roosevelt"
+    },
+    {
+      "username": "n",
+      "password": "n",
+      "id": 4,
+      "firstName": "Noah",
+      "lastName": "Bartfield"
     }
   ],
   "events": [

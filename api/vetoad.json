@@ -31,12 +31,12 @@
   ],
   "events": [
     {
-      "id": 1,
-      "userId": 1,
       "name": "Event 1",
-      "date": "2019-09-04",
-      "isOver": false,
-      "category": "Restaurants"
+      "userId": 1,
+      "category": "Restaurants",
+      "date": "2019-09-19",
+      "isOver": true,
+      "id": 1
     },
     {
       "id": 2,
@@ -59,7 +59,7 @@
     {
       "eventId": 1,
       "poodleSuggestionId": 1,
-      "parrotSuggestionId": 5,
+      "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
       "vetoad": true,
       "canSuggestEvent": false,
@@ -68,9 +68,9 @@
     },
     {
       "eventId": 1,
-      "poodleSuggestionId": null,
+      "poodleSuggestionId": 5,
       "parrotSuggestionId": null,
-      "vetoadSuggestionId": 2,
+      "vetoadSuggestionId": 5,
       "vetoad": true,
       "canSuggestEvent": true,
       "userId": 2,
@@ -90,7 +90,7 @@
       "id": 4,
       "userId": 1,
       "eventId": 3,
-      "poodleSuggestionId": 4,
+      "poodleSuggestionId": null,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
       "vetoad": false,
@@ -98,13 +98,33 @@
     },
     {
       "eventId": 1,
-      "poodleSuggestionId": null,
-      "parrotSuggestionId": null,
+      "poodleSuggestionId": 5,
+      "parrotSuggestionId": 1,
       "vetoadSuggestionId": null,
       "vetoad": false,
       "canSuggestEvent": false,
       "userId": 3,
       "id": 5
+    },
+    {
+      "eventId": 1,
+      "poodleSuggestionId": 1,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "userId": 4,
+      "id": 6
+    },
+    {
+      "eventId": 2,
+      "poodleSuggestionId": 3,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 2,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "id": 6
     }
   ],
   "suggestions": [
@@ -125,7 +145,7 @@
     },
     {
       "id": 4,
-      "eventId": 3,
+      "eventId": 2,
       "name": "ML Rose"
     },
     {

@@ -109,6 +109,7 @@ class AddEvent extends Component {
                         vetoad: user.vetoad,
                         canSuggestEvent: user.canSuggestEvent
                     }
+                    this.props.getAllEvents()
                     UserEventsManager.post(userEventObject).then(() => {
                     })
                 })
@@ -118,9 +119,9 @@ class AddEvent extends Component {
                         eventId: returnedEventObject.id
                     }
                     SuggestionsManager.post(suggestionObject).then(() => {
-                        this.props.history.push(`/events/${returnedEventObject.id}`)
                     })
                 })
+                this.props.history.push(`/events/${returnedEventObject.id}`)
             })
         }
     }
@@ -209,7 +210,7 @@ class AddEvent extends Component {
                             {this.state.suggestions.map(addSuggestion =>
                                 <AddSuggestion
                                     addSuggestion={addSuggestion}
-                                    key={this.state.suggestion.userId} />)}
+                                    key={new Date()} />)}
                         </div>
                     </div>
                     <Button onClick={this.submitForm} type='submit'>Submit</Button>

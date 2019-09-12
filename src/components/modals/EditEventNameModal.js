@@ -1,11 +1,26 @@
 import React, { Component } from "react"
 import { Button, Modal, } from 'semantic-ui-react'
 
-class EditEventModal extends Component {
+class EditEventNameModal extends Component {
+    state={
+        open: false
+    }
+
+    open = () => this.setState({ open: true })
+    close = () => this.setState({ open: false })
+
+    onClick = () => {
+        this.props.editEvent()
+        this.close()
+    }
 
     render() {
         return (
-            <Modal trigger={<Button>Edit</Button>} closeIcon>
+            <Modal trigger={<Button>Edit</Button>} 
+            open={this.state.open}
+            onOpen={this.open}
+            onClose={this.close}
+            closeIcon>
                 <Modal.Header>Edit</Modal.Header>
                 <Modal.Content>
                     <label>Edit</label>
@@ -17,12 +32,12 @@ class EditEventModal extends Component {
                         id="name"
                         value={this.props.name}
                     />
-                    <Button onClick={this.props.editEvent}>Save</Button>
+                    <Button onClick={this.onClick}>Save</Button>
                 </Modal.Content>
             </Modal>
         )
     }
 }
 
-export default EditEventModal;
+export default EditEventNameModal;
 

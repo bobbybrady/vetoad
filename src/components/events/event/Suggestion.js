@@ -98,7 +98,7 @@ class Suggestion extends Component {
                                 <VetoadButton {...this.props}
                                 updateExistingUserEventVetoad={this.updateExistingUserEventVetoad} />
                                 <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
-                                <Button>Delete</Button>
+                                <Button onClick={() => this.props.deleteSuggestion(this.props.suggestion.id)}>Delete</Button>
                             </Card.Content>
                         </Card>
                     )
@@ -147,7 +147,7 @@ class Suggestion extends Component {
                                 <VetoadButton {...this.props} 
                                 updateExistingUserEventVetoad={this.updateExistingUserEventVetoad}/>
                                 <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
-                                <Button>Delete</Button>
+                                <Button onClick={() => this.props.deleteSuggestion(this.props.suggestion.id)}>Delete</Button>
                             </Card.Content>
                         </Card>
                     )

@@ -17,7 +17,7 @@ class PastEventCard extends Component {
                                 <Icon name="star outline" />
                                 <Card.Header>{this.props.event.name}</Card.Header>
                                 <Card.Meta>{this.props.event.date}</Card.Meta>
-                                <Button>Details</Button>
+                                <Button onClick={() => { this.props.history.push(`/pastevents/${this.props.event.id}`) }}>Details</Button>
                             </Card.Content>
                         </Card>
                     </div>
@@ -29,7 +29,7 @@ class PastEventCard extends Component {
                             <Card.Content>
                                 <Card.Header>{this.props.event.name}</Card.Header>
                                 <Card.Meta>{this.props.event.date}</Card.Meta>
-                                <Button>Details</Button>
+                                <Button onClick={() => { this.props.history.push(`/pastevents/${this.props.event.id}`) }}>Details</Button>
                             </Card.Content>
                         </Card>
                     </div>

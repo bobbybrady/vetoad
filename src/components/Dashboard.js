@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import EventsManager from '../modules/EventsManager'
 import UserEventsManager from '../modules/UserEventsManager'
 import UserManager from '../modules/UserManager'
+import SuggestionsManager from '../modules/SuggestionsManager'
 
 
 class Dashboard extends Component {
@@ -14,7 +15,8 @@ class Dashboard extends Component {
     open: false,
     events: [],
     userEvents: [],
-    users:[]
+    users:[],
+    suggestions: []
   }
 
   getAllEvents = () => {
@@ -30,6 +32,14 @@ class Dashboard extends Component {
       })
   })
   }
+
+  getAllSuggestions = () => {
+    SuggestionsManager.getAll().then(suggestions => {
+      this.setState({
+          suggestions: suggestions
+      })
+  })
+  }
   
   getUserEvents = () => {
     UserEventsManager.getAll().then(userEvents => {
@@ -38,17 +48,6 @@ class Dashboard extends Component {
         })
     })
 }
-  // show = () => {
-  //   if (this.state.open === false) {
-  //     this.setState({
-  //       open: true
-  //     })
-  //   } else {
-  //     this.setState({
-  //       open: false
-  //     })
-  //   }
-  // }
 
   toggle = () => {
     this.setState({open: !this.state.open})
@@ -79,6 +78,7 @@ class Dashboard extends Component {
     this.getAllEvents()
     this.getUserEvents()
     this.getAllUsers()
+    this.getAllSuggestions()
   }
   render() {
     const { visible } = this.state
@@ -94,7 +94,6 @@ class Dashboard extends Component {
             animation='overlay'
             icon='labeled'
             inverted
-            onHide={this.handleSidebarHide}
             vertical
             direction='right'
             visible={visible}
@@ -139,6 +138,7 @@ class Dashboard extends Component {
             getAllEvents={this.getAllEvents}
             getAllUserEvents={this.getAllUserEvents}
             allUsers={this.state.users}
+            suggestions={this.state.suggestions}
             {...this.props} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>

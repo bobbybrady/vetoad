@@ -7,7 +7,9 @@ import { Button, Modal, Image, Icon } from 'semantic-ui-react'
 import Suggestion from './Suggestion'
 import UserEvent from './UserEvent'
 import UserListModal from './UserListModal'
-import EditEventModal from '../../modals/EditEventModal'
+import EditEventNameModal from '../../modals/EditEventNameModal'
+import EditEventDateModal from '../../modals/EditEventDateModal'
+import EditEventCategoryModal from '../../modals/EditEventCategoryModal'
 
 class Event extends Component {
 
@@ -61,6 +63,7 @@ class Event extends Component {
         };
         SuggestionsManager.post(suggestionNewObject).then(() => {
             this.getSuggestions()
+            this.setState({suggestion:''})
         })
     }
 
@@ -138,7 +141,38 @@ class Event extends Component {
             id: this.props.eventId
         }
         EventManager.update(editedObject).then(() => {
-            this.getEvent().then(this.getSuggestions).then(this.getUserEvents).then(this.getAllUsers)
+            this.getEvent().then(this.getSuggestions).then(this.getUserEvents).then(this.getAllUsers).then(() => {
+                this.props.getAllEvents()
+            })
+        })
+    }
+
+    deleteParticipant = id => {
+        UserEventsManager.delete(id)
+            .then(() => {
+                this.getUserEvents()
+            })
+    }
+
+    deleteSuggestion = id => {
+        SuggestionsManager.delete(id)
+            .then(() => {
+                this.getSuggestions()
+            })
+    }
+
+    endEvent = () => {
+        const finishedEvent = {
+            name: this.state.name,
+            userId: this.state.userId,
+            category: this.state.category,
+            date: this.state.date,
+            isOver: true,
+            id: this.props.eventId
+        }
+        EventManager.update(finishedEvent).then(() => {
+            this.props.getAllEvents()
+            this.props.history.push(`/pastevents/${this.props.eventId}`)
         })
     }
 
@@ -153,12 +187,15 @@ class Event extends Component {
                     <div className="eventsContainer">
                         <header>
                             <h1>{this.state.name}</h1>
-                            <EditEventModal 
+                            <EditEventNameModal 
                             name={this.state.name}
                             handleFieldChange={this.handleFieldChange}
                             editEvent={this.editEvent}/>
                             <h3>{this.state.date}</h3>
-                            <Button>Edit</Button>
+                            <EditEventDateModal 
+                            date={this.state.date}
+                            handleFieldChange={this.handleFieldChange}
+                            editEvent={this.editEvent}/>
                         </header>
 
                         <Modal trigger={<Button>How it works</Button>} closeIcon>
@@ -175,7 +212,10 @@ class Event extends Component {
                         </Modal>
                         <div className='suggestions'>
                             <h2>{this.state.category}</h2>
-                            <Button>Edit</Button>
+                            <EditEventCategoryModal 
+                            category={this.state.category}
+                            handleFieldChange={this.handleFieldChange}
+                            editEvent={this.editEvent}/>
                             <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
                                 <Modal.Header>Add {this.state.category}</Modal.Header>
                                 <Modal.Content>
@@ -198,7 +238,8 @@ class Event extends Component {
                                     userId={this.state.userId}
                                     userEvents={this.state.userEvents}
                                     getSuggestions={this.getSuggestions}
-                                    getUserEvents={this.getUserEvents} />
+                                    getUserEvents={this.getUserEvents}
+                                    deleteSuggestion={this.deleteSuggestion} />
                             )}
                         </div>
                         <div className='userEvents'>
@@ -234,11 +275,12 @@ class Event extends Component {
                                         userEvent={userEvent}
                                         {...this.props}
                                         userId={this.state.userId}
+                                        deleteParticipant={this.deleteParticipant}
                                     />
                                 )}
                             </ol>
                         </div>
-                        <Button>End</Button>
+                        <Button onClick={this.endEvent}>End</Button>
                     </div>
                 )
             } else if (findUserEvent.canSuggestEvent === true) {

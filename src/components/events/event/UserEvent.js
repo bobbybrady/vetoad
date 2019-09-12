@@ -11,7 +11,7 @@ class UserEvent extends Component {
                 <Card>
                     <Card.Content>
                         <li>
-                            <Card.Header>{this.props.userEvent.user.firstName} {this.props.userEvent.user.lastName}<Button>Delete</Button></Card.Header>
+                            <Card.Header>{this.props.userEvent.user.firstName} {this.props.userEvent.user.lastName}<Button onClick={() => this.props.deleteParticipant(this.props.userEvent.id)}>Delete</Button></Card.Header>
                         </li>
                     </Card.Content>
                 </Card>

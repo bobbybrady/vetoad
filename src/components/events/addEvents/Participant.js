@@ -5,6 +5,7 @@ class Participant extends Component {
 
 
     render() {
+        console.log(this.props.user.userId)
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (parseInt(this.props.user.userId) === currentUser.id) {
             return <></>
@@ -14,7 +15,7 @@ class Participant extends Component {
                     <Card>
                         <Card.Content>
                             <li>
-                                <Card.Header>{this.props.user.name}<Button color='green' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button></Card.Header>
+                                <Card.Header>{this.props.user.name}<Button color='green' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button><Button onClick={() => this.props.removeParticipant(this.props.user.userId)}>Delete</Button></Card.Header>
                             </li>
                         </Card.Content>
                     </Card>
@@ -24,7 +25,7 @@ class Participant extends Component {
                     <Card>
                         <Card.Content>
                             <li>
-                                <Card.Header>{this.props.user.name}<Button onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button color='green' onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button></Card.Header>
+                                <Card.Header>{this.props.user.name}<Button onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button color='green' onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button><Button onClick={() => this.props.removeParticipant(this.props.user.userId)}>Delete</Button></Card.Header>
                             </li>
                         </Card.Content>
                     </Card>
@@ -34,7 +35,7 @@ class Participant extends Component {
                     <Card>
                         <Card.Content>
                             <li>
-                                <Card.Header>{this.props.user.name}<Button color='green' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)} color='green'>Make Contributor</Button></Card.Header>
+                                <Card.Header>{this.props.user.name}<Button color='green' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)} color='green'>Make Contributor</Button><Button onClick={() => this.props.removeParticipant(this.props.user.userId)}>Delete</Button></Card.Header>
                             </li>
                         </Card.Content>
                     </Card>
@@ -44,7 +45,7 @@ class Participant extends Component {
                     <Card>
                         <Card.Content>
                             <li>
-                                <Card.Header>{this.props.user.name}<Button onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button></Card.Header>
+                                <Card.Header>{this.props.user.name}<Button onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button><Button onClick={() => this.props.removeParticipant(this.props.user.userId)}>Delete</Button></Card.Header>
                             </li>
                         </Card.Content>
                     </Card>

@@ -23,7 +23,8 @@ class Event extends Component {
         suggestion: '',
         open: false,
         users: [],
-        newUser: []
+        newUser: [],
+        search: ''
     }
 
     getEvent = () => {
@@ -63,7 +64,7 @@ class Event extends Component {
         };
         SuggestionsManager.post(suggestionNewObject).then(() => {
             this.getSuggestions()
-            this.setState({suggestion:''})
+            this.setState({ suggestion: '' })
         })
     }
 
@@ -151,6 +152,7 @@ class Event extends Component {
         UserEventsManager.delete(id)
             .then(() => {
                 this.getUserEvents()
+                this.props.getAllUserEvents()
             })
     }
 
@@ -158,6 +160,7 @@ class Event extends Component {
         SuggestionsManager.delete(id)
             .then(() => {
                 this.getSuggestions()
+                this.props.getAllSuggestions()
             })
     }
 
@@ -176,6 +179,11 @@ class Event extends Component {
         })
     }
 
+    searchForParticipant = (participant) => {
+        const searchedUsers = this.state.users.filter(user => user.firstName.toString().toLowerCase().includes(participant.toString().toLowerCase()) || user.lastName.toString().toLowerCase().includes(participant.toString().toLowerCase()))
+        return searchedUsers
+    }
+
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.state.userEvents.length === 0) {
@@ -187,35 +195,23 @@ class Event extends Component {
                     <div className="eventsContainer">
                         <header>
                             <h1>{this.state.name}</h1>
-                            <EditEventNameModal 
-                            name={this.state.name}
-                            handleFieldChange={this.handleFieldChange}
-                            editEvent={this.editEvent}/>
+                            <EditEventNameModal
+                                name={this.state.name}
+                                handleFieldChange={this.handleFieldChange}
+                                editEvent={this.editEvent} />
                             <h3>{this.state.date}</h3>
-                            <EditEventDateModal 
-                            date={this.state.date}
-                            handleFieldChange={this.handleFieldChange}
-                            editEvent={this.editEvent}/>
+                            <EditEventDateModal
+                                date={this.state.date}
+                                handleFieldChange={this.handleFieldChange}
+                                editEvent={this.editEvent} />
                         </header>
 
-                        <Modal trigger={<Button>How it works</Button>} closeIcon>
-                            <Modal.Header>How It Works</Modal.Header>
-                            <Modal.Content>
-                                <Image src='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/198/parrot_1f99c.png' />
-                                <Modal.Description>
-                                    <p>
-                                        Parr-OUT – This card shall be used when you vote no for an option. In the cases where there are multiple options, a Parr-OUT option counts as -1. Parr-OUTs should only be used when you don’t want to do something. If you don’t care keep that Parr-OUT in its cage!
-        </p>
-                                </Modal.Description>
-                            </Modal.Content>
-                            <Button>Next</Button>
-                        </Modal>
                         <div className='suggestions'>
                             <h2>{this.state.category}</h2>
-                            <EditEventCategoryModal 
-                            category={this.state.category}
-                            handleFieldChange={this.handleFieldChange}
-                            editEvent={this.editEvent}/>
+                            <EditEventCategoryModal
+                                category={this.state.category}
+                                handleFieldChange={this.handleFieldChange}
+                                editEvent={this.editEvent} />
                             <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
                                 <Modal.Header>Add {this.state.category}</Modal.Header>
                                 <Modal.Content>
@@ -249,8 +245,16 @@ class Event extends Component {
                                 <Modal.Header>Add Participants</Modal.Header>
                                 <Modal.Content >
                                     <div className='overflow'>
+                                        <input
+                                            type="text"
+                                            required
+                                            className="form-control"
+                                            onChange={this.handleFieldChange}
+                                            onKeyUp={this.searchForParticipant}
+                                            id="search"
+                                        />
                                         <ol>
-                                            {this.state.users.map(user =>
+                                            {this.searchForParticipant(this.state.search).map(user =>
                                                 <UserListModal
                                                     open={this.state.open}
                                                     onOpen={this.open}
@@ -262,7 +266,8 @@ class Event extends Component {
                                                     updateCanSuggestEvent={this.updateCanSuggestEvent}
                                                     updateVetoad={this.updateVetoad}
                                                     newUser={this.state.newUser}
-                                                    addParticipantToEvent={this.addParticipantToEvent} />
+                                                    addParticipantToEvent={this.addParticipantToEvent}
+                                                     />
                                             )}
                                         </ol>
                                     </div>
@@ -291,18 +296,6 @@ class Event extends Component {
                             <h3>{this.state.date}</h3>
                         </header>
 
-                        <Modal trigger={<Button>How it works</Button>}>
-                            <Modal.Header>How It Works</Modal.Header>
-                            <Modal.Content>
-                                <Image src='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/198/parrot_1f99c.png' />
-                                <Modal.Description>
-                                    <p>
-                                        Parr-OUT – This card shall be used when you vote no for an option. In the cases where there are multiple options, a Parr-OUT option counts as -1. Parr-OUTs should only be used when you don’t want to do something. If you don’t care keep that Parr-OUT in its cage!
-        </p>
-                                </Modal.Description>
-                            </Modal.Content>
-                            <Button>Next</Button>
-                        </Modal>
                         <div className='suggestions'>
                             <h2>{this.state.category}</h2>
                             <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
@@ -352,18 +345,6 @@ class Event extends Component {
                             <h3>{this.state.date}</h3>
                         </header>
 
-                        <Modal trigger={<Button>How it works</Button>}>
-                            <Modal.Header>How It Works</Modal.Header>
-                            <Modal.Content>
-                                <Image src='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/198/parrot_1f99c.png' />
-                                <Modal.Description>
-                                    <p>
-                                        Parr-OUT – This card shall be used when you vote no for an option. In the cases where there are multiple options, a Parr-OUT option counts as -1. Parr-OUTs should only be used when you don’t want to do something. If you don’t care keep that Parr-OUT in its cage!
-        </p>
-                                </Modal.Description>
-                            </Modal.Content>
-                            <Button>Next</Button>
-                        </Modal>
                         <div className='suggestions'>
                             <h2>{this.state.category}</h2>
                             {this.state.suggestions.map(suggestion =>

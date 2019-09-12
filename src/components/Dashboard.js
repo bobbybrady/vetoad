@@ -86,6 +86,7 @@ class Dashboard extends Component {
       <>
         <NavBar {...this.props}
           handleClick={this.handleClick}
+          visible={this.state.visible}
           className="getRidOfSpace" />
               <Sidebar.Pushable >
           <Sidebar
@@ -99,11 +100,6 @@ class Dashboard extends Component {
             visible={visible}
             width='thin'
           >
-            <Menu.Item onClick={this.handleClick}
-              name='close'>
-              <Icon name="close"
-                size='tiny' />
-            </Menu.Item>
             <Menu.Item as={Link} to='/'
               onClick={this.handleClick} className="sidebarButton"
             >Current Events
@@ -123,7 +119,7 @@ class Dashboard extends Component {
               Logout
               <Confirm
                 open={this.state.open}
-                cancelButton='Fuck you'
+                cancelButton='Cancel'
                 confirmButton="Logout"
                 onCancel={this.toggle}
                 onConfirm={this.logout}
@@ -136,7 +132,7 @@ class Dashboard extends Component {
             events={this.state.events}
             userEvents={this.state.userEvents}
             getAllEvents={this.getAllEvents}
-            getAllUserEvents={this.getAllUserEvents}
+            getAllUserEvents={this.getUserEvents}
             allUsers={this.state.users}
             suggestions={this.state.suggestions}
             {...this.props} />

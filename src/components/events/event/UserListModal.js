@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Card, Button, Modal } from 'semantic-ui-react'
+import { Card, Modal } from 'semantic-ui-react'
 import AddUserModal from '../../modals/AddUserModal'
 
 class UserListModal extends Component {
@@ -20,7 +20,7 @@ class UserListModal extends Component {
                             <Card.Header>{this.props.user.firstName} {this.props.user.lastName}
                                 <Modal.Actions>
                                     <AddUserModal
-                                       {...this.props}
+                                        {...this.props}
                                     />
                                 </Modal.Actions>
                             </Card.Header>

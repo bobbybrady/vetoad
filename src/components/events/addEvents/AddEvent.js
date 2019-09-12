@@ -70,10 +70,25 @@ class AddEvent extends Component {
         const suggestionObject = this.state.suggestions.concat({
             userId: currentUser.id,
             name: this.state.suggestion,
+            id: Math.random()
         });
         this.setState({
             suggestions: suggestionObject,
             suggestion: ''
+        })
+    }
+
+    removeSuggestion = (id) => {
+        const deletedArray = this.state.suggestions.filter(suggestion => suggestion.id != id)
+        this.setState(() => {
+            return {suggestions: deletedArray}
+        })
+    }
+
+    removeParticipant = (id) => {
+        const deletedArray = this.state.users.filter(user => user.userId != id)
+        this.setState(() => {
+            return {users: deletedArray}
         })
     }
 
@@ -172,7 +187,8 @@ class AddEvent extends Component {
                                             key={user.id}
                                             user={user}
                                             addUserId={this.addUserId}
-                                            addParticipant={this.state.users} />
+                                            addParticipant={this.state.users}
+                                             />
                                     )
                                     }
                                 </div>
@@ -185,7 +201,8 @@ class AddEvent extends Component {
                                         user={user}
                                         key={user.userId}
                                         updateVetoad={this.updateVetoad}
-                                        updateCanSuggestEvent={this.updateCanSuggestEvent} />)}
+                                        updateCanSuggestEvent={this.updateCanSuggestEvent}
+                                        removeParticipant={this.removeParticipant} />)}
                             </ol>
                         </div>
                     </div>
@@ -210,7 +227,9 @@ class AddEvent extends Component {
                             {this.state.suggestions.map(addSuggestion =>
                                 <AddSuggestion
                                     addSuggestion={addSuggestion}
-                                    key={new Date()} />)}
+                                    key={Math.random()}
+                                    removeSuggestion={this.removeSuggestion}
+                                     />)}
                         </div>
                     </div>
                     <Button onClick={this.submitForm} type='submit'>Submit</Button>

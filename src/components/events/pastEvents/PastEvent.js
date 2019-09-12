@@ -28,6 +28,7 @@ class PastEvent extends Component {
             const filterUserEvent = this.props.userEvents.filter(userEvent => userEvent.userId === currentUser.id && userEvent.eventId === this.props.eventId)
             const foundEvent = this.props.events.find(event => event.id === this.props.eventId)
             const filteredSuggestions = this.props.suggestions.filter(suggestion => suggestion.eventId === foundEvent.id)
+            const filteredUserEvents = this.props.userEvents.filter(userEvent => userEvent.eventId === foundEvent.id)
             if (filterUserEvent.length === 1) {
                 return (
                     <div className="eventsContainer">
@@ -48,10 +49,10 @@ class PastEvent extends Component {
                                      />
                             )}
                         </div>
-                        {/* <div className='userEvents'>
+                        <div className='userEvents'>
                             <h2>List of Participants</h2>
                             <ol>
-                                {this.props.userEvents.map(userEvent =>
+                                {filteredUserEvents.map(userEvent =>
                                     <PastUserEvent
                                         key={userEvent.id}
                                         userEvent={userEvent}
@@ -59,7 +60,7 @@ class PastEvent extends Component {
                                          />
                                 )}
                             </ol>
-                        </div> */}
+                        </div>
                         <h1>Peng-Winner 🐧 {this.state.winningSuggestion}!</h1>
                     </div>
                 )

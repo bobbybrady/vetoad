@@ -5,13 +5,17 @@ class AddSuggestion extends Component {
 
 
     render() {
-            return (
-                <Card>
-                    <Card.Content>
-                            <Card.Header>{this.props.addSuggestion.name}<Button>Delete</Button></Card.Header>
-                    </Card.Content>
-                </Card>
-            )
+        return (
+            <Card>
+                <Card.Content>
+                    <Card.Header>
+                        {this.props.addSuggestion.name}
+                        <Button id={this.props.addSuggestion.id}
+                            onClick={() => this.props.removeSuggestion(this.props.addSuggestion.id)}>Delete</Button>
+                    </Card.Header>
+                </Card.Content>
+            </Card>
+        )
     }
 }
 

@@ -35,7 +35,7 @@
       "userId": 1,
       "category": "Restaurants",
       "date": "2019-09-19",
-      "isOver": true,
+      "isOver": false,
       "id": 1
     },
     {
@@ -105,16 +105,6 @@
       "canSuggestEvent": false,
       "userId": 3,
       "id": 5
-    },
-    {
-      "eventId": 1,
-      "poodleSuggestionId": 1,
-      "parrotSuggestionId": null,
-      "vetoadSuggestionId": null,
-      "vetoad": false,
-      "canSuggestEvent": false,
-      "userId": 4,
-      "id": 6
     },
     {
       "eventId": 2,

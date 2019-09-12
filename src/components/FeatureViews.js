@@ -39,7 +39,16 @@ export default class FeatureViews extends Component {
         }} />
 
         <Route exact path="/pastevents/:eventId(\d+)" render={(props) => {
-          return <PastEvent eventId={parseInt(props.match.params.eventId)} {...props} {...this.props} />
+          if (this.props.events.length === 0) {
+            return <></>
+          } else {
+            const foundEvent = this.props.events.find(event => event.id === parseInt(props.match.params.eventId))
+            if (foundEvent.isOver === true) {
+              return <PastEvent eventId={parseInt(props.match.params.eventId)} {...props} {...this.props} />
+            } else {
+              return <PastEventList {...this.props} />
+            }
+          }
         }} />
 
       </React.Fragment>

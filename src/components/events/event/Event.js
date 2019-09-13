@@ -10,6 +10,7 @@ import UserListModal from './UserListModal'
 import EditEventNameModal from '../../modals/EditEventNameModal'
 import EditEventDateModal from '../../modals/EditEventDateModal'
 import EditEventCategoryModal from '../../modals/EditEventCategoryModal'
+import EventTie from '../eventTie/EventTie'
 
 class Event extends Component {
 
@@ -24,7 +25,9 @@ class Event extends Component {
         open: false,
         users: [],
         newUser: [],
-        search: ''
+        search: '',
+        totalCount: [],
+        isOver: false
     }
 
     getEvent = () => {
@@ -33,7 +36,8 @@ class Event extends Component {
                 name: event.name,
                 date: event.date,
                 userId: event.userId,
-                category: event.category
+                category: event.category,
+                tie: event.tie
             })
         })
     }
@@ -82,7 +86,22 @@ class Event extends Component {
         })
     }
     componentDidMount() {
-        this.getEvent().then(this.getSuggestions).then(this.getUserEvents).then(this.getAllUsers)
+        this.getEvent().then(this.getSuggestions).then(this.getUserEvents).then(this.getAllUsers).then(() => {
+            this.state.suggestions.map(suggestion => {
+                const filteredPoodles = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.poodleSuggestionId)
+                const filteredParrots = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.parrotSuggestionId)
+                const filteredVetoads = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.vetoadSuggestionId)
+                const totalCount = this.state.totalCount.concat({
+                    name: suggestion.name,
+                    totalCount: (filteredPoodles.length - filteredParrots.length),
+                    vetoad: filteredVetoads.length,
+                    id: suggestion.id,
+                    eventId: this.props.eventId
+                })
+                this.setState({ totalCount: totalCount.filter(vetoad => vetoad.vetoad === 0).sort((a, b) => (b.totalCount - a.totalCount)) })
+
+            })
+        })
     }
 
     open = () => this.setState({ open: true })
@@ -124,7 +143,8 @@ class Event extends Component {
             vetoadSuggestionId: null,
             userId: parseInt(this.state.newUser[0].userId),
             vetoad: this.state.newUser[0].vetoad,
-            canSuggestEvent: this.state.newUser[0].canSuggestEvent
+            canSuggestEvent: this.state.newUser[0].canSuggestEvent,
+            tieId: null
         }
         UserEventsManager.post(participantObject).then(() => {
             this.getUserEvents()
@@ -139,7 +159,8 @@ class Event extends Component {
             category: this.state.category,
             date: this.state.date,
             isOver: false,
-            id: this.props.eventId
+            id: this.props.eventId,
+            tie: false
         }
         EventManager.update(editedObject).then(() => {
             this.getEvent().then(this.getSuggestions).then(this.getUserEvents).then(this.getAllUsers).then(() => {
@@ -165,18 +186,36 @@ class Event extends Component {
     }
 
     endEvent = () => {
-        const finishedEvent = {
-            name: this.state.name,
-            userId: this.state.userId,
-            category: this.state.category,
-            date: this.state.date,
-            isOver: true,
-            id: this.props.eventId
+        if (this.state.totalCount[0].totalCount === this.state.totalCount[1].totalCount) {
+            const finishedEvent = {
+                name: this.state.name,
+                userId: this.state.userId,
+                category: this.state.category,
+                date: this.state.date,
+                isOver: true,
+                id: this.props.eventId,
+                tie: true
+            }
+            EventManager.update(finishedEvent).then(() => {
+                this.props.getAllEvents()
+                this.getEvent()
+            })
+        } else {
+            const finishedEvent = {
+                name: this.state.name,
+                userId: this.state.userId,
+                category: this.state.category,
+                date: this.state.date,
+                isOver: true,
+                id: this.props.eventId,
+                tie: false
+            }
+            EventManager.update(finishedEvent).then(() => {
+                this.props.getAllEvents()
+                this.props.history.push(`/pastevents/${this.props.eventId}`)
+            })
         }
-        EventManager.update(finishedEvent).then(() => {
-            this.props.getAllEvents()
-            this.props.history.push(`/pastevents/${this.props.eventId}`)
-        })
+
     }
 
     searchForParticipant = (participant) => {
@@ -186,11 +225,23 @@ class Event extends Component {
 
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
-        if (this.state.userEvents.length === 0) {
+        if (this.state.userEvents.length === 0 || this.state.totalCount.length < 2) {
             return <></>
         } else {
             const findUserEvent = this.state.userEvents.find(userEvent => userEvent.userId === currentUser.id)
-            if (this.state.userId === currentUser.id) {
+            if (this.state.totalCount[0].totalCount === this.state.totalCount[1].totalCount && this.state.tie === true) {
+                return <EventTie
+                    userId={this.state.userId}
+                    userEvents={this.state.userEvents}
+                    getSuggestions={this.getSuggestions}
+                    getUserEvents={this.getUserEvents}
+                    totalCount={this.state.totalCount}
+                    deleteSuggestion={this.state.deleteSuggestion}
+                    deleteParticipant={this.state.deleteParticipant}
+                    name={this.state.name}
+                    category={this.state.category}
+                    date={this.state.date} />
+            } else if (this.state.userId === currentUser.id) {
                 return (
                     <div className="eventsContainer">
                         <header>
@@ -267,7 +318,7 @@ class Event extends Component {
                                                     updateVetoad={this.updateVetoad}
                                                     newUser={this.state.newUser}
                                                     addParticipantToEvent={this.addParticipantToEvent}
-                                                     />
+                                                />
                                             )}
                                         </ol>
                                     </div>
@@ -371,9 +422,11 @@ class Event extends Component {
                         </div>
                     </div>
                 )
+
             }
         }
     }
 }
+
 
 export default Event;

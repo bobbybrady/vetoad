@@ -111,7 +111,8 @@ class AddEvent extends Component {
                 date: this.state.date,
                 userId: currentUser.id,
                 isOver: false,
-                category: this.state.category
+                category: this.state.category,
+                tie: false
             }
             EventsManager.post(eventObject).then((returnedEventObject) => {
                 this.state.users.map(user => {
@@ -122,7 +123,8 @@ class AddEvent extends Component {
                         vetoadSuggestionId: null,
                         userId: parseInt(user.userId),
                         vetoad: user.vetoad,
-                        canSuggestEvent: user.canSuggestEvent
+                        canSuggestEvent: user.canSuggestEvent,
+                        tieId: null
                     }
                     this.props.getAllEvents()
                     UserEventsManager.post(userEventObject).then(() => {

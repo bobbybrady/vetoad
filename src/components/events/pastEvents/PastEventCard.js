@@ -7,6 +7,11 @@ class PastEventCard extends Component {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.props.userEvents.length === 0) {
             return <></>
+        } else if (this.props.event.isOver === true && this.props.event.tie === true) {
+            return (
+                <></>
+            )
+
         } else if (this.props.event.isOver === true) {
             const filterUserEvent = this.props.userEvents.filter(userEvent => userEvent.userId === currentUser.id && userEvent.eventId === this.props.event.id)
             if (this.props.event.userId === currentUser.id) {
@@ -22,6 +27,7 @@ class PastEventCard extends Component {
                         </Card>
                     </div>
                 )
+
             } else if (filterUserEvent.length === 1) {
                 return (
                     <div className="eventCard">

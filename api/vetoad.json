@@ -13,27 +13,117 @@
       "id": 2,
       "firstName": "Stephanie",
       "lastName": "Sullivan"
+    },
+    {
+      "username": "test",
+      "password": "t",
+      "id": 3,
+      "firstName": "Teddy",
+      "lastName": "Roosevelt"
+    },
+    {
+      "username": "n",
+      "password": "n",
+      "id": 4,
+      "firstName": "Noah",
+      "lastName": "Bartfield"
     }
   ],
   "events": [
     {
-      "id": 1,
-      "userId": 1,
       "name": "Event 1",
-      "date": "2019-09-04",
-      "isOver": false
+      "userId": 1,
+      "category": "Restaurants",
+      "date": "2019-09-19",
+      "isOver": true,
+      "id": 1,
+      "tie": true
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "name": "Event 2",
+      "date": "2019-09-06",
+      "isOver": true,
+      "category": "Restaurants",
+      "tie": false
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "name": "Event 3",
+      "date": "2019-09-06",
+      "isOver": false,
+      "category": "Restaurants",
+      "tie": false
     }
   ],
   "userEvents": [
     {
-      "id": 1,
-      "userId": 1,
       "eventId": 1,
+      "poodleSuggestionId": 1,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": true,
+      "canSuggestEvent": false,
+      "userId": 1,
+      "id": 1,
+      "tieId": 1
+    },
+    {
+      "eventId": 1,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": 5,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "userId": 2,
+      "id": 2,
+      "tieId": null
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "eventId": 3,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": true,
+      "canSuggestEvent": false,
+      "tieId": null
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "eventId": 3,
       "poodleSuggestionId": null,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
       "vetoad": false,
-      "canSuggestEvent": false
+      "canSuggestEvent": false,
+      "tieId": null
+    },
+    {
+      "eventId": 1,
+      "poodleSuggestionId": 2,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "userId": 3,
+      "id": 5,
+      "tieId": null
+    },
+    {
+      "eventId": 2,
+      "poodleSuggestionId": 3,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 2,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "id": 6,
+      "tieId": null
     }
   ],
   "suggestions": [
@@ -41,6 +131,38 @@
       "id": 1,
       "eventId": 1,
       "name": "Chipotle"
+    },
+    {
+      "id": 2,
+      "eventId": 1,
+      "name": "Waffle House"
+    },
+    {
+      "id": 3,
+      "eventId": 2,
+      "name": "Wild Ginger"
+    },
+    {
+      "id": 4,
+      "eventId": 2,
+      "name": "ML Rose"
+    },
+    {
+      "id": 5,
+      "eventId": 1,
+      "name": "Chic-Fil-a"
+    },
+    {
+      "userId": 2,
+      "name": "test",
+      "eventId": 1,
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "name": "test2",
+      "eventId": 3,
+      "id": 7
     }
   ]
 }

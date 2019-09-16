@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import PastEventCard from './PastEventCard'
 
 class PastEventList extends Component {
 
@@ -6,6 +7,14 @@ class PastEventList extends Component {
             return (
                 <div className="eventsContainer">
                    <h1>Past Events</h1> 
+                   {this.props.events.map(event => 
+                    <PastEventCard
+                        key={event.id}
+                        event={event}
+                        {...this.props}
+                        />
+                )
+                }
                 </div>
             )
         }

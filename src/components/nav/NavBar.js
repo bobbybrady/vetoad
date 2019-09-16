@@ -22,7 +22,7 @@ class NavBar extends Component {
                         className="menu"
                         onClick={this.props.handleClick}
                         floated='right'>
-                        <Icon name="bars" />
+                        <Icon name={this.props.visible ? "delete" : "bars"} />
                     </Button>
                 </Menu>
             </>

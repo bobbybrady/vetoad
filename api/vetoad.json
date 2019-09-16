@@ -68,7 +68,7 @@
       "canSuggestEvent": false,
       "userId": 1,
       "id": 1,
-      "tieId": null
+      "tieId": 1
     },
     {
       "eventId": 1,
@@ -105,8 +105,8 @@
     },
     {
       "eventId": 1,
-      "poodleSuggestionId": 5,
-      "parrotSuggestionId": 1,
+      "poodleSuggestionId": 2,
+      "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
       "vetoad": false,
       "canSuggestEvent": false,
@@ -151,6 +151,18 @@
       "id": 5,
       "eventId": 1,
       "name": "Chic-Fil-a"
+    },
+    {
+      "userId": 2,
+      "name": "test",
+      "eventId": 1,
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "name": "test2",
+      "eventId": 3,
+      "id": 7
     }
   ]
 }

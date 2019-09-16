@@ -8,7 +8,7 @@ class CurrentEventCard extends Component {
         if (this.props.userEvents.length === 0) {
             return <></>
 
-        } else if (this.props.event.tie === true) {
+        } else if (this.props.event.tie === true && this.props.event.isOver === false) {
             const filterUserEvent = this.props.userEvents.filter(userEvent => userEvent.userId === currentUser.id && userEvent.eventId === this.props.event.id)
             if (this.props.event.userId === currentUser.id) {
                 return (

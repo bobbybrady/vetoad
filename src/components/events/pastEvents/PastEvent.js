@@ -3,21 +3,26 @@ import PastSuggestion from './PastSuggestion'
 import PastUserEvent from './PastUserEvent'
 class PastEvent extends Component {
 
-    state={
+    state = {
         winningCount: 0,
         winningSuggestion: '',
         winningId: 0
     }
 
-    winner = (currentCount, suggestion, vetoad, id) => {
-        if (currentCount > this.state.winningCount && vetoad === undefined ) {
-            this.setState({
-                winningCount: currentCount,
-                winningSuggestion: suggestion,
-                winningId: id
-            })
+    winner =  (currentCount, suggestion, vetoad, id) => {
+        if (currentCount > this.state.winningCount && vetoad === undefined) {
+            this.setState((ps, props) => {
+                const newState = {
+                    winningCount: currentCount,
+                    winningSuggestion: suggestion,
+                    winningId: id
+                }
+                return newState
+            } )
+
         }
     }
+
 
     render() {
 
@@ -46,7 +51,7 @@ class PastEvent extends Component {
                                     winningSuggestion={this.state.winningSuggestion}
                                     winner={this.winner}
                                     winningId={this.state.winningId}
-                                     />
+                                />
                             )}
                         </div>
                         <div className='userEvents'>
@@ -57,7 +62,7 @@ class PastEvent extends Component {
                                         key={userEvent.id}
                                         userEvent={userEvent}
                                         {...this.props}
-                                         />
+                                    />
                                 )}
                             </ol>
                         </div>

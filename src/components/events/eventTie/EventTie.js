@@ -5,8 +5,8 @@ import TieSuggestion from './TieSuggestion'
 
 class EventTie extends Component {
 
-
     render() {
+        const filterTie = this.props.totalCount.filter(totalCount => this.props.totalCount[0].totalCount === totalCount.totalCount)
         return (
             <div className="eventsContainer">
                 <header>
@@ -17,7 +17,7 @@ class EventTie extends Component {
 
                 <div className='suggestions'>
                     <h2>{this.props.category}</h2>
-                    {this.props.totalCount.map(suggestion =>
+                    {filterTie.map(suggestion =>
                         <TieSuggestion
                             key={suggestion.id}
                             suggestion={suggestion}
@@ -36,6 +36,7 @@ class EventTie extends Component {
                         )}
                     </ol>
                 </div>
+                <Button onClick={this.props.endTie}>End</Button>
             </div>
         )
     }

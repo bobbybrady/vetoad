@@ -2,13 +2,24 @@ import React, { Component } from "react"
 import { Card, Button } from 'semantic-ui-react'
 
 class PastSuggestion extends Component {
+    
 
     findWinner = () => {
-        const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === this.props.suggestion.id)
-        const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === this.props.suggestion.id)
-        const total = filteredPoodles.length - filteredParrots.length
-        const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === this.props.suggestion.id)
-        this.props.winner(total, this.props.suggestion.name, vetoadCheck, this.props.suggestion.id)
+        const findEvent = this.props.events.find(event => event.id === this.props.eventId)
+        if (findEvent.tie=== true) {
+            const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === this.props.suggestion.id)
+            const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === this.props.suggestion.id)
+            const filteredTie = this.props.userEvents.filter(userEvent => userEvent.tieId === this.props.suggestion.id)
+            const total = (filteredPoodles.length - filteredParrots.length) + filteredTie.length
+            const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === this.props.suggestion.id)
+            this.props.winner(total, this.props.suggestion.name, vetoadCheck, this.props.suggestion.id)
+        } else {
+            const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === this.props.suggestion.id)
+            const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === this.props.suggestion.id)
+            const total = filteredPoodles.length - filteredParrots.length
+            const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === this.props.suggestion.id)
+            this.props.winner(total, this.props.suggestion.name, vetoadCheck, this.props.suggestion.id)
+        }
     }
     componentDidMount() {
         this.findWinner()

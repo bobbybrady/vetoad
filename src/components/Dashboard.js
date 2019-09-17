@@ -1,12 +1,13 @@
 import React, { Component } from "react"
 import NavBar from "./nav/NavBar"
 import FeatureViews from "./FeatureViews"
-import { Menu, Icon, Sidebar, Confirm } from 'semantic-ui-react'
+import { Menu, Icon, Sidebar, Confirm, Button } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import EventsManager from '../modules/EventsManager'
 import UserEventsManager from '../modules/UserEventsManager'
 import UserManager from '../modules/UserManager'
 import SuggestionsManager from '../modules/SuggestionsManager'
+import HIW1 from './modals/HIW1'
 
 
 class Dashboard extends Component {
@@ -113,6 +114,10 @@ class Dashboard extends Component {
               className="sidebarButton"
               onClick={this.handleClick}>
               Profile
+            </Menu.Item>
+            <Menu.Item 
+              className="sidebarButton">
+              <HIW1 />
             </Menu.Item>
             <Menu.Item onClick={this.toggle}
               className="sidebarButton">

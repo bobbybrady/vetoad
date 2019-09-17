@@ -23,9 +23,47 @@ class PastEvent extends Component {
         }
     }
 
+    // findWinner = () => {
+    //     const findEvent = this.props.events.find(event => event.id === this.props.eventId)
+    //     const filteredSuggestions = this.props.suggestions.filter(suggestion => suggestion.eventId === findEvent.id)
+    //     let winnerCount = 0
+    //     let winnerId = 0
+    //     let winnerName = ''
+    //     console.log(this.props)
+    //     if (findEvent.tie === true) {
+    //         console.log(filteredSuggestions)
+    //         filteredSuggestions.forEach(suggestion => {
+    //             const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === this.props.suggestion.id)
+    //             const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === this.props.suggestion.id)
+    //             const filteredTie = this.props.userEvents.filter(userEvent => userEvent.tieId === this.props.suggestion.id)
+    //             const total = (filteredPoodles.length - filteredParrots.length) + filteredTie.length
+    //             const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === this.props.suggestion.id)
+    //             if (total > winnerCount && vetoadCheck === undefined) {
+    //                 winnerCount = total
+    //                 winnerId = suggestion.id
+    //                 winnerName = suggestion.name
+    //             }
+    //         });
+    //     } else {
+    //         const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === this.props.suggestion.id)
+    //         const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === this.props.suggestion.id)
+    //         const total = filteredPoodles.length - filteredParrots.length
+    //         const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === this.props.suggestion.id)
+    //     }
+    //     this.setState({
+    //         winningCount: winnerCount,
+    //         winningSuggestion: winnerId,
+    //         winningId: winnerName
+    //     })
+    // }
+
+    // componentDidMount() {
+    //     console.log(this.props.suggestions)
+    //     this.findWinner()
+    //     console.log(this.props.suggestions)
+    // }
 
     render() {
-
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.props.userEvents.length === 0) {
             return <></>

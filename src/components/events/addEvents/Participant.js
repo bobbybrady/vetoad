@@ -5,7 +5,6 @@ class Participant extends Component {
 
 
     render() {
-        console.log(this.props.user.userId)
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (parseInt(this.props.user.userId) === currentUser.id) {
             return <></>

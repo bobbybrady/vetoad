@@ -49,12 +49,12 @@
       "tie": false
     },
     {
-      "id": 3,
-      "userId": 2,
       "name": "Event 3",
+      "userId": 2,
+      "category": "Restaurants",
       "date": "2019-09-06",
       "isOver": false,
-      "category": "Restaurants",
+      "id": 3,
       "tie": false
     }
   ],
@@ -82,26 +82,24 @@
       "tieId": null
     },
     {
-      "id": 3,
-      "userId": 2,
       "eventId": 3,
       "poodleSuggestionId": null,
-      "parrotSuggestionId": null,
+      "parrotSuggestionId": 8,
       "vetoadSuggestionId": null,
       "vetoad": true,
       "canSuggestEvent": false,
-      "tieId": null
+      "userId": 2,
+      "id": 3
     },
     {
-      "id": 4,
-      "userId": 1,
       "eventId": 3,
-      "poodleSuggestionId": null,
+      "poodleSuggestionId": 7,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
       "vetoad": false,
       "canSuggestEvent": false,
-      "tieId": null
+      "userId": 1,
+      "id": 4
     },
     {
       "eventId": 1,
@@ -163,6 +161,12 @@
       "name": "test2",
       "eventId": 3,
       "id": 7
+    },
+    {
+      "userId": 2,
+      "name": "test 3",
+      "eventId": 3,
+      "id": 8
     }
   ]
 }

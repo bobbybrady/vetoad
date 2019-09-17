@@ -69,6 +69,7 @@ class Event extends Component {
         SuggestionsManager.post(suggestionNewObject).then(() => {
             this.getSuggestions()
             this.setState({ suggestion: '' })
+            this.getEvent()
         })
     }
 
@@ -104,15 +105,17 @@ class Event extends Component {
     }
 
     open = () => this.setState({ open: true })
-    close = () => this.setState({ open: false })
+    close = () => this.setState({ open: false,
+    newUser:[] })
 
     addUserId = (event) => {
         const userObject = this.state.newUser.concat({
-            userId: event.target.id,
+            userId: parseInt(event.target.id),
             vetoad: false,
             canSuggestEvent: false
         });
         this.setState({ newUser: userObject })
+        
     }
 
     updateVetoad = (userId) => {
@@ -148,6 +151,7 @@ class Event extends Component {
         UserEventsManager.post(participantObject).then(() => {
             this.getUserEvents()
             this.close()
+            this.setState({newUser:[]})
         })
     }
 
@@ -308,7 +312,8 @@ class Event extends Component {
                                             id="search"
                                         />
                                         <ol>
-                                            {this.searchForParticipant(this.state.search).map(user =>
+                                            { this.state.search === ''
+                                                && this.searchForParticipant(this.state.search).map(user =>
                                                 <UserListModal
                                                     open={this.state.open}
                                                     onOpen={this.open}
@@ -321,6 +326,7 @@ class Event extends Component {
                                                     updateVetoad={this.updateVetoad}
                                                     newUser={this.state.newUser}
                                                     addParticipantToEvent={this.addParticipantToEvent}
+                                                    search={this.state.search}
                                                 />
                                             )}
                                         </ol>

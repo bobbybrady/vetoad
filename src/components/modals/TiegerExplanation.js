@@ -10,10 +10,7 @@ class TiegerExplanation extends Component {
     close = () => this.setState({ open: false })
 
     onClick = () => {
-        console.log(this.state.open)
         if (this.state.open === false) {
-            console.log(this.props)
-            // this.props.close()
             this.open()
         } else {
             this.close()

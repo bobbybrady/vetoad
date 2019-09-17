@@ -140,6 +140,7 @@ class Dashboard extends Component {
             getAllUserEvents={this.getUserEvents}
             allUsers={this.state.users}
             suggestions={this.state.suggestions}
+            getAllUsers={this.getAllUsers}
             {...this.props} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>

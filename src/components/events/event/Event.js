@@ -109,10 +109,13 @@ class Event extends Component {
     newUser:[] })
 
     addUserId = (event) => {
+        const foundUser = this.state.users.find(user => user.id === parseInt(event.target.id))
         const userObject = this.state.newUser.concat({
             userId: parseInt(event.target.id),
             vetoad: false,
-            canSuggestEvent: false
+            canSuggestEvent: false,
+            firstName: foundUser.firstName,
+            lastName: foundUser.lastName
         });
         this.setState({ newUser: userObject })
         

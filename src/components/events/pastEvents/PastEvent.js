@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import PastSuggestion from './PastSuggestion'
 import PastUserEvent from './PastUserEvent'
+import SuggestionsManager from '../../../modules/SuggestionsManager'
 class PastEvent extends Component {
 
     state = {
@@ -9,23 +10,53 @@ class PastEvent extends Component {
         winningId: 0
     }
 
-    winner =  (currentCount, suggestion, vetoad, id) => {
-        if (currentCount > this.state.winningCount && vetoad === undefined) {
-            this.setState((ps, props) => {
-                const newState = {
-                    winningCount: currentCount,
-                    winningSuggestion: suggestion,
-                    winningId: id
-                }
-                return newState
-            } )
-
-        }
+    findWinner = () => {
+        SuggestionsManager.getAll().then(suggestions => {
+            const findEvent = this.props.events.find(event => event.id === this.props.eventId)
+            const filteredSuggestions = suggestions.filter(suggestion => suggestion.eventId === findEvent.id)
+            let winnerCount = 0
+            let winnerId = 0
+            let winnerName = ''
+            if (findEvent.tie === true) {
+                filteredSuggestions.forEach(suggestion => {
+                    const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === suggestion.id)
+                    const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === suggestion.id)
+                    const filteredTie = this.props.userEvents.filter(userEvent => userEvent.tieId === suggestion.id)
+                    const total = (filteredPoodles.length - filteredParrots.length) + filteredTie.length
+                    const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === suggestion.id)
+                    if (total > winnerCount && vetoadCheck === undefined) {
+                        winnerCount = total
+                        winnerId = suggestion.id
+                        winnerName = suggestion.name
+                    }
+                });
+            } else {
+                filteredSuggestions.forEach(suggestion => {
+                    const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === suggestion.id)
+                    const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === suggestion.id)
+                    const total = (filteredPoodles.length - filteredParrots.length) 
+                    const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === suggestion.id)
+                    if (total > winnerCount && vetoadCheck === undefined) {
+                        winnerCount = total
+                        winnerId = suggestion.id
+                        winnerName = suggestion.name
+                    }
+                });
+            }
+            this.setState({
+                winningCount: winnerCount,
+                winningSuggestion: winnerName,
+                winningId: winnerId
+            })
+        })
     }
 
 
-    render() {
+    componentDidMount() {
+        this.findWinner()
+    }
 
+    render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.props.userEvents.length === 0) {
             return <></>

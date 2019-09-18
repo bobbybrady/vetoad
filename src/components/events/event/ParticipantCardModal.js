@@ -13,7 +13,7 @@ class ParticipantCardModal extends Component {
                 return (
                     <Card>
                         <Card.Content>
-                                <Card.Header>{this.props.user.firstName} {this.props.user.lastName}<Button color='green' onClick={() => this.props.updateVetoad(this.props.user.id)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.id)}>Make Contributor</Button></Card.Header>
+                                <Card.Header>{this.props.newUser[0].firstName} {this.props.newUser[0].lastName}<Button color='green' onClick={() => this.props.updateVetoad(this.props.newUser[0].userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.newUser[0].userId)}>Make Contributor</Button></Card.Header>
                         </Card.Content>
                     </Card>
                 )
@@ -21,7 +21,7 @@ class ParticipantCardModal extends Component {
                 return (
                     <Card>
                         <Card.Content>
-                                <Card.Header>{this.props.user.firstName} {this.props.user.lastName}<Button onClick={() => this.props.updateVetoad(this.props.user.id)}>Vetoad</Button><Button color='green' onClick={() => this.props.updateCanSuggestEvent(this.props.user.id)}>Make Contributor</Button></Card.Header>
+                                <Card.Header>{this.props.newUser[0].firstName} {this.props.newUser[0].lastName}<Button onClick={() => this.props.updateVetoad(this.props.newUser[0].userId)}>Vetoad</Button><Button color='green' onClick={() => this.props.updateCanSuggestEvent(this.props.newUser[0].userId)}>Make Contributor</Button></Card.Header>
                         </Card.Content>
                     </Card>
                 )
@@ -29,7 +29,7 @@ class ParticipantCardModal extends Component {
                 return (
                     <Card>
                         <Card.Content>
-                                <Card.Header>{this.props.user.firstName} {this.props.user.lastName}<Button color='green' onClick={() => this.props.updateVetoad(this.props.user.id)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.id)} color='green'>Make Contributor</Button></Card.Header>
+                                <Card.Header>{this.props.newUser[0].firstName} {this.props.newUser[0].lastName}<Button color='green' onClick={() => this.props.updateVetoad(this.props.newUser[0].userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.newUser[0].userId)} color='green'>Make Contributor</Button></Card.Header>
                         </Card.Content>
                     </Card>
                 )
@@ -37,7 +37,7 @@ class ParticipantCardModal extends Component {
                 return (
                     <Card>
                         <Card.Content>
-                                <Card.Header>{this.props.user.firstName} {this.props.user.lastName}<Button onClick={() => this.props.updateVetoad(this.props.user.id)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.id)}>Make Contributor</Button></Card.Header>
+                                <Card.Header>{this.props.newUser[0].firstName} {this.props.newUser[0].lastName}<Button onClick={() => this.props.updateVetoad(this.props.newUser[0].userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.newUser[0].userId)}>Make Contributor</Button></Card.Header>
                         </Card.Content>
                     </Card>
                 )

@@ -1,6 +1,9 @@
 import React, { Component } from "react"
 import UserManager from '../../modules/UserManager'
 import EditFirstNameModal from '../modals/EditFirstNameModal'
+import EditLastNameModal from '../modals/EditLastNameModal'
+import EditPasswordModal from '../modals/EditPasswordModal'
+import EditUsernameModal from '../modals/EditUsernameModal'
 
 class Profile extends Component {
 
@@ -53,17 +56,26 @@ class Profile extends Component {
     }
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
-        const hiddenPassword = currentUser.password.replace(/[a-z]/g, '*')
+        const hiddenPassword = currentUser.password.replace(/[a-z]|[1-9]|[A-Z]|@|!/g, '*')
             return (
                 <div className="eventsContainer">
                    <h1>{currentUser.firstName}'s Profile</h1> 
-                   <h2>Username: {currentUser.username}</h2>
-                   <h2>Password: {hiddenPassword}</h2>
+                   <h2>Username: {currentUser.username}<EditUsernameModal 
+                   editUserProfile={this.editUserProfile}
+                   username={this.state.username}
+                   handleFieldChange={this.handleFieldChange}/></h2>
+                   <h2>Password: {hiddenPassword}<EditPasswordModal 
+                   editUserProfile={this.editUserProfile}
+                   password={this.state.password}
+                   handleFieldChange={this.handleFieldChange}/></h2>
                    <h2>First Name: {currentUser.firstName}<EditFirstNameModal 
                    editUserProfile={this.editUserProfile}
                    firstName={this.state.firstName}
                    handleFieldChange={this.handleFieldChange}/></h2>
-                   <h2>Last Name: {currentUser.lastName}</h2>
+                   <h2>Last Name: {currentUser.lastName}<EditLastNameModal 
+                   editUserProfile={this.editUserProfile}
+                   lastName={this.state.lastName}
+                   handleFieldChange={this.handleFieldChange}/></h2>
                 </div>
             )
         }

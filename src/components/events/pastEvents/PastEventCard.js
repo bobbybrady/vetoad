@@ -1,7 +1,16 @@
 import React, { Component } from "react"
 import { Card, Button, Icon } from 'semantic-ui-react'
+import DeleteEventModal from '../../modals/DeleteEventModal'
+import EventsManager from '../../../modules/EventsManager'
 
 class PastEventCard extends Component {
+
+    deleteEvent = (eventId) => {
+        EventsManager.delete(eventId).then(() => {
+            this.props.getAllEvents()
+        })
+
+    }
 
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
@@ -22,6 +31,8 @@ class PastEventCard extends Component {
                                 <Card.Header>{this.props.event.name}</Card.Header>
                                 <Card.Meta>{this.props.event.date}</Card.Meta>
                                 <Button onClick={() => { this.props.history.push(`/pastevents/${this.props.event.id}`) }}>Details</Button>
+                                <DeleteEventModal {...this.props}
+                                    deleteEvent={this.deleteEvent} />
                             </Card.Content>
                         </Card>
                     </div>

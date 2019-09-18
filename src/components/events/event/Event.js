@@ -315,8 +315,7 @@ class Event extends Component {
                                             id="search"
                                         />
                                         <ol>
-                                            { this.state.search === ''
-                                                && this.searchForParticipant(this.state.search).map(user =>
+                                            {  this.searchForParticipant(this.state.search).map(user =>
                                                 <UserListModal
                                                     open={this.state.open}
                                                     onOpen={this.open}

@@ -19,7 +19,8 @@ class Suggestion extends Component {
             vetoad: vetoadCheck.vetoad,
             canSuggestEvent: vetoadCheck.canSuggestEvent,
             userId:vetoadCheck.userId,
-            id: vetoadCheck.id
+            id: vetoadCheck.id,
+            tieId: null
         };
 
         UserEventManager.update(editedUserEvent).then(this.props.getSuggestions).then(this.props.getUserEvents)
@@ -35,7 +36,8 @@ class Suggestion extends Component {
             vetoad: vetoadCheck.vetoad,
             canSuggestEvent: vetoadCheck.canSuggestEvent,
             userId:vetoadCheck.userId,
-            id: vetoadCheck.id
+            id: vetoadCheck.id,
+            tieId: null
         };
     
         UserEventManager.update(editedUserEvent).then(this.props.getSuggestions).then(this.props.getUserEvents)
@@ -52,7 +54,8 @@ class Suggestion extends Component {
             vetoad: vetoadCheck.vetoad,
             canSuggestEvent: vetoadCheck.canSuggestEvent,
             userId:vetoadCheck.userId,
-            id: vetoadCheck.id
+            id: vetoadCheck.id,
+            tieId: null
         };
     
         UserEventManager.update(editedUserEvent).then(this.props.getSuggestions).then(this.props.getUserEvents)

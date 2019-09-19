@@ -187,7 +187,6 @@ class Event extends Component {
         SuggestionsManager.delete(id)
             .then(() => {
                 this.getSuggestions()
-                this.props.getAllSuggestions()
             })
     }
 
@@ -217,8 +216,10 @@ class Event extends Component {
                 tie: false
             }
             EventManager.update(finishedEvent).then(() => {
-                this.props.getAllEvents()
-                this.props.history.push(`/pastevents/${this.props.eventId}`)
+                this.getEvent().then(() => {
+                    this.props.getAllEvents()
+                    this.props.history.push(`/pastevents/${this.props.eventId}`)
+                })
             })
         }
 
@@ -235,8 +236,10 @@ class Event extends Component {
             tie: true
         }
         EventManager.update(finishedEvent).then(() => {
-            this.props.getAllEvents()
-            this.props.history.push(`/pastevents/${this.props.eventId}`)
+            this.getEvent().then(() => {
+                this.props.getAllEvents()
+                this.props.history.push(`/pastevents/${this.props.eventId}`)
+            })
         })
     }
 

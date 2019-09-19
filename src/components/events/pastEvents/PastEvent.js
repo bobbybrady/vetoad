@@ -97,7 +97,7 @@ class PastEvent extends Component {
                                 )}
                             </ol>
                         </div>
-                        <h1>Peng-Winner 🐧 {this.state.winningSuggestion}!</h1>
+                        <h1>{this.state.winningSuggestion === '' ? 'No Winner' : `Peng-Winner 🐧 ${this.state.winningSuggestion}`}!</h1>
                     </div>
                 )
             } else {

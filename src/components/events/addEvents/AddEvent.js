@@ -234,7 +234,7 @@ class AddEvent extends Component {
                                      />)}
                         </div>
                     </div>
-                    <Button onClick={this.submitForm} type='submit'>Submit</Button>
+                    <Button onClick={this.submitForm} type='submit'>Create</Button>
                 </Form>
             </div>
         )

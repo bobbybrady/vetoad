@@ -141,6 +141,7 @@ class Dashboard extends Component {
             allUsers={this.state.users}
             suggestions={this.state.suggestions}
             getAllUsers={this.getAllUsers}
+            getAllSuggestions={this.getAllSuggestions}
             {...this.props} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>

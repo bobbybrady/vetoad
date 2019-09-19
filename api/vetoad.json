@@ -27,6 +27,13 @@
       "id": 4,
       "firstName": "Noah",
       "lastName": "Bartfield"
+    },
+    {
+      "username": "elliotbartfield",
+      "password": "eb",
+      "firstName": "Elliot",
+      "lastName": "Bartfield",
+      "id": 5
     }
   ],
   "events": [
@@ -56,6 +63,33 @@
       "isOver": false,
       "id": 3,
       "tie": false
+    },
+    {
+      "name": "Eating Lunch",
+      "userId": 5,
+      "category": "Lunch",
+      "date": "2019-09-20",
+      "isOver": true,
+      "id": 4,
+      "tie": false
+    },
+    {
+      "name": "Eating Lunch",
+      "date": "2019-09-18",
+      "userId": 1,
+      "isOver": false,
+      "category": "Meal",
+      "tie": false,
+      "id": 5
+    },
+    {
+      "name": "Eating Lunch again",
+      "date": "2019-09-18",
+      "userId": 1,
+      "isOver": false,
+      "category": "Meal",
+      "tie": false,
+      "id": 6
     }
   ],
   "userEvents": [
@@ -122,6 +156,94 @@
       "canSuggestEvent": false,
       "id": 6,
       "tieId": null
+    },
+    {
+      "eventId": 4,
+      "poodleSuggestionId": 9,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": 12,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "userId": 5,
+      "id": 7,
+      "tieId": null
+    },
+    {
+      "eventId": 4,
+      "poodleSuggestionId": 12,
+      "parrotSuggestionId": 9,
+      "vetoadSuggestionId": null,
+      "vetoad": false,
+      "canSuggestEvent": true,
+      "userId": 1,
+      "id": 8,
+      "tieId": null
+    },
+    {
+      "eventId": 4,
+      "poodleSuggestionId": 10,
+      "parrotSuggestionId": 9,
+      "vetoadSuggestionId": null,
+      "vetoad": false,
+      "canSuggestEvent": true,
+      "userId": 4,
+      "id": 9,
+      "tieId": null
+    },
+    {
+      "eventId": 5,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 1,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "tieId": null,
+      "id": 10
+    },
+    {
+      "eventId": 5,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 5,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 11
+    },
+    {
+      "eventId": 6,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 1,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "tieId": null,
+      "id": 12
+    },
+    {
+      "eventId": 6,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 4,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 13
+    },
+    {
+      "eventId": 6,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 5,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 14
     }
   ],
   "suggestions": [
@@ -167,6 +289,27 @@
       "name": "test 3",
       "eventId": 3,
       "id": 8
+    },
+    {
+      "name": "Clawson's Deli",
+      "eventId": 4,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "name": "Fooda",
+      "eventId": 4,
+      "id": 12
+    },
+    {
+      "name": "rewds",
+      "eventId": 5,
+      "id": 13
+    },
+    {
+      "name": "fgds",
+      "eventId": 6,
+      "id": 14
     }
   ]
 }

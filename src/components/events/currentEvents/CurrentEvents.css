@@ -2,8 +2,26 @@
     height: 95vh;
     border: none;
     overflow: scroll;
+    /* display: flex; */
+    /* flex-wrap: wrap;; */
 }
+
+/* .eventCard {
+    justify-content: space-evenly;
+    flex-basis: 28%;
+    padding: 5px;
+    height: 115px;
+} */
+
+/* .currentEventsListHeader {
+    padding: 5px;
+} */
 
 .getRidOfSpace {
     margin-bottom: 0 !important;
 }
+
+/* .pusher {
+    height: 95vh;
+    overflow: scroll;
+} */

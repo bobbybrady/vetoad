@@ -11,18 +11,22 @@ class CurrentEventList extends Component {
 
     render() {
         return (
-            <div className="eventsContainer">
-                <h1>Current Events</h1>
-                <Button onClick={this.addEvent}>Add Event</Button>
-                {this.props.events.map(event => 
-                    <CurrentEventCard
-                        key={event.id}
-                        event={event}
-                        {...this.props}
+            <>
+                <div className='currentEventsListHeader'>
+                    <h1>Current Events</h1>
+                    <Button onClick={this.addEvent}>Add Event</Button>
+                </div>
+                <div className="eventsContainer">
+                    {this.props.events.map(event =>
+                        <CurrentEventCard
+                            key={event.id}
+                            event={event}
+                            {...this.props}
                         />
-                )
-                }
-            </div>
+                    )
+                    }
+                </div>
+            </>
         )
     }
 }

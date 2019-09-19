@@ -72,6 +72,24 @@
       "isOver": true,
       "id": 4,
       "tie": false
+    },
+    {
+      "name": "Eating Lunch",
+      "date": "2019-09-18",
+      "userId": 1,
+      "isOver": false,
+      "category": "Meal",
+      "tie": false,
+      "id": 5
+    },
+    {
+      "name": "Eating Lunch again",
+      "date": "2019-09-18",
+      "userId": 1,
+      "isOver": false,
+      "category": "Meal",
+      "tie": false,
+      "id": 6
     }
   ],
   "userEvents": [
@@ -171,6 +189,61 @@
       "userId": 4,
       "id": 9,
       "tieId": null
+    },
+    {
+      "eventId": 5,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 1,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "tieId": null,
+      "id": 10
+    },
+    {
+      "eventId": 5,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 5,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 11
+    },
+    {
+      "eventId": 6,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 1,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "tieId": null,
+      "id": 12
+    },
+    {
+      "eventId": 6,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 4,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 13
+    },
+    {
+      "eventId": 6,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 5,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 14
     }
   ],
   "suggestions": [
@@ -227,6 +300,16 @@
       "name": "Fooda",
       "eventId": 4,
       "id": 12
+    },
+    {
+      "name": "rewds",
+      "eventId": 5,
+      "id": 13
+    },
+    {
+      "name": "fgds",
+      "eventId": 6,
+      "id": 14
     }
   ]
 }

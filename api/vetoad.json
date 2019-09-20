@@ -74,22 +74,22 @@
       "tie": false
     },
     {
-      "name": "Eating Lunch",
-      "date": "2019-09-18",
-      "userId": 1,
+      "name": "1",
+      "date": "2019-09-03",
+      "userId": 4,
       "isOver": false,
-      "category": "Meal",
+      "category": "2",
       "tie": false,
       "id": 5
     },
     {
-      "name": "Eating Lunch again",
-      "date": "2019-09-18",
+      "name": "hjcx",
       "userId": 1,
-      "isOver": false,
-      "category": "Meal",
-      "tie": false,
-      "id": 6
+      "category": ".,mmnbvcx",
+      "date": "2019-09-20",
+      "isOver": true,
+      "id": 6,
+      "tie": true
     }
   ],
   "userEvents": [
@@ -128,12 +128,13 @@
     {
       "eventId": 3,
       "poodleSuggestionId": 7,
-      "parrotSuggestionId": null,
-      "vetoadSuggestionId": null,
-      "vetoad": false,
+      "parrotSuggestionId": 8,
+      "vetoadSuggestionId": 8,
+      "vetoad": true,
       "canSuggestEvent": false,
       "userId": 1,
-      "id": 4
+      "id": 4,
+      "tieId": null
     },
     {
       "eventId": 1,
@@ -195,7 +196,7 @@
       "poodleSuggestionId": null,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
-      "userId": 1,
+      "userId": 4,
       "vetoad": true,
       "canSuggestEvent": true,
       "tieId": null,
@@ -214,28 +215,39 @@
     },
     {
       "eventId": 6,
-      "poodleSuggestionId": null,
+      "poodleSuggestionId": 15,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
-      "userId": 1,
       "vetoad": true,
       "canSuggestEvent": true,
-      "tieId": null,
-      "id": 12
+      "userId": 1,
+      "id": 12,
+      "tieId": 17
     },
     {
       "eventId": 6,
       "poodleSuggestionId": null,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
-      "userId": 4,
-      "vetoad": false,
-      "canSuggestEvent": false,
+      "userId": 3,
+      "vetoad": true,
+      "canSuggestEvent": true,
       "tieId": null,
       "id": 13
     },
     {
       "eventId": 6,
+      "poodleSuggestionId": 17,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": 16,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "userId": 4,
+      "id": 14,
+      "tieId": null
+    },
+    {
+      "eventId": 3,
       "poodleSuggestionId": null,
       "parrotSuggestionId": null,
       "vetoadSuggestionId": null,
@@ -243,7 +255,7 @@
       "vetoad": false,
       "canSuggestEvent": false,
       "tieId": null,
-      "id": 14
+      "id": 15
     }
   ],
   "suggestions": [
@@ -302,14 +314,35 @@
       "id": 12
     },
     {
-      "name": "rewds",
+      "name": "23",
       "eventId": 5,
       "id": 13
     },
     {
-      "name": "fgds",
-      "eventId": 6,
+      "name": "45",
+      "eventId": 5,
       "id": 14
+    },
+    {
+      "name": "lkjhgfd",
+      "eventId": 6,
+      "id": 15
+    },
+    {
+      "name": "poiuytresw",
+      "eventId": 6,
+      "id": 16
+    },
+    {
+      "name": "mnbvc",
+      "eventId": 6,
+      "id": 17
+    },
+    {
+      "userId": 2,
+      "name": "11111111111111111111",
+      "eventId": 3,
+      "id": 18
     }
   ]
 }

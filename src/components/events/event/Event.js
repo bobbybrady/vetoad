@@ -11,6 +11,7 @@ import EditEventNameModal from '../../modals/EditEventNameModal'
 import EditEventDateModal from '../../modals/EditEventDateModal'
 import EditEventCategoryModal from '../../modals/EditEventCategoryModal'
 import EventTie from '../eventTie/EventTie'
+// import './Event.css'
 
 class Event extends Component {
 
@@ -27,7 +28,7 @@ class Event extends Component {
         newUser: [],
         search: '',
         totalCount: [],
-        isOver: false
+        isOver: false,
     }
 
     getEvent = () => {
@@ -37,7 +38,8 @@ class Event extends Component {
                 date: event.date,
                 userId: event.userId,
                 category: event.category,
-                tie: event.tie
+                tie: event.tie,
+                isOver: event.isOver
             })
         })
     }
@@ -70,6 +72,7 @@ class Event extends Component {
             this.getSuggestions()
             this.setState({ suggestion: '' })
             this.getEvent()
+            this.setTotalCount()
         })
     }
 
@@ -81,32 +84,40 @@ class Event extends Component {
 
     getSuggestions = () => {
         return SuggestionsManager.getSuggestionEvent(this.props.eventId).then(suggestions => {
+            this.setTotalCount()
             this.setState({
                 suggestions: suggestions
             })
         })
     }
+
+    setTotalCount = () => {
+        const totalCount = this.state.suggestions.map(suggestion => {
+            const filteredPoodles = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.poodleSuggestionId)
+            const filteredParrots = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.parrotSuggestionId)
+            const filteredVetoads = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.vetoadSuggestionId)
+            const totalCountObject = {
+                name: suggestion.name,
+                totalCount: (filteredPoodles.length - filteredParrots.length),
+                vetoad: filteredVetoads.length,
+                id: suggestion.id,
+                eventId: this.props.eventId
+            }
+            return totalCountObject;
+        })
+        this.setState({ totalCount: totalCount.filter(vetoad => vetoad.vetoad === 0).sort((a, b) => (b.totalCount - a.totalCount)) })
+    }
     componentDidMount() {
         this.getEvent().then(this.getSuggestions).then(this.getUserEvents).then(this.getAllUsers).then(() => {
-            this.state.suggestions.map(suggestion => {
-                const filteredPoodles = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.poodleSuggestionId)
-                const filteredParrots = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.parrotSuggestionId)
-                const filteredVetoads = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.vetoadSuggestionId)
-                const totalCount = this.state.totalCount.concat({
-                    name: suggestion.name,
-                    totalCount: (filteredPoodles.length - filteredParrots.length),
-                    vetoad: filteredVetoads.length,
-                    id: suggestion.id,
-                    eventId: this.props.eventId
-                })
-                this.setState({ totalCount: totalCount.filter(vetoad => vetoad.vetoad === 0).sort((a, b) => (b.totalCount - a.totalCount)) })
-            })
+            this.setTotalCount()
         })
     }
 
     open = () => this.setState({ open: true })
-    close = () => this.setState({ open: false,
-    newUser:[] })
+    close = () => this.setState({
+        open: false,
+        newUser: []
+    })
 
     addUserId = (event) => {
         const foundUser = this.state.users.find(user => user.id === parseInt(event.target.id))
@@ -118,7 +129,7 @@ class Event extends Component {
             lastName: foundUser.lastName
         });
         this.setState({ newUser: userObject })
-        
+
     }
 
     updateVetoad = (userId) => {
@@ -154,7 +165,7 @@ class Event extends Component {
         UserEventsManager.post(participantObject).then(() => {
             this.getUserEvents()
             this.close()
-            this.setState({newUser:[]})
+            this.setState({ newUser: [] })
         })
     }
 
@@ -191,7 +202,10 @@ class Event extends Component {
     }
 
     endEvent = () => {
-        if (this.state.totalCount[0].totalCount === this.state.totalCount[1].totalCount) {
+        this.setTotalCount()
+        if (this.state.totalCount.length < 2) {
+            window.alert('You must have 2 things to vote on!')
+        } else if (this.state.totalCount[0].totalCount === this.state.totalCount[1].totalCount) {
             const finishedEvent = {
                 name: this.state.name,
                 userId: this.state.userId,
@@ -202,8 +216,9 @@ class Event extends Component {
                 tie: true
             }
             EventManager.update(finishedEvent).then(() => {
-                this.props.getAllEvents()
-                this.getEvent()
+                this.getEvent().then(() => {
+                    this.props.getAllEvents()
+                })
             })
         } else {
             const finishedEvent = {
@@ -216,9 +231,12 @@ class Event extends Component {
                 tie: false
             }
             EventManager.update(finishedEvent).then(() => {
-                this.getEvent().then(() => {
-                    this.props.getAllEvents()
-                    this.props.history.push(`/pastevents/${this.props.eventId}`)
+                this.props.getAllEvents().then(() => {
+                    this.props.getAllUserEvents().then(() => {
+                        this.props.getAllSuggestions().then(() => {
+                            this.props.history.push(`/pastevents/${this.props.eventId}`)
+                        })
+                    })
                 })
             })
         }
@@ -236,9 +254,12 @@ class Event extends Component {
             tie: true
         }
         EventManager.update(finishedEvent).then(() => {
-            this.getEvent().then(() => {
-                this.props.getAllEvents()
-                this.props.history.push(`/pastevents/${this.props.eventId}`)
+            this.props.getAllEvents().then(() => {
+                this.props.getAllUserEvents().then(() => {
+                    this.props.getAllSuggestions().then(() => {
+                        this.props.history.push(`/pastevents/${this.props.eventId}`)
+                    })
+                })
             })
         })
     }
@@ -249,95 +270,105 @@ class Event extends Component {
     }
 
     render() {
+        console.log(this.state.totalCount)
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.state.userEvents.length === 0) {
             return <></>
-        } else if(this.state.totalCount.length < 2 ) {
+        } else if (this.state.totalCount.length < 2) {
             const findUserEvent = this.state.userEvents.find(userEvent => userEvent.userId === currentUser.id)
             if (this.state.userId === currentUser.id) {
                 return (
-                    <div className="eventsContainer">
+                    <div className="eventContainer">
                         <header>
-                            <h1>{this.state.name}</h1>
-                            <EditEventNameModal
-                                name={this.state.name}
-                                handleFieldChange={this.handleFieldChange}
-                                editEvent={this.editEvent} />
-                            <h3>{this.state.date}</h3>
-                            <EditEventDateModal
-                                date={this.state.date}
-                                handleFieldChange={this.handleFieldChange}
-                                editEvent={this.editEvent} />
+                            <div className='flexEditButton'>
+                                <h1 className='hMargin'>{this.state.name}</h1>
+                                <EditEventNameModal
+                                    name={this.state.name}
+                                    handleFieldChange={this.handleFieldChange}
+                                    editEvent={this.editEvent} />
+                            </div>
+                            <div className='flexEditButton'>
+                                <h3 className='hMargin'>{this.state.date}</h3>
+                                <EditEventDateModal
+                                    date={this.state.date}
+                                    handleFieldChange={this.handleFieldChange}
+                                    editEvent={this.editEvent} />
+                            </div>
                         </header>
 
                         <div className='suggestions'>
-                            <h2>{this.state.category}</h2>
-                            <EditEventCategoryModal
-                                category={this.state.category}
-                                handleFieldChange={this.handleFieldChange}
-                                editEvent={this.editEvent} />
-                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
-                                <Modal.Header>Add {this.state.category}</Modal.Header>
-                                <Modal.Content>
-                                    <label>Add {this.state.category}</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        className="form-control"
-                                        onChange={this.handleFieldChange}
-                                        id="suggestion"
-                                        value={this.state.suggestion}
-                                    />
-                                    <Button onClick={this.handleSuggestionAdd}>Add</Button>
-                                </Modal.Content>
-                            </Modal>
-                            {this.state.suggestions.map(suggestion =>
-                                <Suggestion
-                                    key={suggestion.id}
-                                    suggestion={suggestion}
-                                    userId={this.state.userId}
-                                    userEvents={this.state.userEvents}
-                                    getSuggestions={this.getSuggestions}
-                                    getUserEvents={this.getUserEvents}
-                                    deleteSuggestion={this.deleteSuggestion} />
-                            )}
-                        </div>
-                        <div className='userEvents'>
-                            <h2>List of Participants</h2>
-
-                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
-                                <Modal.Header>Add Participants</Modal.Header>
-                                <Modal.Content >
-                                    <div className='overflow'>
+                            <div className='flexEditButton'>
+                                <h2 className='hMargin'>{this.state.category}</h2>
+                                <EditEventCategoryModal
+                                    category={this.state.category}
+                                    handleFieldChange={this.handleFieldChange}
+                                    editEvent={this.editEvent} />
+                                <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                    <Modal.Header>Add {this.state.category}</Modal.Header>
+                                    <Modal.Content>
+                                        <label>Add {this.state.category}</label>
                                         <input
                                             type="text"
                                             required
                                             className="form-control"
                                             onChange={this.handleFieldChange}
-                                            onKeyUp={this.searchForParticipant}
-                                            id="search"
+                                            id="suggestion"
+                                            value={this.state.suggestion}
                                         />
-                                        <ol>
-                                            {  this.searchForParticipant(this.state.search).map(user =>
-                                                <UserListModal
-                                                    open={this.state.open}
-                                                    onOpen={this.open}
-                                                    onClose={this.close}
-                                                    key={user.id}
-                                                    user={user}
-                                                    userEvents={this.state.userEvents}
-                                                    addUserId={this.addUserId}
-                                                    updateCanSuggestEvent={this.updateCanSuggestEvent}
-                                                    updateVetoad={this.updateVetoad}
-                                                    newUser={this.state.newUser}
-                                                    addParticipantToEvent={this.addParticipantToEvent}
-                                                    search={this.state.search}
-                                                />
-                                            )}
-                                        </ol>
-                                    </div>
-                                </Modal.Content>
-                            </Modal>
+                                        <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                    </Modal.Content>
+                                </Modal>
+                            </div>
+                            <div className="suggestionContainer">
+                                {this.state.suggestions.map(suggestion =>
+                                    <Suggestion
+                                        key={suggestion.id}
+                                        suggestion={suggestion}
+                                        userId={this.state.userId}
+                                        userEvents={this.state.userEvents}
+                                        getSuggestions={this.getSuggestions}
+                                        getUserEvents={this.getUserEvents}
+                                        deleteSuggestion={this.deleteSuggestion} />
+                                )}
+                            </div>
+                        </div>
+                        <div className='userEvents'>
+                            <div className='flexEditButton'>
+                                <h2 className='hMargin'>Participants</h2>
+                                <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                    <Modal.Header>Add Participants</Modal.Header>
+                                    <Modal.Content >
+                                        <div className='overflow'>
+                                            <input
+                                                type="text"
+                                                required
+                                                className="form-control"
+                                                onChange={this.handleFieldChange}
+                                                onKeyUp={this.searchForParticipant}
+                                                id="search"
+                                            />
+                                            <ol>
+                                                {this.searchForParticipant(this.state.search).map(user =>
+                                                    <UserListModal
+                                                        open={this.state.open}
+                                                        onOpen={this.open}
+                                                        onClose={this.close}
+                                                        key={user.id}
+                                                        user={user}
+                                                        userEvents={this.state.userEvents}
+                                                        addUserId={this.addUserId}
+                                                        updateCanSuggestEvent={this.updateCanSuggestEvent}
+                                                        updateVetoad={this.updateVetoad}
+                                                        newUser={this.state.newUser}
+                                                        addParticipantToEvent={this.addParticipantToEvent}
+                                                        search={this.state.search}
+                                                    />
+                                                )}
+                                            </ol>
+                                        </div>
+                                    </Modal.Content>
+                                </Modal>
+                            </div>
                             <ol>
                                 {this.state.userEvents.map(userEvent =>
                                     <UserEvent
@@ -350,19 +381,19 @@ class Event extends Component {
                                 )}
                             </ol>
                         </div>
-                        <Button onClick={this.endEvent}>End</Button>
+                        <Button onClick={this.endEvent} attached>End</Button>
                     </div>
                 )
             } else if (findUserEvent.canSuggestEvent === true) {
                 return (
-                    <div className="eventsContainer">
+                    <div className="eventContainer">
                         <header>
-                            <h1>{this.state.name}</h1>
-                            <h3>{this.state.date}</h3>
+                            <h1 className='hMargin'>{this.state.name}</h1>
+                            <h3 className='hMargin'>{this.state.date}</h3>
                         </header>
 
                         <div className='suggestions'>
-                            <h2>{this.state.category}</h2>
+                            <h2 className='hMargin'>{this.state.category}</h2>
                             <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
                                 <Modal.Header>Add {this.state.category}</Modal.Header>
                                 <Modal.Content>
@@ -378,6 +409,7 @@ class Event extends Component {
                                     <Button onClick={this.handleSuggestionAdd}>Add</Button>
                                 </Modal.Content>
                             </Modal>
+                            <div className="suggestionContainer">
                             {this.state.suggestions.map(suggestion =>
                                 <Suggestion
                                     key={suggestion.id}
@@ -388,42 +420,45 @@ class Event extends Component {
                                     getUserEvents={this.getUserEvents} />
                             )}
                         </div>
-                        <div className='userEvents'>
-                            <h2>List of Participants</h2>
-                            <ol>
-                                {this.state.userEvents.map(userEvent =>
-                                    <UserEvent
-                                        key={userEvent.id}
-                                        userEvent={userEvent}
-                                        {...this.props}
-                                        userId={this.state.userId} />
-                                )}
-                            </ol>
-                        </div>
                     </div>
+                    <div className='userEvents'>
+                        <h2 className='hMargin'>Participants</h2>
+                        <ol>
+                            {this.state.userEvents.map(userEvent =>
+                                <UserEvent
+                                    key={userEvent.id}
+                                    userEvent={userEvent}
+                                    {...this.props}
+                                    userId={this.state.userId} />
+                            )}
+                        </ol>
+                    </div>
+                    </div >
                 )
             } else {
                 return (
-                    <div className="eventsContainer">
+                    <div className="eventContainer">
                         <header>
-                            <h1>{this.state.name}</h1>
-                            <h3>{this.state.date}</h3>
+                            <h1 className='hMargin'>{this.state.name}</h1>
+                            <h3 className='hMargin'>{this.state.date}</h3>
                         </header>
 
                         <div className='suggestions'>
-                            <h2>{this.state.category}</h2>
-                            {this.state.suggestions.map(suggestion =>
-                                <Suggestion
-                                    key={suggestion.id}
-                                    suggestion={suggestion}
-                                    userId={this.state.userId}
-                                    userEvents={this.state.userEvents}
-                                    getSuggestions={this.getSuggestions}
-                                    getUserEvents={this.getUserEvents} />
-                            )}
+                            <h2 className='hMargin'>{this.state.category}</h2>
+                            <div className="suggestionContainer">
+                                {this.state.suggestions.map(suggestion =>
+                                    <Suggestion
+                                        key={suggestion.id}
+                                        suggestion={suggestion}
+                                        userId={this.state.userId}
+                                        userEvents={this.state.userEvents}
+                                        getSuggestions={this.getSuggestions}
+                                        getUserEvents={this.getUserEvents} />
+                                )}
+                            </div>
                         </div>
                         <div className='userEvents'>
-                            <h2>List of Participants</h2>
+                            <h2 className='hMargin'>Participants</h2>
                             <ol>
                                 {this.state.userEvents.map(userEvent =>
                                     <UserEvent
@@ -434,7 +469,7 @@ class Event extends Component {
                                 )}
                             </ol>
                         </div>
-                    </div>
+                    </div >
                 )
 
             }
@@ -451,91 +486,100 @@ class Event extends Component {
                     deleteParticipant={this.state.deleteParticipant}
                     name={this.state.name}
                     category={this.state.category}
-                    date={this.state.date} 
-                    endTie={this.endTie}/>
+                    date={this.state.date}
+                    endTie={this.endTie} />
             } else if (this.state.userId === currentUser.id) {
                 return (
-                    <div className="eventsContainer">
+                    <div className="eventContainer">
                         <header>
-                            <h1>{this.state.name}</h1>
-                            <EditEventNameModal
-                                name={this.state.name}
-                                handleFieldChange={this.handleFieldChange}
-                                editEvent={this.editEvent} />
-                            <h3>{this.state.date}</h3>
-                            <EditEventDateModal
-                                date={this.state.date}
-                                handleFieldChange={this.handleFieldChange}
-                                editEvent={this.editEvent} />
+                            <div className='flexEditButton'>
+                                <h1 className='hMargin'>{this.state.name}</h1>
+                                <EditEventNameModal
+                                    name={this.state.name}
+                                    handleFieldChange={this.handleFieldChange}
+                                    editEvent={this.editEvent} />
+                            </div>
+                            <div className='flexEditButton'>
+                                <h3 className='hMargin'>{this.state.date}</h3>
+                                <EditEventDateModal
+                                    date={this.state.date}
+                                    handleFieldChange={this.handleFieldChange}
+                                    editEvent={this.editEvent} />
+                            </div>
                         </header>
 
                         <div className='suggestions'>
-                            <h2>{this.state.category}</h2>
-                            <EditEventCategoryModal
-                                category={this.state.category}
-                                handleFieldChange={this.handleFieldChange}
-                                editEvent={this.editEvent} />
-                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
-                                <Modal.Header>Add {this.state.category}</Modal.Header>
-                                <Modal.Content>
-                                    <label>Add {this.state.category}</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        className="form-control"
-                                        onChange={this.handleFieldChange}
-                                        id="suggestion"
-                                        value={this.state.suggestion}
-                                    />
-                                    <Button onClick={this.handleSuggestionAdd}>Add</Button>
-                                </Modal.Content>
-                            </Modal>
-                            {this.state.suggestions.map(suggestion =>
-                                <Suggestion
-                                    key={suggestion.id}
-                                    suggestion={suggestion}
-                                    userId={this.state.userId}
-                                    userEvents={this.state.userEvents}
-                                    getSuggestions={this.getSuggestions}
-                                    getUserEvents={this.getUserEvents}
-                                    deleteSuggestion={this.deleteSuggestion} />
-                            )}
-                        </div>
-                        <div className='userEvents'>
-                            <h2>List of Participants</h2>
-
-                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
-                                <Modal.Header>Add Participants</Modal.Header>
-                                <Modal.Content >
-                                    <div className='overflow'>
+                            <div className='flexEditButton'>
+                                <h2 className='hMargin'>{this.state.category}</h2>
+                                <EditEventCategoryModal
+                                    category={this.state.category}
+                                    handleFieldChange={this.handleFieldChange}
+                                    editEvent={this.editEvent} />
+                                <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                    <Modal.Header>Add {this.state.category}</Modal.Header>
+                                    <Modal.Content>
+                                        <label>Add {this.state.category}</label>
                                         <input
                                             type="text"
                                             required
                                             className="form-control"
                                             onChange={this.handleFieldChange}
-                                            onKeyUp={this.searchForParticipant}
-                                            id="search"
+                                            id="suggestion"
+                                            value={this.state.suggestion}
                                         />
-                                        <ol>
-                                            {this.searchForParticipant(this.state.search).map(user =>
-                                                <UserListModal
-                                                    open={this.state.open}
-                                                    onOpen={this.open}
-                                                    onClose={this.close}
-                                                    key={user.id}
-                                                    user={user}
-                                                    userEvents={this.state.userEvents}
-                                                    addUserId={this.addUserId}
-                                                    updateCanSuggestEvent={this.updateCanSuggestEvent}
-                                                    updateVetoad={this.updateVetoad}
-                                                    newUser={this.state.newUser}
-                                                    addParticipantToEvent={this.addParticipantToEvent}
-                                                />
-                                            )}
-                                        </ol>
-                                    </div>
-                                </Modal.Content>
-                            </Modal>
+                                        <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                    </Modal.Content>
+                                </Modal>
+                            </div>
+                            <div className="suggestionContainer">
+                                {this.state.suggestions.map(suggestion =>
+                                    <Suggestion
+                                        key={suggestion.id}
+                                        suggestion={suggestion}
+                                        userId={this.state.userId}
+                                        userEvents={this.state.userEvents}
+                                        getSuggestions={this.getSuggestions}
+                                        getUserEvents={this.getUserEvents}
+                                        deleteSuggestion={this.deleteSuggestion} />
+                                )}
+                            </div>
+                        </div>
+                        <div className='userEvents'>
+                            <div className='flexEditButton'>
+                                <h2 className='hMargin'>Participants</h2>
+                                <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                    <Modal.Header>Add Participants</Modal.Header>
+                                    <Modal.Content >
+                                        <div className='overflow'>
+                                            <input
+                                                type="text"
+                                                required
+                                                className="form-control"
+                                                onChange={this.handleFieldChange}
+                                                onKeyUp={this.searchForParticipant}
+                                                id="search"
+                                            />
+                                            <ol>
+                                                {this.searchForParticipant(this.state.search).map(user =>
+                                                    <UserListModal
+                                                        open={this.state.open}
+                                                        onOpen={this.open}
+                                                        onClose={this.close}
+                                                        key={user.id}
+                                                        user={user}
+                                                        userEvents={this.state.userEvents}
+                                                        addUserId={this.addUserId}
+                                                        updateCanSuggestEvent={this.updateCanSuggestEvent}
+                                                        updateVetoad={this.updateVetoad}
+                                                        newUser={this.state.newUser}
+                                                        addParticipantToEvent={this.addParticipantToEvent}
+                                                    />
+                                                )}
+                                            </ol>
+                                        </div>
+                                    </Modal.Content>
+                                </Modal>
+                            </div>
                             <ol>
                                 {this.state.userEvents.map(userEvent =>
                                     <UserEvent
@@ -548,19 +592,19 @@ class Event extends Component {
                                 )}
                             </ol>
                         </div>
-                        <Button onClick={this.endEvent}>End</Button>
-                    </div>
+                        <Button onClick={this.endEvent} attached>End</Button>
+                    </div >
                 )
             } else if (findUserEvent.canSuggestEvent === true) {
                 return (
-                    <div className="eventsContainer">
+                    <div className="eventContainer">
                         <header>
-                            <h1>{this.state.name}</h1>
-                            <h3>{this.state.date}</h3>
+                            <h1 className='hMargin'>{this.state.name}</h1>
+                            <h3 className='hMargin'>{this.state.date}</h3>
                         </header>
 
                         <div className='suggestions'>
-                            <h2>{this.state.category}</h2>
+                            <h2 className='hMargin'>{this.state.category}</h2>
                             <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
                                 <Modal.Header>Add {this.state.category}</Modal.Header>
                                 <Modal.Content>
@@ -576,18 +620,20 @@ class Event extends Component {
                                     <Button onClick={this.handleSuggestionAdd}>Add</Button>
                                 </Modal.Content>
                             </Modal>
-                            {this.state.suggestions.map(suggestion =>
-                                <Suggestion
-                                    key={suggestion.id}
-                                    suggestion={suggestion}
-                                    userId={this.state.userId}
-                                    userEvents={this.state.userEvents}
-                                    getSuggestions={this.getSuggestions}
-                                    getUserEvents={this.getUserEvents} />
-                            )}
+                            <div className="suggestionContainer">
+                                {this.state.suggestions.map(suggestion =>
+                                    <Suggestion
+                                        key={suggestion.id}
+                                        suggestion={suggestion}
+                                        userId={this.state.userId}
+                                        userEvents={this.state.userEvents}
+                                        getSuggestions={this.getSuggestions}
+                                        getUserEvents={this.getUserEvents} />
+                                )}
+                            </div>
                         </div>
                         <div className='userEvents'>
-                            <h2>List of Participants</h2>
+                            <h2 className='hMargin'>Participants</h2>
                             <ol>
                                 {this.state.userEvents.map(userEvent =>
                                     <UserEvent
@@ -602,26 +648,28 @@ class Event extends Component {
                 )
             } else {
                 return (
-                    <div className="eventsContainer">
+                    <div className="eventContainer">
                         <header>
-                            <h1>{this.state.name}</h1>
-                            <h3>{this.state.date}</h3>
+                            <h1 className='hMargin'>{this.state.name}</h1>
+                            <h3 className='hMargin'>{this.state.date}</h3>
                         </header>
 
                         <div className='suggestions'>
-                            <h2>{this.state.category}</h2>
-                            {this.state.suggestions.map(suggestion =>
-                                <Suggestion
-                                    key={suggestion.id}
-                                    suggestion={suggestion}
-                                    userId={this.state.userId}
-                                    userEvents={this.state.userEvents}
-                                    getSuggestions={this.getSuggestions}
-                                    getUserEvents={this.getUserEvents} />
-                            )}
+                            <h2 className='hMargin'>{this.state.category}</h2>
+                            <div className="suggestionContainer">
+                                {this.state.suggestions.map(suggestion =>
+                                    <Suggestion
+                                        key={suggestion.id}
+                                        suggestion={suggestion}
+                                        userId={this.state.userId}
+                                        userEvents={this.state.userEvents}
+                                        getSuggestions={this.getSuggestions}
+                                        getUserEvents={this.getUserEvents} />
+                                )}
+                            </div>
                         </div>
                         <div className='userEvents'>
-                            <h2>List of Participants</h2>
+                            <h2 className='hMargin'>Participants</h2>
                             <ol>
                                 {this.state.userEvents.map(userEvent =>
                                     <UserEvent

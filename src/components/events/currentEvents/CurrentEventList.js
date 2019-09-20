@@ -14,7 +14,7 @@ class CurrentEventList extends Component {
             <>
                 <div className='currentEventsListHeader'>
                     <h1>Current Events</h1>
-                    <Button onClick={this.addEvent}>Add Event</Button>
+                    <Button onClick={this.addEvent} className='addButton'>Add Event</Button>
                 </div>
                 <div className="eventsContainer">
                     {this.props.events.map(event =>

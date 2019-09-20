@@ -61,10 +61,14 @@ class PastEvent extends Component {
         if (this.props.userEvents.length === 0) {
             return <></>
         } else {
+            console.log(this.props.userEvents)
             const filterUserEvent = this.props.userEvents.filter(userEvent => userEvent.userId === currentUser.id && userEvent.eventId === this.props.eventId)
             const foundEvent = this.props.events.find(event => event.id === this.props.eventId)
+            console.log(this.props.eventId)
+            console.log(foundEvent)
             const filteredSuggestions = this.props.suggestions.filter(suggestion => suggestion.eventId === foundEvent.id)
             const filteredUserEvents = this.props.userEvents.filter(userEvent => userEvent.eventId === foundEvent.id)
+            console.log(filterUserEvent)
             if (filterUserEvent.length === 1) {
                 return (
                     <div className="eventsContainer">

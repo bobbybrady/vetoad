@@ -1,27 +1,28 @@
 .eventsContainer {
-    height: 95vh;
     border: none;
-    overflow: scroll;
-    /* display: flex; */
-    /* flex-wrap: wrap;; */
+    display: flex;
+    flex-wrap: wrap;
 }
 
-/* .eventCard {
+#root {
+    height: 93%;
+}
+
+.eventCard {
     justify-content: space-evenly;
     flex-basis: 28%;
-    padding: 5px;
+    padding: 10px;
     height: 115px;
-} */
+}
 
-/* .currentEventsListHeader {
-    padding: 5px;
-} */
+.currentEventsListHeader {
+    padding: 10px;
+}
 
 .getRidOfSpace {
     margin-bottom: 0 !important;
 }
 
-/* .pusher {
-    height: 95vh;
-    overflow: scroll;
-} */
+.addButton {
+    margin-left: 4px !important;
+}

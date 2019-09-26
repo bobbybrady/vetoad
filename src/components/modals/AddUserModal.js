@@ -33,7 +33,7 @@ class AddUserModal extends Component {
                         </Button>
                     }
                 closeIcon>
-                    <Modal.Header>Add {this.props.newUser[0].firstName}</Modal.Header>
+                    <Modal.Header className="headerColor">Add {this.props.newUser[0].firstName}</Modal.Header>
                     <Modal.Content>
                         <ParticipantCardModal 
                         {...this.props}/>

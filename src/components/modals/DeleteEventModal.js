@@ -15,12 +15,12 @@ class DeleteEventModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button><Icon name='trash alternate outline'/></Button>} 
+            <Modal trigger={<Button icon='trash alternate outline'></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}
             closeIcon>
-                <Modal.Header>Are you sure you want to delete {this.props.event.name}?</Modal.Header>
+                <Modal.Header className="headerColor">Are you sure you want to delete {this.props.event.name}?</Modal.Header>
                 <Modal.Content>
                     <Button onClick={()=>{this.props.deleteEvent(this.props.event.id)}}>Yes</Button>
                     <Button onClick={this.close}>No</Button>

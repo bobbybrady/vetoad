@@ -34,6 +34,13 @@
       "firstName": "Elliot",
       "lastName": "Bartfield",
       "id": 5
+    },
+    {
+      "username": "m",
+      "password": "m",
+      "id": 6,
+      "firstName": "Marco",
+      "lastName": "Dicaprio"
     }
   ],
   "events": [
@@ -83,15 +90,6 @@
       "id": 5
     },
     {
-      "name": "hjcx",
-      "userId": 1,
-      "category": ".,mmnbvcx",
-      "date": "2019-09-20",
-      "isOver": true,
-      "id": 6,
-      "tie": true
-    },
-    {
       "name": "tie",
       "userId": 1,
       "category": "tie",
@@ -117,6 +115,15 @@
       "category": "dfsa",
       "tie": false,
       "id": 9
+    },
+    {
+      "name": "Dinner",
+      "date": "2019-09-26",
+      "userId": 6,
+      "isOver": false,
+      "category": "Restaurants",
+      "tie": false,
+      "id": 10
     }
   ],
   "userEvents": [
@@ -241,39 +248,6 @@
       "id": 11
     },
     {
-      "eventId": 6,
-      "poodleSuggestionId": 15,
-      "parrotSuggestionId": null,
-      "vetoadSuggestionId": null,
-      "vetoad": true,
-      "canSuggestEvent": true,
-      "userId": 1,
-      "id": 12,
-      "tieId": 17
-    },
-    {
-      "eventId": 6,
-      "poodleSuggestionId": null,
-      "parrotSuggestionId": null,
-      "vetoadSuggestionId": null,
-      "userId": 3,
-      "vetoad": true,
-      "canSuggestEvent": true,
-      "tieId": null,
-      "id": 13
-    },
-    {
-      "eventId": 6,
-      "poodleSuggestionId": 17,
-      "parrotSuggestionId": null,
-      "vetoadSuggestionId": 16,
-      "vetoad": true,
-      "canSuggestEvent": true,
-      "userId": 4,
-      "id": 14,
-      "tieId": null
-    },
-    {
       "eventId": 3,
       "poodleSuggestionId": null,
       "parrotSuggestionId": null,
@@ -360,6 +334,39 @@
       "canSuggestEvent": false,
       "tieId": null,
       "id": 22
+    },
+    {
+      "eventId": 10,
+      "poodleSuggestionId": 33,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "userId": 6,
+      "id": 23,
+      "tieId": null
+    },
+    {
+      "eventId": 10,
+      "poodleSuggestionId": 31,
+      "parrotSuggestionId": 32,
+      "vetoadSuggestionId": 30,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "userId": 1,
+      "id": 24,
+      "tieId": null
+    },
+    {
+      "eventId": 10,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 2,
+      "vetoad": true,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 25
     }
   ],
   "suggestions": [
@@ -428,21 +435,6 @@
       "id": 14
     },
     {
-      "name": "lkjhgfd",
-      "eventId": 6,
-      "id": 15
-    },
-    {
-      "name": "poiuytresw",
-      "eventId": 6,
-      "id": 16
-    },
-    {
-      "name": "mnbvc",
-      "eventId": 6,
-      "id": 17
-    },
-    {
       "userId": 2,
       "name": "11111111111111111111",
       "eventId": 3,
@@ -483,6 +475,27 @@
       "name": "fds",
       "eventId": 9,
       "id": 29
+    },
+    {
+      "name": "Mcdonalds",
+      "eventId": 10,
+      "id": 30
+    },
+    {
+      "name": "Dominos",
+      "eventId": 10,
+      "id": 31
+    },
+    {
+      "name": "Maverick",
+      "eventId": 10,
+      "id": 32
+    },
+    {
+      "userId": 1,
+      "name": "Chipotle",
+      "eventId": 10,
+      "id": 33
     }
   ]
 }

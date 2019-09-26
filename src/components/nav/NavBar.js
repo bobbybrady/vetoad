@@ -14,7 +14,7 @@ class NavBar extends Component {
         return (
             <>
                 <Sticky>
-                    <Menu className="getRidOfSpace ">
+                    <Menu className="getRidOfSpace navColor">
                         <Menu.Item as={Link} to='/'
                             header
                             name='vetoad' />

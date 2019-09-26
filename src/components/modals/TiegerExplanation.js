@@ -24,9 +24,8 @@ class TiegerExplanation extends Component {
                 onOpen={this.open}
                 onClose={this.close}
                 closeIcon>
-                <Modal.Header>TIE-ger</Modal.Header>
+                <Modal.Header className="headerColor">TIE-ger 🐅</Modal.Header>
                 <Modal.Content>
-                    <h1>🐅</h1>
                     This is what happens in the event of a tie. Everyone will get one Poodl-IN vote to find out the winner!
                 </Modal.Content>
             </Modal>

@@ -25,7 +25,7 @@ class HIW1 extends Component {
                 onOpen={this.open}
                 onClose={this.close}
                 closeIcon>
-                <Modal.Header>How It Works</Modal.Header>
+                <Modal.Header className="headerColor">How It Works</Modal.Header>
                 <Modal.Content>
                     <div className='howItWorksContainer'>
                         <PoodleExplanation />

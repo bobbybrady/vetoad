@@ -3,4 +3,10 @@
     width: 35px !important;
     border: none !important;
     box-shadow: none !important;
+    background-color: #00A676 !important;
+}
+
+.navColor {
+    background-color: #00A676 !important;
+    border-radius: 0 !important;
 }

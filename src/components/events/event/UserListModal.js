@@ -17,7 +17,7 @@ class UserListModal extends Component {
                 <Card>
                     <Card.Content>
                         <li>
-                            <Card.Header>{this.props.user.firstName} {this.props.user.lastName}
+                            <Card.Header >{this.props.user.firstName} {this.props.user.lastName}
                                 <Modal.Actions>
                                     <AddUserModal
                                         {...this.props}

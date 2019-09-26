@@ -11,7 +11,7 @@ class UserEvent extends Component {
                 <Card className='invisibleCard'>
                     <Card.Content className='invisibleCard'>
                         <li>
-                            <Card.Header>{this.props.userEvent.user.firstName} {this.props.userEvent.user.lastName}<Button icon='trash alternate outline' className="smallerDeleteButton" onClick={() => this.props.deleteParticipant(this.props.userEvent.id)}></Button></Card.Header>
+                            <Card.Header>{this.props.userEvent.user.firstName} {this.props.userEvent.user.lastName}<Button floated='right' icon='trash alternate outline' className="smallerDeleteButton" onClick={() => this.props.deleteParticipant(this.props.userEvent.id)}></Button></Card.Header>
                         </li>
                     </Card.Content>
                 </Card>

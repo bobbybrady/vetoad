@@ -7,7 +7,7 @@ class PastEventList extends Component {
     render() {
         return (
             <>
-                <h1>Past Events</h1>
+                <h1 className='hMargin'>Past Events</h1>
                 <div className="eventsContainer">
                     {this.props.events.map(event =>
                         <PastEventCard

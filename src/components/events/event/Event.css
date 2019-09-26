@@ -65,6 +65,13 @@
     margin-right: 10px !important;
 }
 
+.smallerAddButton {
+    height: 35px;
+    width: 35px;
+    padding: 8px 0px 8px 8px !important;
+    margin-left: 10px !important;
+}
+
 .smallerDeleteButton {
     height: 35px;
     width: 35px;
@@ -123,4 +130,30 @@
 
 .buttonDisguise:hover {
     background-color: #2D2E2F!important;
+}
+
+.overflow {
+    min-height: 195px;
+    overflow-y: scroll;
+}
+
+.minHeight {
+    min-height: 28px;
+}
+
+.modalAdd {
+    width: 60% !important;
+}
+
+.headerColor {
+    background-color: #00A676 !important;
+}
+
+.participantButtonContainer {
+    display: flex;
+    justify-content: space-around;
+}
+.participantCard {
+    height: 65px;
+    width: 95% !important;
 }

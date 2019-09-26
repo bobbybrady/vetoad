@@ -24,9 +24,9 @@ class PoodleExplanation extends Component {
             onOpen={this.open}
             onClose={this.close}
             closeIcon>
-                <Modal.Header>Poodl-IN</Modal.Header>
+                <Modal.Header className="headerColor">Poodl-IN 🐩</Modal.Header>
                 <Modal.Content>
-                <h1>🐩</h1>
+                
                 This card shall be used when you vote yes for an option. In the cases where there are multiple options, Poodl-IN gives that option a +1. The option with the highest count at the ends wins. Voting is not necessary but encouraged.
                 </Modal.Content>
             </Modal>

@@ -16,12 +16,12 @@ class EditEventNameModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button className="smallerEditButton"><Icon name='edit outline'/></Button>} 
+            <Modal trigger={<Button className="smallerButton"><Icon name='edit outline'/></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}
             closeIcon>
-                <Modal.Header>Edit</Modal.Header>
+                <Modal.Header className="headerColor">Edit</Modal.Header>
                 <Modal.Content>
                     <label>Edit</label>
                     <input

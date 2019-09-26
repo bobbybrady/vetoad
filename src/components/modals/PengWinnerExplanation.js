@@ -24,9 +24,8 @@ class PengWinnerExplanation extends Component {
                 onOpen={this.open}
                 onClose={this.close}
                 closeIcon>
-                <Modal.Header>Peng-WINNER</Modal.Header>
+                <Modal.Header className="headerColor">Peng-WINNER 🐧</Modal.Header>
                 <Modal.Content>
-                    <h1>🐧</h1>
                     This is the eventual winner of the voting!
                 </Modal.Content>
             </Modal>

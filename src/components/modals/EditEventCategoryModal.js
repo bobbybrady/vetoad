@@ -21,7 +21,7 @@ class EditEventCategoryModal extends Component {
             onOpen={this.open}
             onClose={this.close}
             closeIcon>
-                <Modal.Header>Edit</Modal.Header>
+                <Modal.Header className="headerColor">Edit</Modal.Header>
                 <Modal.Content>
                     <label>Edit</label>
                     <input

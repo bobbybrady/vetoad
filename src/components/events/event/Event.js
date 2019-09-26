@@ -303,7 +303,7 @@ class Event extends Component {
                                     handleFieldChange={this.handleFieldChange}
                                     editEvent={this.editEvent} />
                                 <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
-                                    <Modal.Header>Add {this.state.category}</Modal.Header>
+                                    <Modal.Header className='headerColor'>Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
                                         <input
@@ -335,7 +335,7 @@ class Event extends Component {
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>Participants</h2>
                                 <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
-                                    <Modal.Header>Add Participants</Modal.Header>
+                                    <Modal.Header className="headerColor">Add Participants</Modal.Header>
                                     <Modal.Content >
                                         <div className='overflow'>
                                             <input
@@ -395,7 +395,7 @@ class Event extends Component {
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>{this.state.category}</h2>
                                 <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
-                                    <Modal.Header>Add {this.state.category}</Modal.Header>
+                                    <Modal.Header className="headerColor">Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
                                         <input
@@ -517,7 +517,7 @@ class Event extends Component {
                                     handleFieldChange={this.handleFieldChange}
                                     editEvent={this.editEvent} />
                                 <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
-                                    <Modal.Header>Add {this.state.category}</Modal.Header>
+                                    <Modal.Header className='headerColor'>Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
                                         <input
@@ -549,7 +549,7 @@ class Event extends Component {
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>Participants</h2>
                                 <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
-                                    <Modal.Header>Add Participants</Modal.Header>
+                                    <Modal.Header className="headerColor">Add Participants</Modal.Header>
                                     <Modal.Content >
                                         <div className='overflow'>
                                             <input
@@ -608,7 +608,7 @@ class Event extends Component {
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>{this.state.category}</h2>
                                 <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
-                                    <Modal.Header>Add {this.state.category}</Modal.Header>
+                                    <Modal.Header className="headerColor">Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
                                         <input

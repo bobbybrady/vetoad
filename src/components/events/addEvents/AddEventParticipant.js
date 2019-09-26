@@ -14,11 +14,11 @@ class AddEventParticipant extends Component {
         } else {
             if (foundUser.length === 0) {
                 return (
-                    <p>{this.props.user.firstName} {this.props.user.lastName} <Button id={this.props.user.id} value={fullName} onClick={this.props.addUserId}>Add</Button></p>
+                    <p className='hMargin'>{this.props.user.firstName} {this.props.user.lastName} <Button id={this.props.user.id} value={fullName} className='smallerDeleteButton' onClick={this.props.addUserId} icon='add'></Button></p>
                 )
             } else {
                 return (
-                    <p>{this.props.user.firstName} {this.props.user.lastName}</p>
+                    <p className='hMargin'>{this.props.user.firstName} {this.props.user.lastName}</p>
                 )
             }
         }

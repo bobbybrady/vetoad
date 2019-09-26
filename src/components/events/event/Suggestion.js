@@ -4,7 +4,7 @@ import PoodleButton from './PoodleButton'
 import ParrotButton from './ParrotButton'
 import VetoadButton from './VetoadButton'
 import UserEventManager from '../../../modules/UserEventsManager'
-// import './Event.css'
+import './Event.css'
 
 class Suggestion extends Component {
 
@@ -95,7 +95,7 @@ class Suggestion extends Component {
                                 <Card.Header className='centerHeaderCard'>{this.props.suggestion.name}</Card.Header>
                                 <div className='createdEventButtonContainer'>
                                     <div className='displayPoodleCountButton'>
-                                        <PoodleButton {...this.props}
+                                        <PoodleButton {...this.props} 
                                             updateExistingUserEventPoodle={this.updateExistingUserEventPoodle}/>
                                         <Card.Meta style={green}>{filteredPoodles.length}</Card.Meta>
                                     </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Button, Modal, } from 'semantic-ui-react'
+import { Button, Modal, Icon } from 'semantic-ui-react'
 
 class EditEventCategoryModal extends Component {
     state={
@@ -16,7 +16,7 @@ class EditEventCategoryModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>Edit</Button>} 
+            <Modal trigger={<Button className="smallerButton"><Icon name='edit outline'/></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}

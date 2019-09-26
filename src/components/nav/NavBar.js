@@ -21,7 +21,7 @@ class NavBar extends Component {
                         <Menu.Item as={Link} to='/profile'
                             name={username.firstName} />
                         <Button icon
-                            className="menu"
+                            className="menu smallerButtonNav"
                             onClick={this.props.handleClick}
                             floated='right'>
                             <Icon name={this.props.visible ? "delete" : "bars"} />

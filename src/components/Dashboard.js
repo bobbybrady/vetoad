@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import NavBar from "./nav/NavBar"
 import FeatureViews from "./FeatureViews"
-import { Menu, Sidebar, Confirm, Segment } from 'semantic-ui-react'
+import { Menu, Sidebar, Confirm, Segment, Button } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import EventsManager from '../modules/EventsManager'
 import UserEventsManager from '../modules/UserEventsManager'
@@ -115,8 +115,7 @@ class Dashboard extends Component {
               onClick={this.handleClick}>
               Profile
             </Menu.Item>
-            <Menu.Item
-              className="sidebarButton">
+            <Menu.Item className='itemPadding'>
               <HIW1 />
             </Menu.Item>
             <Menu.Item onClick={this.toggle}

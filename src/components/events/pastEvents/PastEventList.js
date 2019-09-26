@@ -1,23 +1,26 @@
 import React, { Component } from "react"
 import PastEventCard from './PastEventCard'
+import '../event/Event.css'
 
 class PastEventList extends Component {
 
     render() {
-            return (
+        return (
+            <>
+                <h1>Past Events</h1>
                 <div className="eventsContainer">
-                   <h1>Past Events</h1> 
-                   {this.props.events.map(event => 
-                    <PastEventCard
-                        key={event.id}
-                        event={event}
-                        {...this.props}
+                    {this.props.events.map(event =>
+                        <PastEventCard
+                            key={event.id}
+                            event={event}
+                            {...this.props}
                         />
-                )
-                }
+                    )
+                    }
                 </div>
-            )
-        }
+            </>
+        )
+    }
 }
 
 export default PastEventList;

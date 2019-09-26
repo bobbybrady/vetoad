@@ -16,11 +16,12 @@
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
+    justify-content: center;
 }
 
 .suggestionCard {
-    height: 105px;
-    width: 175px !important;
+    height: 100px;
+    width: 95% !important;
 }
 
 
@@ -29,30 +30,97 @@
 }
 
 .centerHeaderCard {
-    text-align: center;
     font-size: 17px !important;
     word-wrap: break-word;
 }
 
 .buttonGroup {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 8%;
+    justify-content: space-around;
+    margin-top: 2%;
 }
 
 .createdEventButtonContainer {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 5%;
+    justify-content: space-around;
 }
 
 
 .button {
-    height: 37px;
-    width: 37px;
+    height: 45px;
+    width: 95px;
 }
 
 .emojiButton {
-    padding: 0 0 0 5px !important;
+    text-align: center !important;
+    padding: 0px !important;
+    font-size: 30px !important;
 }
 
+.smallerButton {
+    height: 35px;
+    width: 35px;
+    padding: 8px 0px 8px 10px !important;
+    margin-top: 5px !important;
+    margin-right: 10px !important;
+}
+
+.smallerDeleteButton {
+    height: 35px;
+    width: 35px;
+    padding: 0 !important;
+    margin-left: 10px !important;
+}
+
+.smallerEditButton {
+    height: 35px;
+    width: 35px;
+    margin-left: 10px !important;
+}
+
+.end {
+    height: auto !important;
+    width: auto !important;
+}
+
+.invisibleCard {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.hWinner {
+    font-size: 40px;
+    text-align: center;
+}
+
+.howItWorksContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.buttonPad {
+    margin: 5px !important;
+}
+
+.buttonDisguise {
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+    color: white !important;
+    width: 149px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 43px !important;
+    border-radius: 0 !important;
+    font-weight: normal !important;
+}
+
+.itemPadding{
+    padding: 0 !important;
+}
+
+.buttonDisguise:hover {
+    background-color: #2D2E2F!important;
+}

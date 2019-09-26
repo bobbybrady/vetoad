@@ -16,7 +16,7 @@ class EditLastNameModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>Edit</Button>} 
+            <Modal trigger={<Button icon='edit outline' className='smallerEditButton'></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}

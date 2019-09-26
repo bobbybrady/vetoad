@@ -19,7 +19,7 @@ class VetoadExplanation extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>🐸</Button>}
+            <Modal trigger={<Button className='emojiButton buttonPad'>🐸</Button>}
                 open={this.state.open}
                 onOpen={this.open}
                 onClose={this.close}

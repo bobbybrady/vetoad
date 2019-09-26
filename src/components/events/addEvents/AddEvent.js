@@ -81,14 +81,14 @@ class AddEvent extends Component {
     removeSuggestion = (id) => {
         const deletedArray = this.state.suggestions.filter(suggestion => suggestion.id != id)
         this.setState(() => {
-            return {suggestions: deletedArray}
+            return { suggestions: deletedArray }
         })
     }
 
     removeParticipant = (id) => {
         const deletedArray = this.state.users.filter(user => user.userId != id)
         this.setState(() => {
-            return {users: deletedArray}
+            return { users: deletedArray }
         })
     }
 
@@ -145,98 +145,100 @@ class AddEvent extends Component {
 
     render() {
         return (
-            <div className="eventsContainer">
+            <>
                 <h1>Add Event</h1>
-                <Form>
-                    <Form.Field>
-                        <label>Event Name</label>
-                        <input
-                            onChange={this.handleFieldChange}
-                            id='name'
-                            placeholder='Event Name' />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Date</label>
-                        <input
-                            id='date'
-                            onChange={this.handleFieldChange}
-                            type='date' placeholder='Last Name' />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Category</label>
-                        <input
-                            id='category'
-                            onChange={this.handleFieldChange}
-                            placeholder='Category' />
-                    </Form.Field>
-                    <div>
-                        <h2>Participants</h2>
-                        <Modal trigger={<Button><Icon name='add' /></Button>} closeIcon>
-                            <Modal.Header>Add Participants</Modal.Header>
-                            <Modal.Content>
-                                <label>Search</label>
-                                <input
-                                    type="text"
-                                    required
-                                    className="form-control"
-                                    onChange={this.handleFieldChange}
-                                    onKeyUp={this.searchForParticipant}
-                                    id="search"
-                                />
-                                <div className="overflow">
-                                    {this.searchForParticipant(this.state.search).map(user =>
-                                        <AddEventParticipant
-                                            key={user.id}
+                <div className="eventsContainer">
+                    <Form>
+                        <Form.Field>
+                            <label>Event Name</label>
+                            <input
+                                onChange={this.handleFieldChange}
+                                id='name'
+                                placeholder='Event Name' />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Date</label>
+                            <input
+                                id='date'
+                                onChange={this.handleFieldChange}
+                                type='date' placeholder='Last Name' />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Category</label>
+                            <input
+                                id='category'
+                                onChange={this.handleFieldChange}
+                                placeholder='Category' />
+                        </Form.Field>
+                        <div>
+                            <h2>Participants</h2>
+                            <Modal trigger={<Button><Icon name='add' /></Button>} closeIcon>
+                                <Modal.Header>Add Participants</Modal.Header>
+                                <Modal.Content>
+                                    <label>Search</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        onKeyUp={this.searchForParticipant}
+                                        id="search"
+                                    />
+                                    <div className="overflow">
+                                        {this.searchForParticipant(this.state.search).map(user =>
+                                            <AddEventParticipant
+                                                key={user.id}
+                                                user={user}
+                                                addUserId={this.addUserId}
+                                                addParticipant={this.state.users}
+                                            />
+                                        )
+                                        }
+                                    </div>
+                                </Modal.Content>
+                            </Modal>
+                            <div>
+                                <ol>
+                                    {this.state.users.map(user =>
+                                        <Participant
                                             user={user}
-                                            addUserId={this.addUserId}
-                                            addParticipant={this.state.users}
-                                             />
-                                    )
-                                    }
-                                </div>
-                            </Modal.Content>
-                        </Modal>
-                        <div>
-                            <ol>
-                                {this.state.users.map(user =>
-                                    <Participant
-                                        user={user}
-                                        key={user.userId}
-                                        updateVetoad={this.updateVetoad}
-                                        updateCanSuggestEvent={this.updateCanSuggestEvent}
-                                        removeParticipant={this.removeParticipant} />)}
-                            </ol>
+                                            key={user.userId}
+                                            updateVetoad={this.updateVetoad}
+                                            updateCanSuggestEvent={this.updateCanSuggestEvent}
+                                            removeParticipant={this.removeParticipant} />)}
+                                </ol>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <h2>Add {this.state.category}</h2>
-                        <Modal trigger={<Button><Icon name='add' /></Button>} closeIcon>
-                            <Modal.Header>Add {this.state.category}</Modal.Header>
-                            <Modal.Content>
-                                <label>Add {this.state.category}</label>
-                                <input
-                                    type="text"
-                                    required
-                                    className="form-control"
-                                    onChange={this.handleFieldChange}
-                                    id="suggestion"
-                                    value={this.state.suggestion}
-                                />
-                                <Button onClick={this.handleSuggestionAdd}>Add</Button>
-                            </Modal.Content>
-                        </Modal>
                         <div>
-                            {this.state.suggestions.map(addSuggestion =>
-                                <AddSuggestion
-                                    addSuggestion={addSuggestion}
-                                    key={Math.random()}
-                                    removeSuggestion={this.removeSuggestion}
-                                     />)}
+                            <h2>Add {this.state.category}</h2>
+                            <Modal trigger={<Button><Icon name='add' /></Button>} closeIcon>
+                                <Modal.Header>Add {this.state.category}</Modal.Header>
+                                <Modal.Content>
+                                    <label>Add {this.state.category}</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="suggestion"
+                                        value={this.state.suggestion}
+                                    />
+                                    <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                </Modal.Content>
+                            </Modal>
+                            <div>
+                                {this.state.suggestions.map(addSuggestion =>
+                                    <AddSuggestion
+                                        addSuggestion={addSuggestion}
+                                        key={Math.random()}
+                                        removeSuggestion={this.removeSuggestion}
+                                    />)}
+                            </div>
                         </div>
-                    </div>
-                    <Button onClick={this.submitForm} type='submit'>Create</Button>
-                </Form>
-            </div>
+                        <Button onClick={this.submitForm} type='submit'>Create</Button>
+                    </Form>
+                </div>
+            </>
         )
     }
 }

@@ -90,6 +90,33 @@
       "isOver": true,
       "id": 6,
       "tie": true
+    },
+    {
+      "name": "tie",
+      "userId": 1,
+      "category": "tie",
+      "date": "2019-09-11",
+      "isOver": true,
+      "id": 7,
+      "tie": true
+    },
+    {
+      "name": "test",
+      "userId": 2,
+      "category": "gfd",
+      "date": "2019-09-26",
+      "isOver": true,
+      "id": 8,
+      "tie": false
+    },
+    {
+      "name": "dfsa",
+      "date": "2019-09-26",
+      "userId": 2,
+      "isOver": false,
+      "category": "dfsa",
+      "tie": false,
+      "id": 9
     }
   ],
   "userEvents": [
@@ -129,9 +156,9 @@
       "eventId": 3,
       "poodleSuggestionId": 7,
       "parrotSuggestionId": 8,
-      "vetoadSuggestionId": 8,
+      "vetoadSuggestionId": 18,
       "vetoad": true,
-      "canSuggestEvent": false,
+      "canSuggestEvent": true,
       "userId": 1,
       "id": 4,
       "tieId": null
@@ -256,6 +283,83 @@
       "canSuggestEvent": false,
       "tieId": null,
       "id": 15
+    },
+    {
+      "eventId": 7,
+      "poodleSuggestionId": 26,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "userId": 1,
+      "id": 16,
+      "tieId": 24
+    },
+    {
+      "eventId": 7,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 4,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 17
+    },
+    {
+      "eventId": 7,
+      "poodleSuggestionId": 24,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "userId": 2,
+      "id": 18,
+      "tieId": null
+    },
+    {
+      "eventId": 8,
+      "poodleSuggestionId": 28,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "userId": 2,
+      "id": 19,
+      "tieId": null
+    },
+    {
+      "eventId": 8,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 3,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 20
+    },
+    {
+      "eventId": 9,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 2,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "tieId": null,
+      "id": 21
+    },
+    {
+      "eventId": 9,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 5,
+      "vetoad": false,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 22
     }
   ],
   "suggestions": [
@@ -343,6 +447,42 @@
       "name": "11111111111111111111",
       "eventId": 3,
       "id": 18
+    },
+    {
+      "userId": 1,
+      "name": "Chipotle",
+      "eventId": 3,
+      "id": 23
+    },
+    {
+      "name": "q",
+      "eventId": 7,
+      "id": 24
+    },
+    {
+      "name": "e",
+      "eventId": 7,
+      "id": 25
+    },
+    {
+      "name": "r",
+      "eventId": 7,
+      "id": 26
+    },
+    {
+      "name": "ge",
+      "eventId": 8,
+      "id": 27
+    },
+    {
+      "name": "gd",
+      "eventId": 8,
+      "id": 28
+    },
+    {
+      "name": "fds",
+      "eventId": 9,
+      "id": 29
     }
   ]
 }

@@ -11,7 +11,7 @@ import EditEventNameModal from '../../modals/EditEventNameModal'
 import EditEventDateModal from '../../modals/EditEventDateModal'
 import EditEventCategoryModal from '../../modals/EditEventCategoryModal'
 import EventTie from '../eventTie/EventTie'
-// import './Event.css'
+import './Event.css'
 
 class Event extends Component {
 
@@ -270,7 +270,6 @@ class Event extends Component {
     }
 
     render() {
-        console.log(this.state.totalCount)
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.state.userEvents.length === 0) {
             return <></>
@@ -303,7 +302,7 @@ class Event extends Component {
                                     category={this.state.category}
                                     handleFieldChange={this.handleFieldChange}
                                     editEvent={this.editEvent} />
-                                <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header>Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
@@ -335,7 +334,7 @@ class Event extends Component {
                         <div className='userEvents'>
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>Participants</h2>
-                                <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header>Add Participants</Modal.Header>
                                     <Modal.Content >
                                         <div className='overflow'>
@@ -381,7 +380,7 @@ class Event extends Component {
                                 )}
                             </ol>
                         </div>
-                        <Button onClick={this.endEvent} attached>End</Button>
+                        <Button onClick={this.endEvent} className='end' attached>End</Button>
                     </div>
                 )
             } else if (findUserEvent.canSuggestEvent === true) {
@@ -393,46 +392,48 @@ class Event extends Component {
                         </header>
 
                         <div className='suggestions'>
-                            <h2 className='hMargin'>{this.state.category}</h2>
-                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
-                                <Modal.Header>Add {this.state.category}</Modal.Header>
-                                <Modal.Content>
-                                    <label>Add {this.state.category}</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        className="form-control"
-                                        onChange={this.handleFieldChange}
-                                        id="suggestion"
-                                        value={this.state.suggestion}
-                                    />
-                                    <Button onClick={this.handleSuggestionAdd}>Add</Button>
-                                </Modal.Content>
-                            </Modal>
+                            <div className='flexEditButton'>
+                                <h2 className='hMargin'>{this.state.category}</h2>
+                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
+                                    <Modal.Header>Add {this.state.category}</Modal.Header>
+                                    <Modal.Content>
+                                        <label>Add {this.state.category}</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            className="form-control"
+                                            onChange={this.handleFieldChange}
+                                            id="suggestion"
+                                            value={this.state.suggestion}
+                                        />
+                                        <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                    </Modal.Content>
+                                </Modal>
+                            </div>
                             <div className="suggestionContainer">
-                            {this.state.suggestions.map(suggestion =>
-                                <Suggestion
-                                    key={suggestion.id}
-                                    suggestion={suggestion}
-                                    userId={this.state.userId}
-                                    userEvents={this.state.userEvents}
-                                    getSuggestions={this.getSuggestions}
-                                    getUserEvents={this.getUserEvents} />
-                            )}
+                                {this.state.suggestions.map(suggestion =>
+                                    <Suggestion
+                                        key={suggestion.id}
+                                        suggestion={suggestion}
+                                        userId={this.state.userId}
+                                        userEvents={this.state.userEvents}
+                                        getSuggestions={this.getSuggestions}
+                                        getUserEvents={this.getUserEvents} />
+                                )}
+                            </div>
                         </div>
-                    </div>
-                    <div className='userEvents'>
-                        <h2 className='hMargin'>Participants</h2>
-                        <ol>
-                            {this.state.userEvents.map(userEvent =>
-                                <UserEvent
-                                    key={userEvent.id}
-                                    userEvent={userEvent}
-                                    {...this.props}
-                                    userId={this.state.userId} />
-                            )}
-                        </ol>
-                    </div>
+                        <div className='userEvents'>
+                            <h2 className='hMargin'>Participants</h2>
+                            <ol>
+                                {this.state.userEvents.map(userEvent =>
+                                    <UserEvent
+                                        key={userEvent.id}
+                                        userEvent={userEvent}
+                                        {...this.props}
+                                        userId={this.state.userId} />
+                                )}
+                            </ol>
+                        </div>
                     </div >
                 )
             } else {
@@ -515,7 +516,7 @@ class Event extends Component {
                                     category={this.state.category}
                                     handleFieldChange={this.handleFieldChange}
                                     editEvent={this.editEvent} />
-                                <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header>Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
@@ -547,7 +548,7 @@ class Event extends Component {
                         <div className='userEvents'>
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>Participants</h2>
-                                <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
+                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header>Add Participants</Modal.Header>
                                     <Modal.Content >
                                         <div className='overflow'>
@@ -592,7 +593,7 @@ class Event extends Component {
                                 )}
                             </ol>
                         </div>
-                        <Button onClick={this.endEvent} attached>End</Button>
+                        <Button onClick={this.endEvent} className='end' attached>End</Button>
                     </div >
                 )
             } else if (findUserEvent.canSuggestEvent === true) {
@@ -604,22 +605,24 @@ class Event extends Component {
                         </header>
 
                         <div className='suggestions'>
-                            <h2 className='hMargin'>{this.state.category}</h2>
-                            <Modal trigger={<Button><Icon name="add" /></Button>} closeIcon>
-                                <Modal.Header>Add {this.state.category}</Modal.Header>
-                                <Modal.Content>
-                                    <label>Add {this.state.category}</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        className="form-control"
-                                        onChange={this.handleFieldChange}
-                                        id="suggestion"
-                                        value={this.state.suggestion}
-                                    />
-                                    <Button onClick={this.handleSuggestionAdd}>Add</Button>
-                                </Modal.Content>
-                            </Modal>
+                            <div className='flexEditButton'>
+                                <h2 className='hMargin'>{this.state.category}</h2>
+                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
+                                    <Modal.Header>Add {this.state.category}</Modal.Header>
+                                    <Modal.Content>
+                                        <label>Add {this.state.category}</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            className="form-control"
+                                            onChange={this.handleFieldChange}
+                                            id="suggestion"
+                                            value={this.state.suggestion}
+                                        />
+                                        <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                    </Modal.Content>
+                                </Modal>
+                            </div>
                             <div className="suggestionContainer">
                                 {this.state.suggestions.map(suggestion =>
                                     <Suggestion

@@ -185,7 +185,7 @@ class AddEvent extends Component {
                                             id="suggestion"
                                             value={this.state.suggestion}
                                         />
-                                        <Button onClick={this.handleSuggestionAdd}>Save</Button>
+                                        <Button className='saveButton' onClick={this.handleSuggestionAdd}>Save</Button>
                                     </Modal.Content>
                                 </Modal>
                             </div>
@@ -228,7 +228,7 @@ class AddEvent extends Component {
                                 </Modal>
                             </div>
                             <div className='minHeight'>
-                                <ol>
+                                <ol className='list'>
                                     {this.state.users.map(user =>
                                         <Participant
                                             user={user}

@@ -17,6 +17,15 @@
     margin-top: 10px;
 }
 
+.eventCardTie {
+    justify-content: space-evenly;
+    flex-basis: 28%;
+    padding: 10px;
+    height: 115px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
 .currentEventsListHeader {
     padding: 10px 10px 0px 10px;
 }
@@ -27,4 +36,16 @@
 
 .addButton {
     margin-left: 4px !important;
+}
+
+.hTieger {
+    margin: 0px;
+}
+
+.fontVetoad {
+    font-family: 'Bungee Shade', cursive;
+}
+
+.fontText {
+    font-family: 'Roboto', sans-serif;
 }

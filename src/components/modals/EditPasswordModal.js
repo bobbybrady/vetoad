@@ -16,7 +16,7 @@ class EditPasswordModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button icon='edit outline' className='smallerEditButton'></Button>} 
+            <Modal className='modalAdd' trigger={<Button icon='edit outline' className='smallerEditButton'></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}

@@ -24,7 +24,7 @@ class PastEventCard extends Component {
             const filterUserEvent = this.props.userEvents.filter(userEvent => userEvent.userId === currentUser.id && userEvent.eventId === this.props.event.id)
             if (this.props.event.userId === currentUser.id) {
                 return (
-                    <div className="eventCard">
+                    <div className="eventCard fontText">
                         <Card>
                             <Card.Content>
                                 <Card.Header>{this.props.event.name} <Icon name="star outline" /></Card.Header>
@@ -39,7 +39,7 @@ class PastEventCard extends Component {
 
             } else if (filterUserEvent.length === 1) {
                 return (
-                    <div className="eventCard">
+                    <div className="eventCard fontText">
                         <Card>
                             <Card.Content>
                                 <Card.Header>{this.props.event.name}</Card.Header>

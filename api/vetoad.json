@@ -118,12 +118,21 @@
     },
     {
       "name": "Dinner",
-      "date": "2019-09-26",
       "userId": 6,
+      "category": "Restaurants",
+      "date": "2019-09-26",
+      "isOver": false,
+      "id": 10,
+      "tie": true
+    },
+    {
+      "name": "test",
+      "date": "2019-09-27",
+      "userId": 1,
       "isOver": false,
       "category": "Restaurants",
       "tie": false,
-      "id": 10
+      "id": 11
     }
   ],
   "userEvents": [
@@ -367,6 +376,39 @@
       "canSuggestEvent": false,
       "tieId": null,
       "id": 25
+    },
+    {
+      "eventId": 11,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 1,
+      "vetoad": true,
+      "canSuggestEvent": true,
+      "tieId": null,
+      "id": 26
+    },
+    {
+      "eventId": 11,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 5,
+      "vetoad": true,
+      "canSuggestEvent": false,
+      "tieId": null,
+      "id": 27
+    },
+    {
+      "eventId": 11,
+      "poodleSuggestionId": null,
+      "parrotSuggestionId": null,
+      "vetoadSuggestionId": null,
+      "userId": 4,
+      "vetoad": false,
+      "canSuggestEvent": true,
+      "tieId": null,
+      "id": 28
     }
   ],
   "suggestions": [
@@ -496,6 +538,16 @@
       "name": "Chipotle",
       "eventId": 10,
       "id": 33
+    },
+    {
+      "name": "hgfd",
+      "eventId": 11,
+      "id": 34
+    },
+    {
+      "name": "f",
+      "eventId": 11,
+      "id": 35
     }
   ]
 }

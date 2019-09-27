@@ -16,7 +16,7 @@ class EditEventDateModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button className="smallerButton"><Icon name='edit outline'/></Button>} 
+            <Modal className='modalAdd' trigger={<Button className="smallerButton"><Icon name='edit outline'/></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}

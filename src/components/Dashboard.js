@@ -102,11 +102,11 @@ class Dashboard extends Component {
             className='fixed'
           >
             <Menu.Item as={Link} to='/'
-              onClick={this.handleClick} className="sidebarButton"
+              onClick={this.handleClick} className="sidebarButton fontText"
             >Current Events
             </Menu.Item>
             <Menu.Item as={Link} to='/pastevents'
-              className="sidebarButton"
+              className="sidebarButton fontText"
               onClick={this.handleClick}>
               Past Events
             </Menu.Item>
@@ -119,7 +119,7 @@ class Dashboard extends Component {
               <HIW1 />
             </Menu.Item>
             <Menu.Item onClick={this.toggle}
-              className="sidebarButton">
+              className="sidebarButton fontText">
               Logout
               <Confirm
                 open={this.state.open}

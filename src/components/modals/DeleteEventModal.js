@@ -15,7 +15,7 @@ class DeleteEventModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button icon='trash alternate outline'></Button>} 
+            <Modal className='modalAdd' trigger={<Button icon='trash alternate outline'></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}

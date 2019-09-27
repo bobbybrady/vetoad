@@ -120,9 +120,9 @@ class Event extends Component {
     })
 
     addUserId = (event) => {
-        const foundUser = this.state.users.find(user => user.id === parseInt(event.target.id))
+        const foundUser = this.state.users.find(user => user.id === parseInt(event.currentTarget.id))
         const userObject = this.state.newUser.concat({
-            userId: parseInt(event.target.id),
+            userId: parseInt(event.currentTarget.id),
             vetoad: false,
             canSuggestEvent: false,
             firstName: foundUser.firstName,
@@ -302,7 +302,7 @@ class Event extends Component {
                                     category={this.state.category}
                                     handleFieldChange={this.handleFieldChange}
                                     editEvent={this.editEvent} />
-                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
+                                <Modal className='modalAdd' trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header className='headerColor'>Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
@@ -314,7 +314,7 @@ class Event extends Component {
                                             id="suggestion"
                                             value={this.state.suggestion}
                                         />
-                                        <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                        <Button className='saveButton' onClick={this.handleSuggestionAdd}>Add</Button>
                                     </Modal.Content>
                                 </Modal>
                             </div>
@@ -334,7 +334,7 @@ class Event extends Component {
                         <div className='userEvents'>
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>Participants</h2>
-                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
+                                <Modal className='modalAdd' trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header className="headerColor">Add Participants</Modal.Header>
                                     <Modal.Content >
                                         <div className='overflow'>
@@ -394,7 +394,7 @@ class Event extends Component {
                         <div className='suggestions'>
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>{this.state.category}</h2>
-                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
+                                <Modal className='modalAdd' trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header className="headerColor">Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
@@ -406,7 +406,7 @@ class Event extends Component {
                                             id="suggestion"
                                             value={this.state.suggestion}
                                         />
-                                        <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                        <Button className='saveButton' onClick={this.handleSuggestionAdd}>Add</Button>
                                     </Modal.Content>
                                 </Modal>
                             </div>
@@ -516,7 +516,7 @@ class Event extends Component {
                                     category={this.state.category}
                                     handleFieldChange={this.handleFieldChange}
                                     editEvent={this.editEvent} />
-                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
+                                <Modal className='modalAdd' trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header className='headerColor'>Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
@@ -528,7 +528,7 @@ class Event extends Component {
                                             id="suggestion"
                                             value={this.state.suggestion}
                                         />
-                                        <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                        <Button className='saveButton' onClick={this.handleSuggestionAdd}>Add</Button>
                                     </Modal.Content>
                                 </Modal>
                             </div>
@@ -548,7 +548,7 @@ class Event extends Component {
                         <div className='userEvents'>
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>Participants</h2>
-                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
+                                <Modal className='modalAdd' trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header className="headerColor">Add Participants</Modal.Header>
                                     <Modal.Content >
                                         <div className='overflow'>
@@ -607,7 +607,7 @@ class Event extends Component {
                         <div className='suggestions'>
                             <div className='flexEditButton'>
                                 <h2 className='hMargin'>{this.state.category}</h2>
-                                <Modal trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
+                                <Modal className='modalAdd' trigger={<Button className="smallerButton"><Icon name="add" /></Button>} closeIcon>
                                     <Modal.Header className="headerColor">Add {this.state.category}</Modal.Header>
                                     <Modal.Content>
                                         <label>Add {this.state.category}</label>
@@ -619,7 +619,7 @@ class Event extends Component {
                                             id="suggestion"
                                             value={this.state.suggestion}
                                         />
-                                        <Button onClick={this.handleSuggestionAdd}>Add</Button>
+                                        <Button className='saveButton' onClick={this.handleSuggestionAdd}>Add</Button>
                                     </Modal.Content>
                                 </Modal>
                             </div>

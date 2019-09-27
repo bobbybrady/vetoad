@@ -16,9 +16,11 @@ class NavBar extends Component {
                 <Sticky>
                     <Menu className="getRidOfSpace navColor">
                         <Menu.Item as={Link} to='/'
+                            className='fontVetoad'
                             header
                             name='vetoad' />
                         <Menu.Item as={Link} to='/profile'
+                        className='fontText'
                             name={username.firstName} />
                         <Button icon
                             className="menu smallerButtonNav"

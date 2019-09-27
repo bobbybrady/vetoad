@@ -13,7 +13,7 @@ class CurrentEventList extends Component {
         return (
             <>
                 <div className='currentEventsListHeader'>
-                    <h1>Current Events</h1>
+                    <h1 className='fontText'>Current Events</h1>
                     <Button onClick={this.addEvent} className='addButton' icon='add'></Button>
                 </div>
                 <div className="eventsContainer">

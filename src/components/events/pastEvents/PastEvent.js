@@ -68,7 +68,7 @@ class PastEvent extends Component {
             if (filterUserEvent.length === 1) {
                 return (
                     <>
-                        <h1 className='hMargin hWinner'>{this.state.winningSuggestion === '' ? 'No Winner' : `Peng-Winner 🐧 ${this.state.winningSuggestion}`}!</h1>
+                        <h1 className='hMargin hWinner fontText'>{this.state.winningSuggestion === '' ? 'No Winner' : `Peng-Winner 🐧 ${this.state.winningSuggestion}`}!</h1>
                         <div className="eventContainer">
                             <header>
                                 <h1 className='hMargin'>{foundEvent.name}</h1>

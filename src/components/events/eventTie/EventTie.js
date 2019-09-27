@@ -7,16 +7,17 @@ class EventTie extends Component {
 
     render() {
         const filterTie = this.props.totalCount.filter(totalCount => this.props.totalCount[0].totalCount === totalCount.totalCount)
+        const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         return (
-            <div className="eventsContainer">
+            <div className="eventContainer">
                 <header>
-                    <h1>{this.props.name}</h1>
-                    <h2>🐅TIE-ger🐅</h2>
-                    <h3>{this.props.date}</h3>
+                    <h2 className='hWinner'>🐅TIE-ger🐅</h2>
+                    <h1 className='hMargin'>{this.props.name}</h1>
+                    <h3 className='hMargin'>{this.props.date}</h3>
                 </header>
 
                 <div className='suggestions'>
-                    <h2>{this.props.category}</h2>
+                    <h2 className='hMargin'>{this.props.category}</h2>
                     {filterTie.map(suggestion =>
                         <TieSuggestion
                             key={suggestion.id}
@@ -25,7 +26,7 @@ class EventTie extends Component {
                     )}
                 </div>
                 <div className='userEvents'>
-                    <h2>List of Participants</h2>
+                    <h2 className='hMargin'>Participants</h2>
                     <ol>
                         {this.props.userEvents.map(userEvent =>
                             <UserEvent
@@ -36,7 +37,7 @@ class EventTie extends Component {
                         )}
                     </ol>
                 </div>
-                <Button onClick={this.props.endTie}>End</Button>
+                {parseInt(currentUser.id) === this.props.userId ? <Button className='end' attached onClick={this.props.endTie}>End</Button> : '' }
             </div>
         )
     }

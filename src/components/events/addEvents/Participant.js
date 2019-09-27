@@ -14,7 +14,14 @@ class Participant extends Component {
                     <Card className='participantCard'>
                         <Card.Content className='participantCard'>
                             <li>
-                                <Card.Header className='participantButtonContainer'>{this.props.user.name}<Button color='green' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button><Button onClick={() => this.props.removeParticipant(this.props.user.userId)}>Delete</Button></Card.Header>
+                                <div className='participantButtonContainer'>
+                                    <p className='addEventUserName'>{this.props.user.name}</p>
+                                    <div className='addEventButtonContainer'>
+                                        <Button className='addEventButtons' color='green' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button>
+                                        <Button className='addEventButtons' onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button>
+                                        <Button className='addEventButtons' icon='trash alternate outline' onClick={() => this.props.removeParticipant(this.props.user.userId)}></Button>
+                                    </div>
+                                </div>
                             </li>
                         </Card.Content>
                     </Card>
@@ -24,7 +31,14 @@ class Participant extends Component {
                     <Card className='participantCard'>
                         <Card.Content className='participantCard'>
                             <li>
-                                <Card.Header className='participantButtonContainer'>{this.props.user.name}<Button onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button color='green' onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button><Button onClick={() => this.props.removeParticipant(this.props.user.userId)}>Delete</Button></Card.Header>
+                                <div className='participantButtonContainer'>
+                                    <p className='addEventUserName'>{this.props.user.name}</p>
+                                    <div className='addEventButtonContainer'>
+                                        <Button className='addEventButtons' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button>
+                                        <Button className='addEventButtons' color='green' onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button>
+                                        <Button className='addEventButtons' icon='trash alternate outline' onClick={() => this.props.removeParticipant(this.props.user.userId)}></Button>
+                                    </div>
+                                </div>
                             </li>
                         </Card.Content>
                     </Card>
@@ -34,7 +48,14 @@ class Participant extends Component {
                     <Card className='participantCard'>
                         <Card.Content className='participantCard'>
                             <li>
-                                <Card.Header className='participantButtonContainer'>{this.props.user.name}<Button color='green' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)} color='green'>Make Contributor</Button><Button onClick={() => this.props.removeParticipant(this.props.user.userId)}>Delete</Button></Card.Header>
+                                <div className='participantButtonContainer'>
+                                    <p className='addEventUserName'>{this.props.user.name}</p>
+                                    <div className='addEventButtonContainer'>
+                                        <Button className='addEventButtons' color='green' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button>
+                                        <Button className='addEventButtons' onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)} color='green'>Make Contributor</Button>
+                                        <Button className='addEventButtons' icon='trash alternate outline' onClick={() => this.props.removeParticipant(this.props.user.userId)}></Button>
+                                    </div>
+                                </div>
                             </li>
                         </Card.Content>
                     </Card>
@@ -44,7 +65,14 @@ class Participant extends Component {
                     <Card className='participantCard'>
                         <Card.Content className='participantCard'>
                             <li>
-                                <Card.Header className='participantButtonContainer'>{this.props.user.name}<Button onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button><Button onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button><Button onClick={() => this.props.removeParticipant(this.props.user.userId)}>Delete</Button></Card.Header>
+                                <div className='participantButtonContainer'>
+                                    <p className='addEventUserName'>{this.props.user.name}</p>
+                                    <div className='addEventButtonContainer'>
+                                        <Button className='addEventButtons' onClick={() => this.props.updateVetoad(this.props.user.userId)}>Vetoad</Button>
+                                        <Button className='addEventButtons' onClick={() => this.props.updateCanSuggestEvent(this.props.user.userId)}>Make Contributor</Button>
+                                        <Button className='addEventButtons' icon='trash alternate outline' onClick={() => this.props.removeParticipant(this.props.user.userId)}></Button>
+                                    </div>
+                                </div>
                             </li>
                         </Card.Content>
                     </Card>

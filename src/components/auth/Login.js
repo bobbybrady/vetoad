@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import UserManager from "../../modules/UserManager"
-import { Button } from 'reactstrap';
+import { Button, Image } from 'semantic-ui-react';
 
 class Login extends Component {
 
@@ -32,7 +32,7 @@ class Login extends Component {
             } else if (this.state.username.length === 0 || this.state.password.length === 0) {
                 window.alert("Please Bear 🐻with us and fill out all fields!")
             }
-             else {
+            else {
                 this.setState({ id: user[0].id, firstName: user[0].firstName, lastName: user[0].lastName })
                 sessionStorage.setItem(
                     "credentials",
@@ -53,27 +53,33 @@ class Login extends Component {
         return (
             <div className="login_container">
                 <form onSubmit={this.handleLogin}>
-                    <h2 className="welcome">Vetoad</h2>
-                    <h3>Login</h3>
-                    <div className="formgrid">
-                        <label htmlFor="inputUsername">Username</label>
-                        <input onChange={this.handleFieldChange} type="username"
-                            id="username"
-                            placeholder="Enter username"
-                            required="" autoFocus="" />
-                        <label htmlFor="inputPassword">Password</label>
-                        <input onChange={this.handleFieldChange} type="password"
-                            id="password"
-                            placeholder="Password"
-                            required="" />
+                    <Image size='large' className='logo' centered src={require('../Original.png')} />
+                    <div className='welcomeContainer'>
+                        <div className="formgrid">
+                            <div>
+                                <label className='loginInput' htmlFor="inputUsername">Username</label>
+                                <input className='loginInput password' onChange={this.handleFieldChange} type="username"
+                                    id="username"
+                                    placeholder="Enter username"
+                                    required="" autoFocus="" />
+                            </div>
+                            <div>
+                                <label className='loginInput' htmlFor="inputPassword">Password</label>
+                                <input className='loginInput password' onChange={this.handleFieldChange} type="password"
+                                    id="password"
+                                    placeholder="Password"
+                                    required="" autoFocus="" />
+                            </div>
+                        </div>
+                        <Button className='loginButton' type="submit">
+                            Submit
+            </Button>
+                        <Button className='loginButton' type="cancel" onClick={() => { this.props.history.push(`/welcome`) }}>
+                            Cancel
+            </Button>
                     </div>
-                    <Button outline color="dark" size="sm" type="submit">
-                        Submit
-            </Button>
-                    <Button outline color="dark" size="sm" type="cancel" onClick={() => {this.props.history.push(`/welcome`)}}>
-                        Cancel
-            </Button>
-                </form></div>
+                </form>
+            </div>
         )
     }
 }

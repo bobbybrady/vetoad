@@ -14,16 +14,14 @@ class UserListModal extends Component {
             )
         } else {
             return (
-                <Card>
-                    <Card.Content>
+                <Card className='invisibleCard'>
+                    <Card.Content className='invisibleCard'>
                         <li>
-                            <Card.Header>{this.props.user.firstName} {this.props.user.lastName}
-                                <Modal.Actions>
+                            <p>{this.props.user.firstName} {this.props.user.lastName}
                                     <AddUserModal
                                         {...this.props}
                                     />
-                                </Modal.Actions>
-                            </Card.Header>
+                                    </p>
                         </li>
                     </Card.Content>
                 </Card>

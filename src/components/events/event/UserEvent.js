@@ -8,18 +8,18 @@ class UserEvent extends Component {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (currentUser.id === this.props.userId) {
             return (
-                <Card>
-                    <Card.Content>
+                <Card className='invisibleCard'>
+                    <Card.Content className='invisibleCard'>
                         <li>
-                            <Card.Header>{this.props.userEvent.user.firstName} {this.props.userEvent.user.lastName}<Button onClick={() => this.props.deleteParticipant(this.props.userEvent.id)}>Delete</Button></Card.Header>
+                            <Card.Header>{this.props.userEvent.user.firstName} {this.props.userEvent.user.lastName}<Button floated='right' icon='trash alternate outline' className="smallerDeleteButton" onClick={() => this.props.deleteParticipant(this.props.userEvent.id)}></Button></Card.Header>
                         </li>
                     </Card.Content>
                 </Card>
             )
         } else {
         return (
-            <Card>
-                <Card.Content>
+            <Card className='invisibleCard'>
+                <Card.Content className='invisibleCard'>
                     <li>
                         <Card.Header>{this.props.userEvent.user.firstName} {this.props.userEvent.user.lastName}</Card.Header>
                     </li>

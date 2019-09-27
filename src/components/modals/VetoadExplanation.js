@@ -19,14 +19,13 @@ class VetoadExplanation extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>🐸</Button>}
+            <Modal trigger={<Button className='emojiButton buttonPad'>🐸</Button>}
                 open={this.state.open}
                 onOpen={this.open}
                 onClose={this.close}
                 closeIcon>
-                <Modal.Header>Vetoad</Modal.Header>
+                <Modal.Header className="headerColor">Vetoad 🐸</Modal.Header>
                 <Modal.Content>
-                    <h1>🐸</h1>
                     Vetoad is a special vote, if you have the ability to vote Vetoad you can Vetoad any item from the list. This item will not be able to win, and all previous votes will be void!
                 </Modal.Content>
             </Modal>

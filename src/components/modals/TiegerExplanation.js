@@ -19,14 +19,13 @@ class TiegerExplanation extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>🐅</Button>}
+            <Modal trigger={<Button className='emojiButton buttonPad'>🐅</Button>}
                 open={this.state.open}
                 onOpen={this.open}
                 onClose={this.close}
                 closeIcon>
-                <Modal.Header>TIE-ger</Modal.Header>
+                <Modal.Header className="headerColor">TIE-ger 🐅</Modal.Header>
                 <Modal.Content>
-                    <h1>🐅</h1>
                     This is what happens in the event of a tie. Everyone will get one Poodl-IN vote to find out the winner!
                 </Modal.Content>
             </Modal>

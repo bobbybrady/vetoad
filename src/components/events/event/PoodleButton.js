@@ -14,16 +14,16 @@ class PoodleButton extends Component {
             if (vetoadCheck === undefined) {
                 if (filteredPoodles[0].poodleSuggestionId === null) {
                     return (
-                        <Button onClick={this.props.updateExistingUserEventPoodle}>🐩</Button>
+                        <Button className='emojiButton' onClick={this.props.updateExistingUserEventPoodle}>🐩</Button>
                     )
                 } else {
                     if (filteredPoodles[0].poodleSuggestionId === this.props.suggestion.id) {
                         return (
-                            <Button disabled color='green'>🐩</Button>
+                            <Button className='emojiButton' disabled color='green'>🐩</Button>
                         )
                     } else {
                         return (
-                            <Button disabled>🐩</Button>
+                            <Button className='emojiButton' disabled>🐩</Button>
                         )
 
                     }
@@ -31,11 +31,11 @@ class PoodleButton extends Component {
             } else {
                 if (filteredPoodles[0].poodleSuggestionId === this.props.suggestion.id) {
                     return (
-                        <Button disabled color='green'>🐩</Button>
+                        <Button className='emojiButton' disabled color='green'>🐩</Button>
                     )
                 } else {
                     return (
-                        <Button disabled>🐩</Button>
+                        <Button className='emojiButton' disabled>🐩</Button>
                     )
 
                 }

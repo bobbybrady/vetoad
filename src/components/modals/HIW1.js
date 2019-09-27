@@ -7,7 +7,7 @@ import TiegerExplanation from './TiegerExplanation'
 import VetoadExplanation from './VetoadExplanation'
 
 class HIW1 extends Component {
-    state={
+    state = {
         open: false
     }
 
@@ -20,18 +20,20 @@ class HIW1 extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>How It Works</Button>} 
-            open={this.state.open}
-            onOpen={this.open}
-            onClose={this.close}
-            closeIcon>
-                <Modal.Header>How It Works</Modal.Header>
+            <Modal trigger={<Button className='buttonDisguise'>How It Works</Button>}
+                open={this.state.open}
+                onOpen={this.open}
+                onClose={this.close}
+                closeIcon>
+                <Modal.Header className="headerColor">How It Works</Modal.Header>
                 <Modal.Content>
-                    <PoodleExplanation />
-                    <ParrotExplanation />
-                    <VetoadExplanation />
-                    <TiegerExplanation />
-                    <PengWinnerExplanation />
+                    <div className='howItWorksContainer'>
+                        <PoodleExplanation />
+                        <ParrotExplanation />
+                        <VetoadExplanation />
+                        <TiegerExplanation />
+                        <PengWinnerExplanation />
+                    </div>
                 </Modal.Content>
             </Modal>
         )

@@ -11,7 +11,10 @@ class AddSuggestion extends Component {
                     <Card.Header>
                         {this.props.addSuggestion.name}
                         <Button id={this.props.addSuggestion.id}
-                            onClick={() => this.props.removeSuggestion(this.props.addSuggestion.id)}>Delete</Button>
+                        icon='trash alternate outline'
+                        floated='right'
+                        className='smallerDeleteButton'
+                            onClick={() => this.props.removeSuggestion(this.props.addSuggestion.id)}></Button>
                     </Card.Header>
                 </Card.Content>
             </Card>

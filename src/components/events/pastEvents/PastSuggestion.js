@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Card, Button } from 'semantic-ui-react'
 
 class PastSuggestion extends Component {
-    
+
 
     render() {
         if (this.props.userEvents === undefined || this.props.userEvents.length === 0) {
@@ -37,44 +37,68 @@ class PastSuggestion extends Component {
             if (vetoadCheck === undefined || vetoadCheck.vetoad === false) {
                 if (this.props.suggestion.id === this.props.winningId) {
                     return (
-                        <Card style={winner}>
+                        <Card style={winner} className="suggestionCard">
                             <Card.Content>
                                 <Card.Header>{this.props.suggestion.name}</Card.Header>
-                                <Button disabled color='green'>🐩</Button>
-                                <Card.Meta style={green}>{filteredTie.length === 0 ? filteredPoodles.length : filteredPoodles.length + filteredTie.length}</Card.Meta>
-                                <Button disabled color='red'>🦜</Button>
-                                <Card.Meta style={red}>{filteredParrots.length}</Card.Meta>
-                                <Button disabled color='blue'>🐸</Button>
-                                <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
+                                <div className='createdEventButtonContainer'>
+                                    <div className='displayPoodleCountButton'>
+                                        <Button disabled color='green'>🐩</Button>
+                                        <Card.Meta style={green}>{filteredTie.length === 0 ? filteredPoodles.length : filteredPoodles.length + filteredTie.length}</Card.Meta>
+                                    </div>
+                                    <div className='displayParrotCountButton'>
+                                        <Button disabled color='red'>🦜</Button>
+                                        <Card.Meta style={red}>{filteredParrots.length}</Card.Meta>
+                                    </div>
+                                    <div className='displayVetoadCountButton'>
+                                        <Button disabled color='blue'>🐸</Button>
+                                        <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
+                                    </div>
+                                </div>
                             </Card.Content>
                         </Card>
                     )
                 } else {
                     return (
-                        <Card>
+                        <Card className="suggestionCard">
                             <Card.Content>
                                 <Card.Header>{this.props.suggestion.name}</Card.Header>
-                                <Button disabled color='green'>🐩</Button>
-                                <Card.Meta style={green}>{filteredTie.length === 0 ? filteredPoodles.length : filteredPoodles.length + filteredTie.length}</Card.Meta>
-                                <Button disabled color='red'>🦜</Button>
-                                <Card.Meta style={red}>{filteredParrots.length}</Card.Meta>
-                                <Button disabled color='blue'>🐸</Button>
-                                <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
+                                <div className='createdEventButtonContainer'>
+                                    <div className='displayPoodleCountButton'>
+                                        <Button disabled color='green'>🐩</Button>
+                                        <Card.Meta style={green}>{filteredTie.length === 0 ? filteredPoodles.length : filteredPoodles.length + filteredTie.length}</Card.Meta>
+                                    </div>
+                                    <div className='displayParrotCountButton'>
+                                        <Button disabled color='red'>🦜</Button>
+                                        <Card.Meta style={red}>{filteredParrots.length}</Card.Meta>
+                                    </div>
+                                    <div className='displayVetoadCountButton'>
+                                        <Button disabled color='blue'>🐸</Button>
+                                        <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
+                                    </div>
+                                </div>
                             </Card.Content>
                         </Card>
                     )
                 }
             } else {
                 return (
-                    <Card>
-                        <Card.Content style={vetoadColor}>
+                    <Card className="suggestionCard" style={vetoadColor}>
+                        <Card.Content>
                             <Card.Header><strike>{this.props.suggestion.name}🐸</strike></Card.Header>
-                            <Button disabled color='green'>🐩</Button>
-                            <Card.Meta style={green}>{filteredTie.length === 0 ? filteredPoodles.length : filteredPoodles.length + filteredTie.length}</Card.Meta>
-                            <Button disabled color='red'>🦜</Button>
-                            <Card.Meta style={red}>{filteredParrots.length}</Card.Meta>
-                            <Button disabled color='blue'>🐸</Button>
-                            <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
+                            <div className='createdEventButtonContainer'>
+                                <div className='displayPoodleCountButton'>
+                                    <Button disabled color='green'>🐩</Button>
+                                    <Card.Meta style={green}>{filteredTie.length === 0 ? filteredPoodles.length : filteredPoodles.length + filteredTie.length}</Card.Meta>
+                                </div>
+                                <div className='displayParrotCountButton'>
+                                    <Button disabled color='red'>🦜</Button>
+                                    <Card.Meta style={red}>{filteredParrots.length}</Card.Meta>
+                                </div>
+                                <div className='displayVetoadCountButton'>
+                                    <Button disabled color='blue'>🐸</Button>
+                                    <Card.Meta style={blue}>{filteredVetoads.length}</Card.Meta>
+                                </div>
+                            </div>
                         </Card.Content>
                     </Card>
                 )

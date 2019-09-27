@@ -1,0 +1,220 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+.hMargin {
+    margin: 0px 15px 0 0;
+    padding: 5px;
+}
+
+.flexEditButton {
+    display: flex;
+    padding: 5px;
+    flex-direction: row;
+}
+
+.suggestionContainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: center;
+}
+
+.suggestionCard {
+    height: 100px;
+    width: 95% !important;
+}
+
+
+.ui.card {
+    margin: 5px !important;
+}
+
+.centerHeaderCard {
+    font-size: 17px !important;
+    word-wrap: break-word;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+}
+
+.createdEventButtonContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.button {
+    height: 45px;
+    width: 95px;
+}
+
+.emojiButton {
+    text-align: center !important;
+    padding: 0px !important;
+    font-size: 30px !important;
+}
+
+.smallerButton {
+    height: 35px;
+    width: 35px;
+    padding: 8px 0px 8px 10px !important;
+    margin-top: 5px !important;
+    margin-right: 10px !important;
+}
+
+.smallerAddButton {
+    height: 35px;
+    width: 35px;
+    padding: 8px 0px 8px 8px !important;
+    margin-left: 10px !important;
+}
+
+.smallerDeleteButton {
+    height: 35px;
+    width: 35px;
+    padding: 0 !important;
+    margin-left: 10px !important;
+}
+
+.smallerEditButton {
+    height: 35px;
+    width: 35px;
+    margin-left: 10px !important;
+}
+
+.end {
+    height: auto !important;
+    width: auto !important;
+}
+
+.invisibleCard {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.hWinner {
+    font-size: 40px;
+    text-align: center;
+}
+
+.howItWorksContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.buttonPad {
+    margin: 5px !important;
+}
+
+.buttonDisguise {
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+    color: white !important;
+    width: 149px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 43px !important;
+    border-radius: 0 !important;
+    font-weight: normal !important;
+}
+
+.itemPadding{
+    padding: 0 !important;
+}
+
+.buttonDisguise:hover {
+    background-color: #2D2E2F!important;
+}
+
+.overflow {
+    min-height: 230px;
+    overflow-y: scroll;
+}
+
+.minHeight {
+    min-height: 28px;
+}
+
+.modalAdd {
+    width: 60% !important;
+}
+
+.headerColor {
+    background-color: #00A676 !important;
+}
+
+.participantButtonContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.participantModalButtonContainer {
+    display: flex;
+    justify-content: space-evenly !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+.participantCard {
+    height: 65px;
+    width: 97% !important;
+}
+
+.saveButton {
+    margin-left: 15px !important;
+    height: 30px !important;
+    width: 45px !important;
+    padding: 0 !important;
+}
+
+.form-control {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+.list {
+    margin: 0 !important;
+    padding: 0 0 0 5px !important;
+}
+
+.addEventButtons {
+    padding: 0 !important;
+    width: 95px !important;
+    flex-basis: 28% !important;
+}
+.addParticipantEventButtons {
+    padding: 0 !important;
+    width: 105px !important;
+    flex-basis: 45% !important;
+}
+
+.addEventButtonContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-basis: 55%;
+    margin-left: 10px; 
+}
+
+.addEventUserName {
+    flex-basis: 25%;
+    margin-left: 5px !important;
+}
+
+.addUserModalContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.tieButtonContainer {
+    display: flex;
+}
+
+.fontText {
+    font-family: 'Roboto', sans-serif !important;
+}

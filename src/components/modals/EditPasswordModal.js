@@ -16,12 +16,12 @@ class EditPasswordModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>Edit</Button>} 
+            <Modal className='modalAdd' trigger={<Button icon='edit outline' className='smallerEditButton'></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}
             closeIcon>
-                <Modal.Header>Edit</Modal.Header>
+                <Modal.Header className="headerColor">Edit</Modal.Header>
                 <Modal.Content>
                     <label>Password</label>
                     <input

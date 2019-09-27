@@ -26,13 +26,13 @@ class Profile extends Component {
         UserManager.update(editedUser).then(() => {
             sessionStorage.setItem(
                 "credentials",
-            JSON.stringify({
-                username: this.state.username,
-                password: this.state.password,
-                id: this.state.id,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName
-            })
+                JSON.stringify({
+                    username: this.state.username,
+                    password: this.state.password,
+                    id: this.state.id,
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName
+                })
             )
             this.props.getAllUsers()
         })
@@ -57,28 +57,30 @@ class Profile extends Component {
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         const hiddenPassword = currentUser.password.replace(/[a-z]|[1-9]|[A-Z]|@|!/g, '*')
-            return (
-                <div className="eventsContainer">
-                   <h1>{currentUser.firstName}'s Profile</h1> 
-                   <h2>Username: {currentUser.username}<EditUsernameModal 
-                   editUserProfile={this.editUserProfile}
-                   username={this.state.username}
-                   handleFieldChange={this.handleFieldChange}/></h2>
-                   <h2>Password: {hiddenPassword}<EditPasswordModal 
-                   editUserProfile={this.editUserProfile}
-                   password={this.state.password}
-                   handleFieldChange={this.handleFieldChange}/></h2>
-                   <h2>First Name: {currentUser.firstName}<EditFirstNameModal 
-                   editUserProfile={this.editUserProfile}
-                   firstName={this.state.firstName}
-                   handleFieldChange={this.handleFieldChange}/></h2>
-                   <h2>Last Name: {currentUser.lastName}<EditLastNameModal 
-                   editUserProfile={this.editUserProfile}
-                   lastName={this.state.lastName}
-                   handleFieldChange={this.handleFieldChange}/></h2>
+        return (
+            <>
+                <h1 className='hMargin'>{currentUser.firstName}'s Profile</h1>
+                <div className="eventContainer hMargin">
+                    <h2 className='hMargin'>Username: {currentUser.username}<EditUsernameModal
+                        editUserProfile={this.editUserProfile}
+                        username={this.state.username}
+                        handleFieldChange={this.handleFieldChange} /></h2>
+                    <h2 className='hMargin'>Password: {hiddenPassword}<EditPasswordModal
+                        editUserProfile={this.editUserProfile}
+                        password={this.state.password}
+                        handleFieldChange={this.handleFieldChange} /></h2>
+                    <h2 className='hMargin'>First Name: {currentUser.firstName}<EditFirstNameModal
+                        editUserProfile={this.editUserProfile}
+                        firstName={this.state.firstName}
+                        handleFieldChange={this.handleFieldChange} /></h2>
+                    <h2 className='hMargin'>Last Name: {currentUser.lastName}<EditLastNameModal
+                        editUserProfile={this.editUserProfile}
+                        lastName={this.state.lastName}
+                        handleFieldChange={this.handleFieldChange} /></h2>
                 </div>
-            )
-        }
+            </>
+        )
+    }
 }
 
 export default Profile;

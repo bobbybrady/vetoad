@@ -12,16 +12,16 @@ class TiePoodleButton extends Component {
             const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.userId === currentUser.id)
             if (filteredPoodles[0].tieId === null) {
                 return (
-                    <Button onClick={this.props.updateExistingUserEventPoodle}>🐩</Button>
+                    <Button className='emojiButton' onClick={this.props.updateExistingUserEventPoodle}>🐩</Button>
                 )
             } else {
                 if (filteredPoodles[0].tieId === this.props.suggestion.id) {
                     return (
-                        <Button disabled color='green'>🐩</Button>
+                        <Button className='emojiButton' disabled color='green'>🐩</Button>
                     )
                 } else {
                     return (
-                        <Button disabled>🐩</Button>
+                        <Button className='emojiButton' disabled>🐩</Button>
                     )
 
                 }

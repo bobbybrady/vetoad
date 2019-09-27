@@ -34,7 +34,7 @@ class PastEvent extends Component {
                 filteredSuggestions.forEach(suggestion => {
                     const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.poodleSuggestionId === suggestion.id)
                     const filteredParrots = this.props.userEvents.filter(userEvent => userEvent.parrotSuggestionId === suggestion.id)
-                    const total = (filteredPoodles.length - filteredParrots.length) 
+                    const total = (filteredPoodles.length - filteredParrots.length)
                     const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === suggestion.id)
                     if (total > winnerCount && vetoadCheck === undefined) {
                         winnerCount = total
@@ -67,38 +67,40 @@ class PastEvent extends Component {
             const filteredUserEvents = this.props.userEvents.filter(userEvent => userEvent.eventId === foundEvent.id)
             if (filterUserEvent.length === 1) {
                 return (
-                    <div className="eventsContainer">
-                        <header>
-                            <h1>{foundEvent.name}</h1>
-                            <h3>{foundEvent.date}</h3>
-                        </header>
-                        <div className='suggestions'>
-                            <h2>{foundEvent.category}</h2>
-                            {filteredSuggestions.map(suggestion =>
-                                <PastSuggestion
-                                    key={suggestion.id}
-                                    suggestion={suggestion}
-                                    {...this.props}
-                                    winningSuggestion={this.state.winningSuggestion}
-                                    winner={this.winner}
-                                    winningId={this.state.winningId}
-                                />
-                            )}
-                        </div>
-                        <div className='userEvents'>
-                            <h2>List of Participants</h2>
-                            <ol>
-                                {filteredUserEvents.map(userEvent =>
-                                    <PastUserEvent
-                                        key={userEvent.id}
-                                        userEvent={userEvent}
+                    <>
+                        <h1 className='hMargin hWinner fontText'>{this.state.winningSuggestion === '' ? 'No Winner' : `Peng-Winner 🐧 ${this.state.winningSuggestion}`}!</h1>
+                        <div className="eventContainer">
+                            <header>
+                                <h1 className='hMargin'>{foundEvent.name}</h1>
+                                <h3 className='hMargin'>{foundEvent.date}</h3>
+                            </header>
+                            <div className='suggestions'>
+                                <h2 className='hMargin'>{foundEvent.category}</h2>
+                                {filteredSuggestions.map(suggestion =>
+                                    <PastSuggestion
+                                        key={suggestion.id}
+                                        suggestion={suggestion}
                                         {...this.props}
+                                        winningSuggestion={this.state.winningSuggestion}
+                                        winner={this.winner}
+                                        winningId={this.state.winningId}
                                     />
                                 )}
-                            </ol>
+                            </div>
+                            <div className='userEvents'>
+                                <h2 className='hMargin'>Participants</h2>
+                                <ol>
+                                    {filteredUserEvents.map(userEvent =>
+                                        <PastUserEvent
+                                            key={userEvent.id}
+                                            userEvent={userEvent}
+                                            {...this.props}
+                                        />
+                                    )}
+                                </ol>
+                            </div>
                         </div>
-                        <h1>{this.state.winningSuggestion === '' ? 'No Winner' : `Peng-Winner 🐧 ${this.state.winningSuggestion}`}!</h1>
-                    </div>
+                    </>
                 )
             } else {
                 return <></>

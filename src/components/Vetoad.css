@@ -31,3 +31,35 @@
     transform: rotate(360deg);
   }
 }
+
+.welcomeContainer {
+  text-align: center;
+  margin-top: -110px;
+  z-index: 5 !important;
+}
+
+.logo {
+  margin-top: 25px; 
+  z-index: -1 !important;
+  position: relative;
+}
+
+.loginButton {
+  margin-top: 7px !important;
+}
+
+.loginInput {
+  padding: 7px;
+  margin: 5px;
+}
+
+.password {
+  -webkit-appearance: searchfield !important;
+}
+
+.formgrid {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

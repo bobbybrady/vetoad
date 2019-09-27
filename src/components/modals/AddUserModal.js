@@ -9,34 +9,33 @@ class AddUserModal extends Component {
         if (this.props.newUser[0] === undefined) {
             return (
                 <Modal
-                open={this.props.open}
-                onOpen={this.props.onOpen}
-                onClose={this.props.onClose}
-                size='small'
-                trigger={
-                    <Button id={this.props.user.id} onClick={this.props.addUserId}>
-                       Add
-                    </Button>
-                }
-            closeIcon></Modal>
-            )
-        } else {
-            return (
-                <Modal
                     open={this.props.open}
                     onOpen={this.props.onOpen}
                     onClose={this.props.onClose}
                     size='small'
                     trigger={
-                        <Button id={this.props.user.id} onClick={this.props.addUserId}>
-                           Add
+                        <Button className='smallerDeleteButton' icon='add' floated='right' id={this.props.user.id} onClick={this.props.addUserId}>
                         </Button>
                     }
-                closeIcon>
-                    <Modal.Header>Add {this.props.newUser[0].firstName}</Modal.Header>
+                    closeIcon></Modal>
+            )
+        } else {
+            return (
+                <Modal
+                    className='modalAdd'
+                    open={this.props.open}
+                    onOpen={this.props.onOpen}
+                    onClose={this.props.onClose}
+                    size='small'
+                    trigger={
+                        <Button icon="add" id={this.props.user.id} onClick={this.props.addUserId}>
+                        </Button>
+                    }
+                    closeIcon>
+                    <Modal.Header className="headerColor">Add {this.props.newUser[0].firstName}</Modal.Header>
                     <Modal.Content>
-                        <ParticipantCardModal 
-                        {...this.props}/>
+                        <ParticipantCardModal
+                            {...this.props} />
                     </Modal.Content>
                     <Modal.Actions>
                         <Button content='Add' onClick={this.props.addParticipantToEvent} />

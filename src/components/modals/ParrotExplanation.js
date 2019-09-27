@@ -19,14 +19,13 @@ class ParrotExplanation extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>🦜</Button>}
+            <Modal trigger={<Button className='emojiButton buttonPad'>🦜</Button>}
                 open={this.state.open}
                 onOpen={this.open}
                 onClose={this.close}
                 closeIcon>
-                <Modal.Header>Parr-OUT</Modal.Header>
+                <Modal.Header className="headerColor">Parr-OUT 🦜</Modal.Header>
                 <Modal.Content>
-                    <h1>🦜</h1>
                     This card shall be used when you vote no for an option. In the cases where there are multiple options, a Parr-OUT option counts as -1. Parr-OUTs should only be used when you don’t want to do something. If you don’t care keep that Parr-OUT in its cage!
                 </Modal.Content>
             </Modal>

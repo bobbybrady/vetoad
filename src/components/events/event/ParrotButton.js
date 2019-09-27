@@ -14,16 +14,16 @@ class ParrotButton extends Component {
             if (vetoadCheck === undefined) {
                 if (filteredParrots[0].parrotSuggestionId === null) {
                     return (
-                        <Button onClick={this.props.updateExistingUserEventParrot}>🦜</Button>
+                        <Button className='emojiButton' onClick={this.props.updateExistingUserEventParrot}>🦜</Button>
                     )
                 } else {
                     if (filteredParrots[0].parrotSuggestionId === this.props.suggestion.id) {
                         return (
-                            <Button disabled color='red'>🦜</Button>
+                            <Button className='emojiButton' disabled color='red'>🦜</Button>
                         )
                     } else {
                         return (
-                            <Button disabled>🦜</Button>
+                            <Button className='emojiButton' disabled>🦜</Button>
                         )
 
                     }
@@ -31,11 +31,11 @@ class ParrotButton extends Component {
             } else {
                 if (filteredParrots[0].parrotSuggestionId === this.props.suggestion.id) {
                     return (
-                        <Button disabled color='red'>🦜</Button>
+                        <Button className='emojiButton' disabled color='red'>🦜</Button>
                     )
                 } else {
                     return (
-                        <Button disabled>🦜</Button>
+                        <Button className='emojiButton' disabled>🦜</Button>
                     )
 
                 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import './CurrentEvents.css'
 import CurrentEventCard from './CurrentEventCard'
-import { Button } from "semantic-ui-react"
+import { Button, Icon } from "semantic-ui-react"
 
 class CurrentEventList extends Component {
 
@@ -13,8 +13,8 @@ class CurrentEventList extends Component {
         return (
             <>
                 <div className='currentEventsListHeader'>
-                    <h1>Current Events</h1>
-                    <Button onClick={this.addEvent}>Add Event</Button>
+                    <h1 className='fontText'>Current Events</h1>
+                    <Button onClick={this.addEvent} className='addButton' icon='add'></Button>
                 </div>
                 <div className="eventsContainer">
                     {this.props.events.map(event =>

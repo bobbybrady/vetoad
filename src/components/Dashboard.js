@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import NavBar from "./nav/NavBar"
 import FeatureViews from "./FeatureViews"
-import { Menu, Icon, Sidebar, Confirm, Button } from 'semantic-ui-react'
+import { Menu, Sidebar, Confirm, Segment, Button } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 import EventsManager from '../modules/EventsManager'
 import UserEventsManager from '../modules/UserEventsManager'
@@ -16,42 +16,42 @@ class Dashboard extends Component {
     open: false,
     events: [],
     userEvents: [],
-    users:[],
+    users: [],
     suggestions: []
   }
 
   getAllEvents = () => {
-    EventsManager.getAll().then(events =>
-      this.setState({events: events})
+     return EventsManager.getAll().then(events =>
+      this.setState({ events: events })
     )
   }
 
   getAllUsers = () => {
     UserManager.getAll().then(users => {
       this.setState({
-          users: users
+        users: users
       })
-  })
+    })
   }
 
   getAllSuggestions = () => {
-    SuggestionsManager.getAll().then(suggestions => {
+    return SuggestionsManager.getAll().then(suggestions => {
       this.setState({
-          suggestions: suggestions
+        suggestions: suggestions
       })
-  })
-  }
-  
-  getUserEvents = () => {
-    UserEventsManager.getAll().then(userEvents => {
-        this.setState({
-            userEvents: userEvents
-        })
     })
-}
+  }
+
+  getUserEvents = () => {
+    return UserEventsManager.getAll().then(userEvents => {
+      this.setState({
+        userEvents: userEvents
+      })
+    })
+  }
 
   toggle = () => {
-    this.setState({open: !this.state.open})
+    this.setState({ open: !this.state.open })
   }
   handleConfirm = () => {
     this.setState({
@@ -89,9 +89,8 @@ class Dashboard extends Component {
           handleClick={this.handleClick}
           visible={this.state.visible}
           className="getRidOfSpace" />
-              <Sidebar.Pushable >
+        <Sidebar.Pushable>
           <Sidebar
-            className="dimmed"
             as={Menu}
             animation='overlay'
             icon='labeled'
@@ -100,13 +99,14 @@ class Dashboard extends Component {
             direction='right'
             visible={visible}
             width='thin'
+            className='fixed'
           >
             <Menu.Item as={Link} to='/'
-              onClick={this.handleClick} className="sidebarButton"
+              onClick={this.handleClick} className="sidebarButton fontText"
             >Current Events
             </Menu.Item>
             <Menu.Item as={Link} to='/pastevents'
-              className="sidebarButton"
+              className="sidebarButton fontText"
               onClick={this.handleClick}>
               Past Events
             </Menu.Item>
@@ -115,12 +115,11 @@ class Dashboard extends Component {
               onClick={this.handleClick}>
               Profile
             </Menu.Item>
-            <Menu.Item 
-              className="sidebarButton">
+            <Menu.Item className='itemPadding'>
               <HIW1 />
             </Menu.Item>
             <Menu.Item onClick={this.toggle}
-              className="sidebarButton">
+              className="sidebarButton fontText">
               Logout
               <Confirm
                 open={this.state.open}
@@ -133,16 +132,16 @@ class Dashboard extends Component {
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher dimmed={visible}>
-            <FeatureViews
-            events={this.state.events}
-            userEvents={this.state.userEvents}
-            getAllEvents={this.getAllEvents}
-            getAllUserEvents={this.getUserEvents}
-            allUsers={this.state.users}
-            suggestions={this.state.suggestions}
-            getAllUsers={this.getAllUsers}
-            getAllSuggestions={this.getAllSuggestions}
-            {...this.props} />
+              <FeatureViews
+                events={this.state.events}
+                userEvents={this.state.userEvents}
+                getAllEvents={this.getAllEvents}
+                getAllUserEvents={this.getUserEvents}
+                allUsers={this.state.users}
+                suggestions={this.state.suggestions}
+                getAllUsers={this.getAllUsers}
+                getAllSuggestions={this.getAllSuggestions}
+                {...this.props} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </>

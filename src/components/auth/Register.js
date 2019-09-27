@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import UserManager from "../../modules/UserManager"
-import { Button } from 'reactstrap';
+import { Button, Image } from 'semantic-ui-react';
 
 class Register extends Component {
 
@@ -32,21 +32,21 @@ class Register extends Component {
             } else if (this.state.username.length === 0 || this.state.password.length === 0) {
                 window.alert("Please Bear 🐻with us and fill out all fields!")
             } else {
-            UserManager.post(this.state).then((object) => {
-                sessionStorage.setItem(
-                    "credentials",
-                JSON.stringify({
-                    username: this.state.username,
-                    password: this.state.password,
-                    id: object.id,
-                    firstName: this.state.firstName,
-                    lastName: this.state.lastName
+                UserManager.post(this.state).then((object) => {
+                    sessionStorage.setItem(
+                        "credentials",
+                        JSON.stringify({
+                            username: this.state.username,
+                            password: this.state.password,
+                            id: object.id,
+                            firstName: this.state.firstName,
+                            lastName: this.state.lastName
+                        })
+                    )
+                    this.props.history.push("/");
                 })
-            )
-                this.props.history.push("/");
-            })
-        }
-    })
+            }
+        })
     }
 
     handleCancel = (event) => {
@@ -58,37 +58,46 @@ class Register extends Component {
         return (
             <div className="login_container">
                 <form onSubmit={this.handleRegister}>
-                <h2 className="welcome">Welcome To</h2>
-                    <h3>Register</h3>
-                    <div className="formgrid">
-                        <label htmlFor="inputUsername">Username</label>
-                        <input onChange={this.handleFieldChange} type="username"
-                            id="username"
-                            placeholder="Enter username"
-                            required="" autoFocus="" />
-                        <label htmlFor="inputPassword">Password</label>
-                        <input onChange={this.handleFieldChange} type="password"
-                            id="password"
-                            placeholder="Password"
-                            required="" />
-                            <label htmlFor="inputFirstName">First Name</label>
-                            <input onChange={this.handleFieldChange} type="firstName"
-                            id="firstName"
-                            placeholder="First Name"
-                            required="" />
-                            <label htmlFor="inputLastName">Last Name</label>
-                            <input onChange={this.handleFieldChange} type="lastName"
-                            id="lastName"
-                            placeholder="Last Name"
-                            required="" />
+                    <Image size='large' className='logo' centered src={require('../Original.png')} />
+                    <div className='welcomeContainer'>
+                        <div className="formgrid">
+                            <div>
+                                <label className='loginInput' htmlFor="inputUsername">Username</label>
+                                <input className='loginInput password' onChange={this.handleFieldChange} type="username"
+                                    id="username"
+                                    placeholder="Enter username"
+                                    required="" autoFocus="" />
+                            </div>
+                            <div>
+                                <label className='loginInput' htmlFor="inputPassword">Password</label>
+                                <input className='loginInput password' onChange={this.handleFieldChange} type="password"
+                                    id="password"
+                                    placeholder="Password"
+                                    required="" />
+                            </div>
+                            <div>
+                                <label className='loginInput' htmlFor="inputFirstName">First Name</label>
+                                <input className='loginInput password' onChange={this.handleFieldChange} type="firstName"
+                                    id="firstName"
+                                    placeholder="First Name"
+                                    required="" />
+                            </div>
+                            <div>
+                                <label className='loginInput' htmlFor="inputLastName">Last Name</label>
+                                <input className='loginInput password' onChange={this.handleFieldChange} type="lastName"
+                                    id="lastName"
+                                    placeholder="Last Name"
+                                    required="" />
+                            </div>
+                        </div>
+                        <Button type="submit">
+                            Submit
+            </Button>
+                        <Button type="cancel" onClick={this.handleCancel}>
+                            Cancel
+            </Button>
                     </div>
-                    <Button outline color="dark" size="sm" type="submit">
-                        Submit
-            </Button>
-            <Button outline color="dark" size="sm" type="cancel" onClick={this.handleCancel}>
-                        Cancel
-            </Button>
-            </form>
+                </form>
             </div>
         )
     }

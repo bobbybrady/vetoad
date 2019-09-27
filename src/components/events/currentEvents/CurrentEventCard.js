@@ -12,12 +12,11 @@ class CurrentEventCard extends Component {
             const filterUserEvent = this.props.userEvents.filter(userEvent => userEvent.userId === currentUser.id && userEvent.eventId === this.props.event.id)
             if (this.props.event.userId === currentUser.id) {
                 return (
-                    <div className="eventCard">
+                    <div className="eventCardTie">
                         <Card>
                             <Card.Content>
-                                <Icon name="star outline"  />
-                                <h2>🐅TIE-ger🐅</h2>
-                                <Card.Header>{this.props.event.name}</Card.Header>
+                                <h2 className='hTieger'>🐅TIE-ger🐅</h2>
+                                <Card.Header>{this.props.event.name} <Icon name="star outline"  /></Card.Header>
                                 <Card.Meta>{this.props.event.date}</Card.Meta>
                                 <Button onClick={() => { this.props.history.push(`/events/${this.props.event.id}`) }}>Details</Button>
                             </Card.Content>
@@ -26,11 +25,11 @@ class CurrentEventCard extends Component {
                 )
             } else if (filterUserEvent.length === 1) {
                 return (
-                    <div className="eventCard">
+                    <div className="eventCardTie">
                         <Card>
                             <Card.Content>
+                                <h2 className='hTieger'>🐅TIE-ger🐅</h2>
                                 <Card.Header>{this.props.event.name}</Card.Header>
-                                <h2>🐅TIE-ger🐅</h2>
                                 <Card.Meta>{this.props.event.date}</Card.Meta>
                                 <Button onClick={() => { this.props.history.push(`/events/${this.props.event.id}`) }}>Details</Button>
                             </Card.Content>

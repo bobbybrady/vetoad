@@ -9,10 +9,6 @@ class TieSuggestion extends Component {
     updateExistingUserEventPoodle = () => {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.userId === currentUser.id && this.props.suggestion.eventId === userEvent.eventId)
-        console.log(vetoadCheck)
-        console.log(this.props.userEvents)
-        console.log(currentUser.id)
-        console.log(this.props.suggestion)
         const editedUserEvent = {
             eventId: vetoadCheck.eventId,
             poodleSuggestionId: vetoadCheck.poodleSuggestionId,
@@ -39,23 +35,27 @@ class TieSuggestion extends Component {
                 color: "green",
                 opacity: '.7'
             }
-            
+
             const filteredPoodles = this.props.userEvents.filter(userEvent => userEvent.tieId === this.props.suggestion.id)
             if (this.props.userId === currentUser.id) {
                 return (
-                    <Card>
+                    <Card className='suggestionCard'>
                         <Card.Content>
                             <Card.Header>{this.props.suggestion.name}</Card.Header>
-                            <TiePoodleButton {...this.props}
-                                updateExistingUserEventPoodle={this.updateExistingUserEventPoodle} />
-                            <Card.Meta style={green}>{filteredPoodles.length}</Card.Meta>
-                            <Button onClick={() => this.props.deleteSuggestion(this.props.suggestion.id)}>Delete</Button>
+                            <div className='tieButtonContainer'>
+                                <div>
+                                    <TiePoodleButton {...this.props}
+                                        updateExistingUserEventPoodle={this.updateExistingUserEventPoodle} />
+                                    <Card.Meta style={green}>{filteredPoodles.length}</Card.Meta>
+                                </div>
+                                <Button icon='trash alternate outline' onClick={() => this.props.deleteSuggestion(this.props.suggestion.id)}></Button>
+                            </div>
                         </Card.Content>
                     </Card>
                 )
             } else {
                 return (
-                    <Card>
+                    <Card className='suggestionCard'>
                         <Card.Content>
                             <Card.Header>{this.props.suggestion.name}</Card.Header>
                             <TiePoodleButton {...this.props}

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Button, Modal, } from 'semantic-ui-react'
+import { Button, Modal, Icon } from 'semantic-ui-react'
 
 class EditEventNameModal extends Component {
     state={
@@ -16,12 +16,12 @@ class EditEventNameModal extends Component {
 
     render() {
         return (
-            <Modal trigger={<Button>Edit</Button>} 
+            <Modal className='modalAdd' trigger={<Button className="smallerButton"><Icon name='edit outline'/></Button>} 
             open={this.state.open}
             onOpen={this.open}
             onClose={this.close}
             closeIcon>
-                <Modal.Header>Edit</Modal.Header>
+                <Modal.Header className="headerColor">Edit</Modal.Header>
                 <Modal.Content>
                     <label>Edit</label>
                     <input

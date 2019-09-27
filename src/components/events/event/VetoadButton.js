@@ -14,16 +14,16 @@ class VetoadButton extends Component {
             if (vetoadCheck === undefined) {
                 if (filteredVetoads[0].vetoadSuggestionId === null) {
                     return (
-                        <Button onClick={this.props.updateExistingUserEventVetoad}>🐸</Button>
+                        <Button className='emojiButton' onClick={this.props.updateExistingUserEventVetoad}>🐸</Button>
                     )
                 } else {
                     if (filteredVetoads[0].vetoadSuggestionId === this.props.suggestion.id) {
                         return (
-                            <Button disabled color='blue'>🐸</Button>
+                            <Button className='emojiButton' disabled color='blue'>🐸</Button>
                         )
                     } else {
                         return (
-                            <Button disabled>🐸</Button>
+                            <Button className='emojiButton' disabled>🐸</Button>
                         )
 
                     }
@@ -31,11 +31,11 @@ class VetoadButton extends Component {
             } else {
                 if (filteredVetoads[0].vetoadSuggestionId === this.props.suggestion.id) {
                     return (
-                        <Button disabled color='blue'>🐸</Button>
+                        <Button className='emojiButton' disabled color='blue'>🐸</Button>
                     )
                 } else {
                     return (
-                        <Button disabled>🐸</Button>
+                        <Button className='emojiButton' disabled>🐸</Button>
                     )
 
                 }

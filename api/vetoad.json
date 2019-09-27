@@ -379,14 +379,14 @@
     },
     {
       "eventId": 11,
-      "poodleSuggestionId": null,
-      "parrotSuggestionId": null,
+      "poodleSuggestionId": 34,
+      "parrotSuggestionId": 35,
       "vetoadSuggestionId": null,
-      "userId": 1,
       "vetoad": true,
       "canSuggestEvent": true,
-      "tieId": null,
-      "id": 26
+      "userId": 1,
+      "id": 26,
+      "tieId": null
     },
     {
       "eventId": 11,

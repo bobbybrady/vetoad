@@ -18,10 +18,10 @@ class UserListModal extends Component {
                     <Card.Content className='invisibleCard'>
                         <li>
                             <p>{this.props.user.firstName} {this.props.user.lastName}
-                                    <AddUserModal
-                                        {...this.props}
-                                    />
-                                    </p>
+                                <AddUserModal
+                                    {...this.props}
+                                />
+                            </p>
                         </li>
                     </Card.Content>
                 </Card>

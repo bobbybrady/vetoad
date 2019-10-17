@@ -1,4 +1,5 @@
-const remoteURL = "http://localhost:5002"
+// const remoteURL = "http://localhost:5002"
+const remoteURL = "https://floating-ridge-12046.herokuapp.com"
 
 export default {
     get(id) {

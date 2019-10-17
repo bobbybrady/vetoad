@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react'
 
 class ParrotButton extends Component {
 
-
+    //renders the parrot buttons based off if they are clicked or not
     render() {
         const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.vetoadSuggestionId === this.props.suggestion.id)
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))

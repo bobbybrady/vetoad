@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Card, Button } from 'semantic-ui-react'
 
 class ParticipantCardModal extends Component {
-
+ //renders the veotad and contribution buttons based off if they are clicked or not
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (parseInt(this.props.user.id) === currentUser.id) {

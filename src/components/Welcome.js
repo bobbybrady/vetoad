@@ -5,6 +5,7 @@ import './Vetoad.css'
 
 class Welcome extends Component {
     render() {
+        //loads main page with login and register
         return (
             <div className="welcome_container">
                 <Image size='large'  className='logo' centered src={require('./Original.png')} />

@@ -32,7 +32,7 @@ class EditUsernameModal extends Component {
                         id="username"
                         value={this.props.username}
                     />
-                    <Button onClick={this.onClick}>Save</Button>
+                    <Button className='saveButton' onClick={this.onClick}>Save</Button>
                 </Modal.Content>
             </Modal>
         )

@@ -21,7 +21,7 @@ class Login extends Component {
     }
 
 
-
+    // logs you in after verification
     handleLogin = (event) => {
         event.preventDefault()
         UserManager.getUsernamePassword(this.state.username, this.state.password).then(user => {

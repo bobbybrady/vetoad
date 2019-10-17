@@ -30,7 +30,7 @@ class Event extends Component {
         totalCount: [],
         isOver: false,
     }
-
+    //gets the specific event
     getEvent = () => {
         return EventManager.get(this.props.eventId).then(event => {
             this.setState({
@@ -43,7 +43,7 @@ class Event extends Component {
             })
         })
     }
-
+    //gets all users stores them in state
     getAllUsers = () => {
         return UserManager.getAll().then((users) => {
             this.setState({
@@ -51,7 +51,7 @@ class Event extends Component {
             })
         })
     }
-
+    //gets all userEvents stores them in state
     getUserEvents = () => {
         return UserEventsManager.getAll().then(userEvents => {
             const filteredUserEvents = userEvents.filter(userEvent => userEvent.eventId === this.props.eventId)
@@ -60,7 +60,7 @@ class Event extends Component {
             })
         })
     }
-
+    //adds a new suggestion to the database, re-renders the page
     handleSuggestionAdd = () => {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         const suggestionNewObject = {
@@ -75,13 +75,13 @@ class Event extends Component {
             this.setTotalCount()
         })
     }
-
+    //updates state based on user input
     handleFieldChange = event => {
         const stateToChange = {}
         stateToChange[event.target.id] = event.target.value
         this.setState(stateToChange)
     }
-
+    //gets all suggestions
     getSuggestions = () => {
         return SuggestionsManager.getSuggestionEvent(this.props.eventId).then(suggestions => {
             this.setTotalCount()
@@ -90,7 +90,7 @@ class Event extends Component {
             })
         })
     }
-
+    //for each suggestion this adds up each vote and stores the votes in state sorted by total count
     setTotalCount = () => {
         const totalCount = this.state.suggestions.map(suggestion => {
             const filteredPoodles = this.state.userEvents.filter(userEvent => suggestion.id === userEvent.poodleSuggestionId)
@@ -118,7 +118,7 @@ class Event extends Component {
         open: false,
         newUser: []
     })
-
+    //adds a new user to state to open another modal with this users info
     addUserId = (event) => {
         const foundUser = this.state.users.find(user => user.id === parseInt(event.currentTarget.id))
         const userObject = this.state.newUser.concat({
@@ -131,7 +131,7 @@ class Event extends Component {
         this.setState({ newUser: userObject })
 
     }
-
+    //toggles the vetoad in state 
     updateVetoad = (userId) => {
         this.setState({
             newUser: this.state.newUser.map(user => {
@@ -141,6 +141,7 @@ class Event extends Component {
             })
         })
     }
+    //toggles the contribution in state
     updateCanSuggestEvent = (userId) => {
         this.setState({
             newUser: this.state.newUser.map(user => {
@@ -150,7 +151,7 @@ class Event extends Component {
             })
         })
     }
-
+    //adds a participant to the event
     addParticipantToEvent = () => {
         const participantObject = {
             eventId: this.props.eventId,
@@ -168,7 +169,7 @@ class Event extends Component {
             this.setState({ newUser: [] })
         })
     }
-
+    //edits the event
     editEvent = () => {
         const editedObject = {
             name: this.state.name,
@@ -185,7 +186,7 @@ class Event extends Component {
             })
         })
     }
-
+    //deletes participant
     deleteParticipant = id => {
         UserEventsManager.delete(id)
             .then(() => {
@@ -193,14 +194,14 @@ class Event extends Component {
                 this.props.getAllUserEvents()
             })
     }
-
+    //delete suggestion
     deleteSuggestion = id => {
         SuggestionsManager.delete(id)
             .then(() => {
                 this.getSuggestions()
             })
     }
-
+    //end the event and check if it is a tie
     endEvent = () => {
         this.setTotalCount()
         if (this.state.totalCount.length < 2) {
@@ -242,7 +243,7 @@ class Event extends Component {
         }
 
     }
-
+    //end the tie
     endTie = () => {
         const finishedEvent = {
             name: this.state.name,
@@ -263,7 +264,7 @@ class Event extends Component {
             })
         })
     }
-
+    //search the state for a user and filter the users based off the input
     searchForParticipant = (participant) => {
         const searchedUsers = this.state.users.filter(user => user.firstName.toString().toLowerCase().includes(participant.toString().toLowerCase()) || user.lastName.toString().toLowerCase().includes(participant.toString().toLowerCase()))
         return searchedUsers

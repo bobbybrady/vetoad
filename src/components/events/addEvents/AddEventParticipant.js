@@ -4,7 +4,7 @@ import { Button } from "semantic-ui-react"
 class AddEventParticipant extends Component {
 
 
-
+//renders the name with the ability to add if they are not added 
     render() {
         const foundUser = this.props.addParticipant.filter(participant => parseInt(participant.userId) === parseInt(this.props.user.id))
         const fullName= `${this.props.user.firstName} ${this.props.user.lastName}`

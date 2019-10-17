@@ -8,7 +8,7 @@ import './Event.css'
 
 class Suggestion extends Component {
 
-
+//edits the status of a clicked poodle
     updateExistingUserEventPoodle = () => {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.userId === currentUser.id && this.props.suggestion.eventId === userEvent.eventId)
@@ -26,6 +26,7 @@ class Suggestion extends Component {
 
         UserEventManager.update(editedUserEvent).then(this.props.getUserEvents).then(this.props.getSuggestions)
     }
+    //edits the status of a clicked parrot
     updateExistingUserEventParrot = () => {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.userId === currentUser.id && this.props.suggestion.eventId === userEvent.eventId)
@@ -43,7 +44,7 @@ class Suggestion extends Component {
 
         UserEventManager.update(editedUserEvent).then(this.props.getUserEvents).then(this.props.getSuggestions)
     }
-
+    //edits the status of a clicked vetoad
     updateExistingUserEventVetoad = () => {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         const vetoadCheck = this.props.userEvents.find(userEvent => userEvent.userId === currentUser.id && this.props.suggestion.eventId === userEvent.eventId)

@@ -32,7 +32,7 @@ class EditEventNameModal extends Component {
                         id="name"
                         value={this.props.name}
                     />
-                    <Button onClick={this.onClick}>Save</Button>
+                    <Button className='saveButton' onClick={this.onClick}>Save</Button>
                 </Modal.Content>
             </Modal>
         )

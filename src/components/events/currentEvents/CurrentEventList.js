@@ -9,6 +9,7 @@ class CurrentEventList extends Component {
         this.props.history.push('/addevent')
     }
 
+    //renders the first page on login, as well as each card applicable to the user
     render() {
         return (
             <>

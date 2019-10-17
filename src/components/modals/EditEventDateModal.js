@@ -32,7 +32,7 @@ class EditEventDateModal extends Component {
                         id="date"
                         value={this.props.date}
                     />
-                    <Button onClick={this.onClick}>Save</Button>
+                    <Button className='saveButton' onClick={this.onClick}>Save</Button>
                 </Modal.Content>
             </Modal>
         )

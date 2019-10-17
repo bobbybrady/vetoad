@@ -3,7 +3,7 @@ import { Card, Button } from 'semantic-ui-react'
 
 class AddSuggestion extends Component {
 
-
+//renders the suggestion
     render() {
         return (
             <Card>

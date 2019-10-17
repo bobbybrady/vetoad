@@ -20,6 +20,7 @@ class Register extends Component {
         this.setState(stateToChange)
     }
 
+    //registers a new user, sets the session storage, logs you in
     handleRegister = (event) => {
         event.preventDefault()
         UserManager.getUsername(this.state.username).then(user => {

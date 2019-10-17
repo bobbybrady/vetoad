@@ -3,6 +3,8 @@ import { Card, Button, Icon } from 'semantic-ui-react'
 
 class CurrentEventCard extends Component {
 
+    //renders the individual card for each event. Will render a tie card if its a tie, will render a star if the user created it
+
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.props.userEvents.length === 0) {

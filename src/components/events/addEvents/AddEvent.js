@@ -19,12 +19,14 @@ class AddEvent extends Component {
         suggestions: []
     }
 
+    //sets the state based off of what the user inputs
     handleFieldChange = event => {
         const stateToChange = {}
         stateToChange[event.target.id] = event.target.value
         this.setState(stateToChange)
     }
 
+    //toggles the vetoad between true and false
     updateVetoad = (userId) => {
         this.setState({
             users: this.state.users.map(user => {
@@ -34,6 +36,8 @@ class AddEvent extends Component {
             })
         })
     }
+
+    //toggles the ability to suggest an event between true and false
     updateCanSuggestEvent = (userId) => {
         this.setState({
             users: this.state.users.map(user => {
@@ -55,6 +59,7 @@ class AddEvent extends Component {
         this.setState({ users: userObject })
     }
 
+    //adds new user to state
     addUserId = (e) => {
         const userObject = this.state.users.concat({
             userId: e.currentTarget.id,
@@ -65,6 +70,7 @@ class AddEvent extends Component {
         this.setState({ users: userObject })
     }
 
+    //adds a new suggestion to state
     handleSuggestionAdd = () => {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         const suggestionObject = this.state.suggestions.concat({
@@ -78,6 +84,7 @@ class AddEvent extends Component {
         })
     }
 
+    //removes a specfic suggestion from state
     removeSuggestion = (id) => {
         const deletedArray = this.state.suggestions.filter(suggestion => suggestion.id != id)
         this.setState(() => {
@@ -85,6 +92,7 @@ class AddEvent extends Component {
         })
     }
 
+    //removes a specific user from state
     removeParticipant = (id) => {
         const deletedArray = this.state.users.filter(user => user.userId != id)
         this.setState(() => {
@@ -92,11 +100,13 @@ class AddEvent extends Component {
         })
     }
 
+    //searches all the users and filters them based on user input
     searchForParticipant = (participant) => {
         const searchedUsers = this.props.allUsers.filter(user => user.firstName.toString().toLowerCase().includes(participant.toString().toLowerCase()) || user.lastName.toString().toLowerCase().includes(participant.toString().toLowerCase()))
         return searchedUsers
     }
 
+    //creates the event, takes you to the page of the created event
     submitForm = () => {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (this.state.name === '') {

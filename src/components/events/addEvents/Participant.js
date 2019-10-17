@@ -3,7 +3,7 @@ import { Card, Button } from 'semantic-ui-react'
 
 class Participant extends Component {
 
-
+//renders the name of the added user along with the buttons to give vetoad or contribution powers
     render() {
         const currentUser = JSON.parse(sessionStorage.getItem("credentials"))
         if (parseInt(this.props.user.userId) === currentUser.id) {

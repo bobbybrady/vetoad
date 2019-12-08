@@ -38,4 +38,23 @@ Contributing to an event would allow a user the ability to add suggestions to be
 
 ![Vetoad Contribute](VetoadContributeGif.gif)
 
+<b>Ending an event</b>
+------
 
+The user who created the event will have the ability to end the event. In the event of a tie, a tie page will display showing all of the suggestions that are tied. The users can only vote for during a tie.
+
+![Vetoad Tie](VetoadTieGif.gif)
+
+After voting is complete, the event becomes a past event and the winner is displayed along with the vote count.
+
+![Vetoad Complete](VetoadCompleteGif.gif)
+
+------
+
+Vetoad is built using React.js and Semantic UI.
+
+To run Vetoad:
+
+```sh
+npm install
+```

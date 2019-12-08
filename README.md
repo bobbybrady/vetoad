@@ -9,3 +9,10 @@ http://vetoad.netlify.com
 Once the user arrives on the launhc page, they have the option to login or register.
 
 ![Vetoad Login](VetoadLoginGif.gif)
+
+<b>How it works</b>
+------
+
+Vetoad uses animal emojis as a way to represent the voting system. A Poodle is a vote for something, a Parrot is a vote against something, and a Toad or Vetoad will veto something.
+
+![Vetoad How it works](VetoadHowItWorksGif.gif)

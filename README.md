@@ -30,7 +30,7 @@ Upon clicking on an active event, a user will be able to vote for or against som
 
 ![Vetoad Vote](VetoadVoteGif.gif)
 
-Contributing to an event would allow a user the ability to add suggestions to be voted on, users with this permission will have a "+" button upon clicking an event.
+A user with the ability to Vetoad will be shown an additional Toad button, this button will veto that suggestion.
 
 ![Vetoad Vetoad](VetoadGif.gif)
 

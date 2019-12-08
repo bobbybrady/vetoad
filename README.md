@@ -6,7 +6,7 @@ http://vetoad.netlify.com
 <b>Login and Registration</b>
 ------
 
-Once the user arrives on the launhc page, they have the option to login or register.
+Once the user arrives on the launch page, they have the option to login or register.
 
 ![Vetoad Login](VetoadLoginGif.gif)
 

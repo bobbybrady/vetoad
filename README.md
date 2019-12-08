@@ -22,20 +22,20 @@ Vetoad uses animal emojis as a way to represent the voting system. A Poodle is a
 
 A user can create an event by clicking the "+" button upon login. A user can create event, and give other users permissions, such as Vetoad, or the ability to contribute to the event. 
 
-![Vetoad Create an Event](VetoadCreate.gif)
+![Vetoad Create an Event](VetoadCreateGif.gif)
 
 <b>Voting</b>
 ------
 Upon clicking on an active event, a user will be able to vote for or against something by clicking the Poodle or Parrot button.
 
-![Vetoad Vote](VetoadVote.gif)
+![Vetoad Vote](VetoadVoteGif.gif)
 
 Contributing to an event would allow a user the ability to add suggestions to be voted on, users with this permission will have a "+" button upon clicking an event.
 
-![Vetoad Vetoad](Vetoad.gif)
+![Vetoad Vetoad](VetoadGif.gif)
 
 Contributing to an event would allow a user the ability to add suggestions to be voted on, users with this permission will have a "+" button upon clicking an event.
 
-![Vetoad Contribute](VetoadContribute.gif)
+![Vetoad Contribute](VetoadContributeGif.gif)
 
 

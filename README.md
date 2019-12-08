@@ -13,6 +13,29 @@ Once the user arrives on the launhc page, they have the option to login or regis
 <b>How it works</b>
 ------
 
-Vetoad uses animal emojis as a way to represent the voting system. A Poodle is a vote for something, a Parrot is a vote against something, and a Toad or Vetoad will veto something.
+Vetoad uses animal emojis as a way to represent the voting system. A Poodle is a vote for something, a Parrot is a vote against something, and a Toad or Vetoad will veto something. The How It Works tab in the side-bar menu will give you all the information you need about the various animal options.
 
 ![Vetoad How it works](VetoadHowItWorksGif.gif)
+
+<b>Creating an event</b>
+------
+
+A user can create an event by clicking the "+" button upon login. A user can create event, and give other users permissions, such as Vetoad, or the ability to contribute to the event. 
+
+![Vetoad Create an Event](VetoadCreate.gif)
+
+<b>Voting</b>
+------
+Upon clicking on an active event, a user will be able to vote for or against something by clicking the Poodle or Parrot button.
+
+![Vetoad Vote](VetoadVote.gif)
+
+Contributing to an event would allow a user the ability to add suggestions to be voted on, users with this permission will have a "+" button upon clicking an event.
+
+![Vetoad Vetoad](Vetoad.gif)
+
+Contributing to an event would allow a user the ability to add suggestions to be voted on, users with this permission will have a "+" button upon clicking an event.
+
+![Vetoad Contribute](VetoadContribute.gif)
+
+

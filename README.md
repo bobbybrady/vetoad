@@ -4,6 +4,7 @@ I come from a large family, and when we are all together making decisions on wha
 http://vetoad.netlify.com
 
 <b>Login and Registration</b>
+------
 
 Once the user arrives on the launhc page, they have the option to login or register.
 
